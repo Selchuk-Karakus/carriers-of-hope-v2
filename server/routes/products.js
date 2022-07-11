@@ -1,10 +1,56 @@
 let router = require("express").Router();
-let products = require('../dal/productsDAL');
+let {getAllProducts,getOneProduct,createProduct, deleteOneProduct, updateProductById } = require('../service/products');
 
-  router.post("/", products.createProduct); // Create a new Collection
-  router.get("/", products.getAllProducts);  // Retrieve all Collections
-  router.get("/:id", products.getOneProduct);  // Retrieve a single Collection with id
-  router.put("/:id", products.updateProduct);  // Update a Collection with id
-  router.delete("/:id", products.deleteProduct);  // Delete a Collection with id
+
+//getAll
+router.get('/', (req, res) => {
+  getAllProducts().then(products => {
+      res.json(products);
+  })
+})
+
+//getOne
+router.get('/:id', (req, res) => {
+  const productId = parseInt(req.params.id);
+  getOneProduct(productId).then(product => {
+      res.json(product);
+  })
+})
+
+
+router.post('/', (req, res) => {
+  let reqBody= req.body
+  createProduct(reqBody).then(product => {
+     res.status(201).send({
+      message: "Product added successfully!",
+      body: {
+        product:reqBody
+      },
+    });
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  const productId = parseInt(req.params.id);
+  deleteOneProduct(productId).then(product => {
+    res.status(200).send({ message: 'Product deleted successfully!', productId });
+
+  })
+});
+
+router.put('/:id', (req, res) => {
+  let reqBody= req.body;
+  const productId = parseInt(req.params.id);
+  updateProductById(productId,reqBody).then(product => {
+     res.status(201).send({
+      message: "Product added successfully!",
+      body: {
+        product:reqBody
+      },
+    });
+  })
+})
+
+
 
 module.exports = router; 

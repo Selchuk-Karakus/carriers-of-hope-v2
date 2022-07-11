@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
 
 
 app.use("/orders", orders);
+app.use("/products", products);
+
 
 // // Have Node serve the files for our built React app
 // //this serves the react app files to users machine from heroku

@@ -53,6 +53,11 @@ INSERT INTO members (first_name, last_name, email, address, city, postcode, coun
          ('Sami','Hakim','s.hakim@johnsmith.org','15 New Road','London','L10 2AB','UK', 56789012345, 'samihakim', TRUE),
          ('Hedyeh','Etemadi','h.etemedi@johnsmith.org','16 New Road','Manchester','L10 2AB','UK', 67890123456, 'hedyehetemaddi', TRUE),
          ('Olga','Olga','o.olga@johnsmith.org','17 New Road','London','L10 2AB','UK', 78901234567, 'olgaolga', TRUE);
+<<<<<<< mahri-products
+
+
+=======
+>>>>>>> main
 INSERT INTO products (product_name, category_name)
     VALUES   ('Toaster', 'Kitchen and Utility'),
             ('Bed Double', 'Furniture and Beds'),
@@ -66,7 +71,13 @@ INSERT INTO products (product_name, category_name)
             ('Window Curtain(grey, 2pair)','Curtains'),
             ('Dining table', 'Kitchen and Utility'),
             ('Mattress', 'Bath');
+<<<<<<< mahri-products
+
+
+INSERT INTO orders (order_date, order_ref, member_id) VALUES 
+=======
 INSERT INTO orders (order_date, order_ref, member_id) VALUES
+>>>>>>> main
 ('2019-08-01', 'ORD001', 1),
 ('2019-07-15', 'ORD001', 2),
 ('2019-07-11', 'ORD001', 3),
