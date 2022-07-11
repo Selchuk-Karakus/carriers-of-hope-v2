@@ -54,8 +54,6 @@ function selectProductsByOrderId(orderId) {
   );
 };
 
-<<<<<<< orders-server
-
 exports.selectProductsByOrderId = (orderId) => {
   return pgClient.pool.query(
     `SELECT id, ` +
@@ -65,7 +63,7 @@ exports.selectProductsByOrderId = (orderId) => {
       `FROM products ` +
       `WHERE id in (SELECT id FROM order_item WHERE order_id = ${orderId})`
   );
-=======
+  
 module.exports = {
   selectProductsByOrderId,
   selectProductAllProducts,
@@ -73,5 +71,4 @@ module.exports = {
   insertProduct,
   deleteProductByProductId,
   updateProductByProductId
->>>>>>> main
 };
