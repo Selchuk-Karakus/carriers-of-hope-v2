@@ -4,8 +4,6 @@ DROP TABLE if exists orders CASCADE;
 DROP TABLE if exists order_item CASCADE;
 DROP TABLE if exists cart CASCADE;
 DROP TABLE if exists cart_item CASCADE;
-
-
 CREATE TABLE members (
   id           SERIAL PRIMARY KEY,
   first_name   VARCHAR( 30 ) NOT NULL,
@@ -19,32 +17,27 @@ CREATE TABLE members (
   password     VARCHAR( 15 ) NOT NULL,
   isAdmin      BOOLEAN NOT NULL
 );
-
 CREATE TABLE products (
     id               SERIAL PRIMARY KEY,
     product_name     VARCHAR(30) NOT NULL,
     category_name    VARCHAR(30) NOT NULL
 );
-
 CREATE TABLE orders (
     id              SERIAL PRIMARY KEY,
     order_date      DATE NOT NULL,
     order_ref       VARCHAR(10) NOT NULL,
     member_id       INT REFERENCES members(id)
 );
-
 CREATE TABLE order_item (
     id              SERIAL PRIMARY KEY,
     quantity        INT NOT NULL,
     order_id        INT REFERENCES orders(id),
     product_id      INT REFERENCES products(id)
 );
-
 CREATE TABLE cart (
     id              SERIAL PRIMARY KEY,
     member_id       INT REFERENCES members(id)
 );
-
 CREATE TABLE cart_item (
     id              SERIAL PRIMARY KEY,
     cart_id         INT REFERENCES cart(id),
@@ -52,8 +45,7 @@ CREATE TABLE cart_item (
     created_at      TIMESTAMP DEFAULT NULL,
     quantity        INT NOT NULL
 );
-
-INSERT INTO members (first_name, last_name, email, address, city, postcode, country, telephone, password, isAdmin) 
+INSERT INTO members (first_name, last_name, email, address, city, postcode, country, telephone, password, isAdmin)
   VALUES ('John','Smith','j.smith@johnsmith.org','11 New Road','Liverpool','L10 2AB','UK',12345678910, 'johnsmith', FALSE),
          ('Selchuk','Karakus','s.karakus@johnsmith.org','12 New Road','London','L10 2AB','UK', 23456789101, 'selchukkarakus', FALSE),
          ('Helen','Rog','h.rog@johnsmith.org','13 New Road','London','L10 2AB','UK', 34567891234, 'helenrog', FALSE),
@@ -61,8 +53,11 @@ INSERT INTO members (first_name, last_name, email, address, city, postcode, coun
          ('Sami','Hakim','s.hakim@johnsmith.org','15 New Road','London','L10 2AB','UK', 56789012345, 'samihakim', TRUE),
          ('Hedyeh','Etemadi','h.etemedi@johnsmith.org','16 New Road','Manchester','L10 2AB','UK', 67890123456, 'hedyehetemaddi', TRUE),
          ('Olga','Olga','o.olga@johnsmith.org','17 New Road','London','L10 2AB','UK', 78901234567, 'olgaolga', TRUE);
+<<<<<<< mahri-products
 
 
+=======
+>>>>>>> main
 INSERT INTO products (product_name, category_name)
     VALUES   ('Toaster', 'Kitchen and Utility'),
             ('Bed Double', 'Furniture and Beds'),
@@ -76,9 +71,13 @@ INSERT INTO products (product_name, category_name)
             ('Window Curtain(grey, 2pair)','Curtains'),
             ('Dining table', 'Kitchen and Utility'),
             ('Mattress', 'Bath');
+<<<<<<< mahri-products
 
 
 INSERT INTO orders (order_date, order_ref, member_id) VALUES 
+=======
+INSERT INTO orders (order_date, order_ref, member_id) VALUES
+>>>>>>> main
 ('2019-08-01', 'ORD001', 1),
 ('2019-07-15', 'ORD001', 2),
 ('2019-07-11', 'ORD001', 3),
@@ -86,16 +85,12 @@ INSERT INTO orders (order_date, order_ref, member_id) VALUES
 ('2019-05-29', 'ORD001', 5),
 ('2019-04-01', 'ORD001', 6),
 ('2019-04-02', 'ORD001', 7);
-
-
-INSERT INTO order_item (quantity, order_id, product_id) VALUES  
+INSERT INTO order_item (quantity, order_id, product_id) VALUES
 (1, 1, 6),
 (1, 2, 2),
 (1, 3, 5),
 (1, 4, 3),
 (1, 5, 1);
-
-
 INSERT INTO cart (member_id) VALUES
 (1),
 (2),
@@ -103,8 +98,6 @@ INSERT INTO cart (member_id) VALUES
 (4),
 (5),
 (6);
-
-
 INSERT INTO cart_item (cart_id, product_id, quantity, created_at) VALUES
 (1, 1, 1, NULL),
 (2, 2, 1, NULL),
