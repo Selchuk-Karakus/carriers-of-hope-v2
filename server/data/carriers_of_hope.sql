@@ -63,19 +63,19 @@ INSERT INTO members (first_name, last_name, email, address, city, postcode, coun
          ('Olga','Olga','o.olga@johnsmith.org','17 New Road','London','L10 2AB','UK', 78901234567, 'olgaolga', TRUE);
 
 
-INSERT INTO products (product_name, category_name, quantity)
-    VALUES   ('Toaster', 'Kitchen and Utility', 1),
-            ('Bed Double', 'Furniture and Beds', 1),
-            ('Bath Mat', 'Bath', 1),
-            ('Kids Rug', 'Rugs', 1),
-            ('Dinner Set(4Person', 'Kitchen and Utility', 1),
-            ('Towel(2big and 2 small)' ,'Bath', 1),
-            ('Sofa', 'Furniture and Beds', 1),
-            ('Wardrobe', 'Furniture and Beds', 1),
-            ('Nappies', 'Baby and Kids', 1),
-            ('Window Curtain(grey, 2pair)','Curtains', 1),
-            ('Dining table', 'Kitchen and Utility', 1),
-            ('Mattress', 'Bath', 1);
+INSERT INTO products (product_name, category_name)
+    VALUES   ('Toaster', 'Kitchen and Utility'),
+            ('Bed Double', 'Furniture and Beds'),
+            ('Bath Mat', 'Bath'),
+            ('Kids Rug', 'Rugs'),
+            ('Dinner Set(4Person', 'Kitchen and Utility'),
+            ('Towel(2big and 2 small)' ,'Bath'),
+            ('Sofa', 'Furniture and Beds'),
+            ('Wardrobe', 'Furniture and Beds'),
+            ('Nappies', 'Baby and Kids'),
+            ('Window Curtain(grey, 2pair)','Curtains'),
+            ('Dining table', 'Kitchen and Utility'),
+            ('Mattress', 'Bath');
 
 
 INSERT INTO orders (order_date, order_ref, member_id) VALUES 

@@ -1,66 +1,64 @@
-const pgClient = require('../config/db')
+const pgClient = require("../config/postgres");
 
-exports.getAllProducts= (req, res) =>{
-  pgClient.query('SELECT * FROM products' )
-  .then ((result)=>res.json(result.rows))
-  .catch((error)=>{
-      console.log(error)
-      res.status(500).json(error);
-  })
-}
 
-exports.getOneProduct= (req, res) =>{
-  let paramId = req.params.id;
-  pgClient.query('SELECT * FROM products WHERE id=$1', [paramId] )
-  .then ((result)=>res.json(result.rows))
-  .catch((error)=>{
-      console.log(error)
-      res.status(500).json(error);
-  })
-}
-
-exports.createProduct= (req, res) =>{
-  let  {product_name,category_name}=req.body;
-  for (let key in req.body) {
-    if (!req.body[key]) {
-      return res.status(400).send("Please fill in all the details");
-    }
-  }
+//getAllProduct
+function selectProductAllProducts(){
+  return  pgClient.pool.query('SELECT * FROM products' )
   
-  pgClient
-    .query(
-      "INSERT INTO products (product_name, category_name) VALUES ($1,$2)",
-      [ product_name,category_name]
-    )
-    .then(() => res.send("Successful" ))
-    .catch((error) => console.log(error));
-};
+}
 
-// DELETE REQUEST
-exports.deleteProduct = (req, res) =>{
-  let paramId = req.params.id;
-  pgClient.query('DELETE FROM products WHERE id = $1', [paramId])  
-  .then (()=>res.send(`Product ${paramId} deleted`))
-  .catch((error)=>{
-      console.log(error)
-      res.status(500).json(error);
-  })
-};
+//GEtOneProduct
+async function  selectOneProductByProductId(productId){
+  return await pgClient.pool
+  .query('SELECT * FROM products WHERE id=$1', [productId] )
+
+}
+
+//CreateProduct
+async function insertProduct(body){
+  let  {product_name,category_name}=body;
+  return await pgClient.pool
+  .query("INSERT INTO products (product_name, category_name) VALUES ($1, $2)",
+    [product_name, category_name]
+  );
+}
+
+// DELETE oneProduct
+async function  deleteProductByProductId(productId){
+  return await pgClient.pool
+  .query('DELETE FROM products WHERE id = $1', [productId] )
+
+}
+
 
 //PUT REQUEST
-exports.updateProduct=(req, res)=> {
-  let paramId = req.params.id;
-  let {product_name,category_name}=req.body;
-  pgClient.query('UPDATE products SET product_name =$1, category_name= $2 WHERE id = $3',
-            [product_name,category_name, paramId])  
-  .then (()=>{
-        res.json( `Products ${paramId} updated`)
-        console.log( `Products ${paramId} updated`)
-  }
-        )
-  .catch((error)=>{
-        console.log(error)
-        res.status(500).json(error);
-})
+async function  updateProductByProductId(id,reqBody){
+  let  {product_name,category_name}=reqBody;
+  return await pgClient.pool
+  .query(
+    "UPDATE products SET product_name = $1, category_name = $2 WHERE id = $3",
+    [product_name, category_name, id]
+  );
+}
+
+
+//Order!
+function selectProductsByOrderId(orderId) {
+  return pgClient.pool
+  .query(
+    `SELECT id, ` +
+      `product_name, ` +
+      `category_name, ` +
+      `FROM products ` +
+      `WHERE id in (SELECT id FROM order_item WHERE order_id = ${orderId})`
+  );
 };
 
+module.exports = {
+  selectProductsByOrderId,
+  selectProductAllProducts,
+  selectOneProductByProductId,
+  insertProduct,
+  deleteProductByProductId,
+  updateProductByProductId
+};
