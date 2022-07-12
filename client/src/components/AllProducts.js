@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function AllItems() {
+function AllProducts() {
   return (
     <>
       <div>
-        <p>All Items</p>
-        <Link to="/item-details">
+        <p>All Products</p>
+        <Link to="/product-details">
           {" "}
           <div>
             <p>Item 1</p>
@@ -17,4 +17,4 @@ function AllItems() {
   );
 }
 
-export default AllItems;
+export default AllProducts;
