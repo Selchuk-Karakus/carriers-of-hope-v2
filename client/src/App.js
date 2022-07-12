@@ -1,8 +1,8 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./components/Homepage";
-import AllItems from "./components/AllItems";
-import ItemDetails from "./components/ItemDetails";
+import AllProducts from "./components/AllProducts";
+import ProductDetails from "./components/ProductDetails";
 import RequestForm from "./components/RequestForm";
 import Navbar from "./components/Navbar";
 import OrderSummary from "./components/OrderSummary";
@@ -15,9 +15,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
-        <Route path="all-items" element={<AllItems />}></Route>
-        <Route path="item-details/:itemId" element={<ItemDetails />}></Route>
-        <Route path="item-details" element={<ItemDetails />}></Route>
+        <Route path="all-products" element={<AllProducts />}></Route>
+        <Route
+          path="product-details/:itemId"
+          element={<ProductDetails />}
+        ></Route>
+        <Route path="product-details" element={<ProductDetails />}></Route>
         <Route path="request-form" element={<RequestForm />}></Route>
         <Route path="order-summary" element={<OrderSummary />}></Route>
         <Route path="*" element={<NoMatch />}></Route>
