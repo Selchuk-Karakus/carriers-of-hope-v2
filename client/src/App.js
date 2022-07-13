@@ -5,11 +5,12 @@ import Homepage from "./components/Homepage";
 import AllProducts from "./components/AllProducts";
 import ProductDetails from "./components/ProductDetails";
 import RequestForm from "./components/RequestForm";
-import UserLogin from "./components//UserLogin";
 import Navbar from "./components/Navbar";
 import OrderSummary from "./components/OrderSummary";
 import Footer from "./components/Footer";
 import NoMatch from "./components/NoMatch";
+import FilteredProducts from "./components/FilteredProducts";
+import UserLogin from "./components/UserLogin";
 
 function App() {
   return (
@@ -23,8 +24,9 @@ function App() {
             path="product-details/:itemId"
             element={<ProductDetails />}
           ></Route>
+          <Route path="filtered-products" element={<FilteredProducts />} />
           <Route path="product-details" element={<ProductDetails />}></Route>
-          <Route path="user-login" element={<UserLogin />} />
+          <Route path="user-login" element={<UserLogin />}></Route>
           <Route path="request-form" element={<RequestForm />}></Route>
           <Route path="order-summary" element={<OrderSummary />}></Route>
           <Route path="*" element={<NoMatch />}></Route>
