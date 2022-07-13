@@ -1,9 +1,8 @@
 const pgClient = require("../config/postgres");
 
-
 //getAllProduct
 function selectProductAllProducts(){
-  return  pgClient.pool.query('SELECT * FROM products' )
+  return  pgClient.pool.query("SELECT * FROM products")
   
 }
 
@@ -47,7 +46,7 @@ function selectProductsByOrderId(orderId) {
   .query(
     `SELECT id, ` +
       `product_name, ` +
-      `category_name, ` +
+      `category_name ` +
       `FROM products ` +
       `WHERE id in (SELECT id FROM order_item WHERE order_id = ${orderId})`
   );
