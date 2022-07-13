@@ -1,57 +1,44 @@
-const pool = require("../config/db");
+const pgClient = require("../config/postgres");
 
-//Get all members.
-exports.getMembers = async (req, res) => {
-  let results = await pool
-    .query("SELECT * FROM members ORDER BY id ASC")
-    .then((result) => res.json(result.rows))
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json(error);
-    });
-  return results;
-};
+//Make a query for all Members
+const selectAllMembers = () => {
+  return pgClient
+  .pool
+  .query("SELECT * FROM members ORDER BY id ASC")
+  };
 
-//Get a member
-exports.getMemberById = async (req, res) => {
-  const { memberId } = req.params;
-  let results = await pool
-    .query("SELECT * FROM members WHERE id=$1", [memberId])
-    .then((result) => res.json(result.rows))
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json(error);
-    });
-  return results;
-};
+//Make a query for a member
+const selectMemberById = (memberId) => {
+  return pgClient.pool.query(
+    "SELECT * FROM members WHERE id=$1", [memberId]
+  );
+}
 
-//Create a member.
-exports.createMembers = async (req, res) => {
-  let {first_name, last_name, email, address, city, postcode, country, telephone, password, isAdmin} = req.body;
-  console.log("HELLO", first_name);
+//Insert a new member entry.
+const insertMember = async (reqBody) => {
+  let {first_name, last_name, email, address, city, postcode, country, telephone, password, isAdmin} = reqBody;
 
-     await pool
-   .query("INSERT INTO members (first_name, last_name, email, address, city, postcode, country, telephone, password, isAdmin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", [
-         first_name,
-         last_name,
-         email,
-         address,
-         city,
-         postcode,
-         country,
-         telephone,
-         password,
-         isAdmin,
-       ])
-   .catch(console.log);
-  return;
-};
+    return pgClient.pool
+      .query(
+        "INSERT INTO members (first_name, last_name, email, address, city, postcode, country, telephone, password, isAdmin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+        [
+          first_name,
+          last_name,
+          email,
+          address,
+          city,
+          postcode,
+          country,
+          telephone,
+          password,
+          isAdmin,
+        ]
+      )
+    };
 
-//Update a member.
-exports.updateMemberById = async (req, res) => {
-  let memberId = Number(req.params.memberId);
+//Update a member by editing entries.
+const updateEditMemberById = async (memberId, reqBody) => {
 
-  console.log("HELLO", memberId);
   let {
     first_name,
     last_name,
@@ -63,10 +50,11 @@ exports.updateMemberById = async (req, res) => {
     telephone,
     password,
     isAdmin,
-  } = req.body;
-  await pool
+  } = reqBody;
+
+  return pgClient.pool
     .query(
-      "UPDATE members SET first_name = $1, last_name = $2, email = $3, address = $4, city = $5, postcode = $6, country = $7, telephone = $8, password = $9, isAdmin = $10 WHERE id = $11 " ,
+      "UPDATE members SET first_name = $1, last_name = $2, email = $3, address = $4, city = $5, postcode = $6, country = $7, telephone = $8, password = $9, isAdmin = $10 WHERE id = $11 RETURNING *" ,
       [
         first_name,
         last_name,
@@ -81,24 +69,18 @@ exports.updateMemberById = async (req, res) => {
         memberId
       ]
     )
-    .then(() => {
-      res.json(`Member ${memberId} updated`);
-      console.log(`Member ${memberId} updated`);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json(error);
-    });
 };
 
-//Delete a member.
-exports.deleteMemberById = async (req, res) => {
-  let memberId = Number(req.params.memberId);
-  await pool
-    .query("DELETE FROM members WHERE id = $1", [memberId])
-    .then(() => res.send(`Member ${memberId} deleted`))
-    .catch((error) => {
-      console.log(error);
-      res.status(500).json(error);
-    });
+//Delete a member with a specific id
+const deleteMemberByIdDb = async (memberId) => {
+  return await pgClient.pool
+    .query("DELETE FROM members WHERE id = $1", [memberId]);
 };
+
+module.exports = {
+  selectAllMembers,
+  selectMemberById,
+  insertMember,
+  updateEditMemberById,
+  deleteMemberByIdDb
+}
