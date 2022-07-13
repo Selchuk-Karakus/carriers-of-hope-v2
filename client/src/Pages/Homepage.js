@@ -5,7 +5,7 @@ function Homepage() {
   return (
     <div>
       <div>Homepage</div>
-      <Link to="all-products">All Products</Link>
+      <Link to="/products">All Products</Link>
     </div>
   );
 }
