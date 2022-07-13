@@ -14,6 +14,7 @@ code {
 
 nav a {
   text-decoration: none;
+  color: white;
 }
 
 nav a.active {
