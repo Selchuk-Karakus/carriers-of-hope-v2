@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const session = require("express-session");
 
 const PORT = process.env.PORT || 8000;
 
@@ -11,11 +12,25 @@ const orders = require("./routes/orders");
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 app.get("/", (req, res) => {
-  res.send({
-    express: "Your Backend Service is Running.",
-  });
+  if (req.session.loggedin){
+    res.send({
+      express: "You're logged in.",
+    });
+  } else {
+    res.send({
+      express: "You're not logged in.",
+    });
+  }
+    
 });
 
 app.use("/orders", orders);
