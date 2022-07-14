@@ -10,11 +10,11 @@ function AllProducts() {
       <div>
         <p>All Products</p>
         <input type="search" placeholder="search products" />
-        <Link to="/filtered-products">
+        {/* <Link to="/filtered-products">
           <div>
             <p>Filter</p>
           </div>
-        </Link>
+        </Link> */}
         <Link to="/product-details">
           {" "}
           <div>
