@@ -1,8 +1,8 @@
 import React, { useEffect,useContext } from "react";
+import { Link } from "react-router-dom";
 import {Styles} from '../styles/productspage';
 import { IoIosArrowBack } from 'react-icons/io';
 import {ProductsContext} from '../services/products.context';
-import ProductCards from '../components/ProductsCards';
 import { ThreeDots } from "react-loading-icons";
 
 
@@ -33,7 +33,24 @@ function ProductsPage() {
               <p className="text-danger">Network response was not ok!</p>
             </div>
           ) : (
-            <ProductCards productsData={products}/>
+            <div className="card-container">
+            {products?products.map(
+                ({product_name,category_name}, index) => {
+                  return (
+                    <div className="video-card" key={index}> 
+                    <Link to={`/product-details/${product_name}`} >             
+                      <div className="card-body">
+                        <h3 className="title">{product_name}</h3>
+                        <p className="">{category_name}</p>
+                      </div>
+                    </Link>    
+                  </div>
+                );
+                }
+                )
+              : "Loading..."}
+        </div>
+           
           )}
           </div>
       </div>
