@@ -1,4 +1,4 @@
-const { selectMemberByEmailAndPassword } = require("../dal/membersDAL");
+const { selectMemberByEmailAndPassword } = require("../dal/authDAL");
 
 const checkEmailAndPassword = async (loginObj) => {
   const email = loginObj.email;

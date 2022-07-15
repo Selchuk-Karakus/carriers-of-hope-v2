@@ -12,38 +12,13 @@ function isAdmin() {
   return false;
 }
 
-async function checkEmailAndPassword(loginObj) {
-  const email = loginObj.email;
-  const password = loginObj.password;
-
-  if (email && password) {
-    try {
-      const result = await selectMemberByEmailAndPassword(email, password);
-      
-      if (result.rows.length > 0) {
-        const userObj = {
-        email: email,
-        id: result.rows[0].id
-        }
-        return userObj;
-      } else {
-        return {};
-      }
-    } catch (error) {
-      throw error;
-    }
-  } else {
-    return {};
-  }
-}
-
 //GET all members.
 const getMembers = async (req, res) => {
   try {
     const { rows } = await selectAllMembers();
     return rows;
   } catch (error) {
-    res.status(500).json({message: error.message})
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -94,5 +69,4 @@ module.exports = {
   updateMemberById,
   deleteMemberById,
   isAdmin,
-  checkEmailAndPassword,
 };
