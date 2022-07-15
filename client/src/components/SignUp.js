@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "./styles/Container.styled";
+import { Form } from "../styles/Container.styled";
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {

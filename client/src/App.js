@@ -14,33 +14,75 @@ import ProductsProvider from "./services/products.context"
 import FilteredProducts from "./components/FilteredProducts"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
+import { Container } from './styles/Container.styled'
+
+
 
 
 
 function App() {
   return (
-    <Global>
-      <Navbar />
+    <>
+      <Container>
+        <Navbar />
+        <div className="content-wrap">
       <ProductsProvider>
-        <Routes>
-          <Route path="/" exact element={<Homepage />}></Route>
-          <Route path="products" exact element={<ProductsPage />}></Route>
-          <Route
-            path="product-details/:name"
-            exact
-            element={<ProductDetails />}
-          ></Route>
-          <Route path="user-login" element={<UserLogin />} />
-          <Route path="request-form" exact element={<RequestForm />}></Route>
 
-          <Route path="order-summary" exact element={<OrderSummary />}></Route>
-          <Route path="*" exact element={<NoMatch />}></Route>
-        </Routes>
-      </ProductsProvider>
-      <Footer />
-    </Global>
+          <Routes>
+            <Route path="/" element={<Homepage />}></Route>
+            <Route path="products" element={<ProductsPage />}></Route>
+            <Route
+              path="product-details/:itemId"
+              element={<ProductDetails />}
+            ></Route>
+            <Route path="filtered-products" element={<FilteredProducts />} />
+            <Route path="product-details" element={<ProductDetails />}></Route>
+            <Route path="user-login" element={<UserLogin />}></Route>
+            <Route
+              path="forgotten-name-or-password"
+              element={<ForgottenNameOrPassword />}
+            ></Route>
+            <Route path="sign-up" element={<SignUp />}></Route>
+            <Route></Route>
+            <Route path="request-form" element={<RequestForm />}></Route>
+            <Route path="order-summary" element={<OrderSummary />}></Route>
+            <Route path="*" element={<NoMatch />}></Route>
+          </Routes>
+          </ProductsProvider>
+
+        </div>
+
+        <Footer />
+      </Container>
+    </>
   )
 }
+
+
+// function App() {
+//   return (
+//     <Global>
+//       <Navbar />
+//       <ProductsProvider>
+//         <Routes>
+//           <Route path="/" exact element={<Homepage />}></Route>
+//           <Route path="products" exact element={<ProductsPage />}></Route>
+//           <Route
+//             path="product-details/:name"
+//             exact
+//             element={<ProductDetails />}
+//           ></Route>
+//           <Route path="user-login" element={<UserLogin />} />
+//           <Route path="request-form" exact element={<RequestForm />}></Route>
+
+//           <Route path="order-summary" exact element={<OrderSummary />}></Route>
+//           <Route path="*" exact element={<NoMatch />}></Route>
+//         </Routes>
+//       </ProductsProvider>
+//       <Footer />
+//     </Global>
+//   )
+// }
 
 
 export default App

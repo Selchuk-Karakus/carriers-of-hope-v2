@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledHomepage } from "./styles/Container.styled";
-import { Heading } from "./styles/Container.styled";
-import { Text } from "./styles/Container.styled";
-import coventry from "./images/coventry.jpg";
+import { StyledHomepage } from "../styles/Container.styled";
+import { Heading } from "../styles/Container.styled";
+import { Text } from "../styles/Container.styled";
+import coventry from "../images/coventry.jpg";
 
 function Homepage() {
   return (

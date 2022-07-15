@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledRequestForm } from "./styles/Container.styled";
+import { StyledRequestForm } from "../styles/Container.styled";
 
 function RequestForm() {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledUserLogin } from "./styles/Container.styled";
+import { StyledUserLogin } from "../styles/Container.styled";
 import { Link } from "react-router-dom";
 
 function UserLogin() {
