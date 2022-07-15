@@ -9,6 +9,7 @@ function Navbar() {
   return (
     <>
       <StyledNav>
+        <p>carriers of hope</p>
         <div
           className={
             isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
