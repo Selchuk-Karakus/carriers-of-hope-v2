@@ -37,7 +37,6 @@ export const Styles = styled.div`
       .product-card {
         background-color: ${colors.bg};
         padding-bottom: 1.5rem;
-        
         width: 177px;
         height: 213px;
         color: ${colors.text1};
@@ -45,20 +44,20 @@ export const Styles = styled.div`
         margin: 1rem 0.4rem;
 
         @media (min-width: 605px) {
-          width: 520px;
-          margin: 1rem;
-          height: 375px;          
+          width: 190px;
+          height: 220px;
+          margin:2rem;        
         }
 
         @media (min-width: 950px) {
-          margin: 1.5rem 1rem;
-          width: 520px;
-          height: 380px;      
+          margin: 1rem;
+          width: 200px;
+          height: 240px;    
         }
-        @media (min-width: 1150px) {
-          margin: 2rem 1.5rem;
-          width: 610px;
-
+        @media (min-width: 1250px) {
+          margin: 2rem 1rem;
+          width: 220px;
+          height: 260px;
         }
 
         &:hover {
@@ -67,13 +66,18 @@ export const Styles = styled.div`
         }
         
         .image-container {
-          width:177px;
+          width:100%;
 
           img{
             border-radius:16px;
             width:100%;
             height: 160px;
             object-fit:cover;
+            @media (min-width: 950px) {
+             
+              height: 200px;
+                
+            }
           }
         }        
 
