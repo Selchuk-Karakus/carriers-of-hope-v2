@@ -28,7 +28,8 @@ CREATE TABLE orders (
     id              SERIAL PRIMARY KEY,
     order_date      DATE NOT NULL,
     order_ref       VARCHAR(10) NOT NULL,
-    member_id       INT REFERENCES members(id)
+    member_id       INT REFERENCES members(id),
+    order_status    VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE order_item (
@@ -75,18 +76,22 @@ INSERT INTO products (product_name, category_name)
             ('Mattress', 'Bath');
 
 
-INSERT INTO orders (order_date, order_ref, member_id) VALUES 
-('2019-08-01', 'ORD001', 1),
-('2019-07-15', 'ORD001', 2),
-('2019-07-11', 'ORD001', 3),
-('2019-05-01', 'ORD001', 4),
-('2019-05-29', 'ORD001', 5),
-('2019-04-01', 'ORD001', 6),
-('2019-04-02', 'ORD001', 7);
+INSERT INTO orders (order_date, order_ref, member_id, order_status) VALUES 
+('2019-08-01', 'ORD001', 1, 'PENDING'),
+('2019-07-15', 'ORD002', 2, 'PENDING'),
+('2019-07-15', 'ORD003', 2, 'APPROVED'),
+('2019-07-15', 'ORD004', 2, 'CANCELLED'),
+('2019-07-15', 'ORD005', 2, 'PENDING'),
+('2019-07-11', 'ORD006', 3, 'PENDING'),
+('2019-05-01', 'ORD007', 4, 'PENDING'),
+('2019-05-29', 'ORD008', 5, 'PENDING'),
+('2019-04-01', 'ORD009', 6, 'PENDING'),
+('2019-04-02', 'ORD0010', 7, 'PENDING');
 
 INSERT INTO order_item (quantity, order_id, product_id) VALUES
 (1, 1, 6),
 (1, 2, 2),
+(1, 2, 3),
 (1, 3, 5),
 (1, 4, 3),
 (1, 5, 1);
