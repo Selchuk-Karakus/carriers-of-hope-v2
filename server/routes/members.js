@@ -5,26 +5,7 @@ let {
   createMembers,
   updateMemberById,
   deleteMemberById,
-  checkEmailAndPassword,
 } = require("../service/members");
-
-router.post('/auth', function(req, res) {
-  checkEmailAndPassword(req.body)
-    .then((userObj) => {
-      if(!userObj.id){
-        res.send("Incorrect email and/or Password!");
-      } else {
-       req.session.loggedin = true;
-       req.session.email = userObj.email;
-       req.session.userId = userObj.id;
-       res.redirect('/');
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500);
-    });
-});  
 
 //Send a GET request to /members to READ(view) a list of members
 router.get("/", (req, res) => {
