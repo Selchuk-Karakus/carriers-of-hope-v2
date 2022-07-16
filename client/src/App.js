@@ -4,13 +4,13 @@ import Homepage from "./Pages/Homepage";
 import ProductsPage from "./Pages/ProductsPage";
 import ProductDetails from "./Pages/ProductDetails";
 import RequestForm from "./components/RequestForm";
-import UserLogin from "./components/UserLogin";
 import Navbar from "./components/Navbar";
 import OrderSummary from "./components/OrderSummary";
 import Footer from "./components/Footer";
 import NoMatch from "./components/NoMatch";
 import Global from './styles/global';
 import ProductsProvider from "./services/products.context";
+import LoginPage from "./Pages/LoginPage";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           exact 
           element={<ProductDetails />}
         ></Route>
-        <Route path="user-login" element={<UserLogin />} />
+        <Route path="login" element={<LoginPage />} />
         <Route path="request-form" exact  element={<RequestForm />}></Route>
         
         <Route path="order-summary" exact  element={<OrderSummary />}></Route>
