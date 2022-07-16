@@ -4,7 +4,7 @@ import { StyledUserLogin } from "../styles/Container.styled";
 import { Link } from "react-router-dom";
 import { login } from "../services/authService";
 
-function UserLogin() {
+function LoginPage() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [displayError, setDisplayError] = useState();
@@ -73,4 +73,4 @@ function UserLogin() {
   );
 }
 
-export default UserLogin;
+export default LoginPage;
