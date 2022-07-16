@@ -37,7 +37,7 @@ function App() {
             ></Route>
             <Route path="filtered-products" element={<FilteredProducts />} />
             <Route path="product-details" element={<ProductDetails />}></Route>
-            <Route path="login" element={<LoginPage />} ></Route>
+            <Route path="login" element={<LoginPage />} />
             <Route
               path="forgotten-name-or-password"
               element={<ForgottenNameOrPassword />}

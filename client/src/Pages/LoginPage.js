@@ -1,37 +1,39 @@
-import { useState } from "react";
-import { login } from "../services/authService";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { StyledUserLogin } from "../styles/Container.styled";
+import { Link } from "react-router-dom";
+import { login } from "../services/authService";
 
-const LoginPage = () => {
+function UserLogin() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [displayError, setDisplayError] = useState();
   const navigate = useNavigate();
 
-    
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     login({
       email,
       password,
     }).then((signedIn) => {
-      if(signedIn) {
+      if (signedIn) {
         setDisplayError(false);
         navigate("/products");
       } else {
         setDisplayError(true);
       }
-      
-    })
+    });
   };
 
-    return (
-      <form onSubmit={handleSubmit}>
-        <h3>Login</h3>
-        <div className="mb-3">
-          <label>Email</label>
+  return (
+    <>
+      {" "}
+      <button onClick={() => navigate(-1)}>back</button>
+      <StyledUserLogin>
+        <div>UserLogin</div>
+        <form onSubmit={handleSubmit}>
+          <label>Email:</label>
           <input
             type="email"
             className="form-control"
@@ -39,37 +41,36 @@ const LoginPage = () => {
             name="email"
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div className="mb-3">
-          <label>Password</label>
+          <label>Password:</label>
           <input
             type="password"
             className="form-control"
-            placeholder="xxxxxxxx"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
-        <p className="forgot-password text-right">
-          <a href="#">Forgotten password?</a>
-        </p>
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-          <button type="button" className="btn btn-secondary">
-            Sign up
-          </button>
-        </div>
+          <button>Login</button>
+        </form>
+        <nav>
+          <p>
+            Forgotten password? Click{" "}
+            <Link to="/forgotten-name-or-password">
+              <span style={{ color: "blue" }}>here</span>
+            </Link>
+          </p>
+          <p>
+            Don't have an account? Sign up{" "}
+            <Link to="/sign-up">
+              <span style={{ color: "blue" }}>here</span>
+            </Link>
+          </p>
+        </nav>
         <div className="mb-3" style={displayError ? {} : { display: "none" }}>
           <label>Incorrect Email or Password</label>
         </div>
-      </form>
-    );
+      </StyledUserLogin>
+    </>
+  );
 }
 
-
-LoginPage.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
-export default LoginPage;
+export default UserLogin;
