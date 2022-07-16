@@ -2,7 +2,7 @@ import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import Homepage from "./Pages/Homepage"
 import ProductsPage from "./Pages/ProductsPage"
-import ProductDetails from "./Pages/ProductDetails"
+import ProductDetails from "./Pages/ProductDetails";
 import RequestForm from "./components/RequestForm"
 import LoginPage from "./Pages/LoginPage";
 import Navbar from "./components/Navbar"
@@ -26,17 +26,17 @@ function App() {
       <Container>
         <Navbar />
         <div className="content-wrap">
-      <ProductsProvider>
-
+        <ProductsProvider>
           <Routes>
-            <Route path="/" element={<Homepage />}></Route>
-            <Route path="products" element={<ProductsPage />}></Route>
+            <Route path="/" exact element={<Homepage />}></Route>
+            <Route path="/products"  element={<ProductsPage />}></Route>
             <Route
-              path="product-details/:itemId"
+            
+              path="/product-details/:id"
               element={<ProductDetails />}
             ></Route>
             <Route path="filtered-products" element={<FilteredProducts />} />
-            <Route path="product-details" element={<ProductDetails />}></Route>
+
             <Route path="login" element={<LoginPage />} />
             <Route
               path="forgotten-name-or-password"
@@ -46,12 +46,10 @@ function App() {
             <Route></Route>
             <Route path="request-form" element={<RequestForm />}></Route>
             <Route path="order-summary" element={<OrderSummary />}></Route>
-            <Route path="*" element={<NoMatch />}></Route>
+            <Route path="*"  element={<NoMatch />}></Route>
           </Routes>
-          </ProductsProvider>
-
+        </ProductsProvider>
         </div>
-
         <Footer />
       </Container>
     </>
