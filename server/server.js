@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const session = require("express-session");
+
+app.use(cors());
 
 const PORT = process.env.PORT || 8000;
 
@@ -10,20 +11,10 @@ const members = require("./routes/members");
 const orders = require("./routes/orders");
 const auth = require("./routes/auth");
 
-app.use(cors());
-
 //parse incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//use sessions for tracking logins
-app.use(
-  session({
-    secret: "secret",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
 app.get("/", (req, res) => {
   if (req.session.loggedin){
@@ -34,15 +25,14 @@ app.get("/", (req, res) => {
     res.send({
       express: "You're not logged in.",
     });
-  }
-    
+  }  
 });
 
 //include routes
+app.use("/", auth);
 app.use("/orders", orders);
 app.use("/products", products);
 app.use("/members", members);
-app.use("/auth", auth)
 
 // // Have Node serve the files for our built React app
 // //this serves the react app files to users machine from heroku

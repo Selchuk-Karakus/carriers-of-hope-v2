@@ -15,6 +15,7 @@ const ProductsProvider = ({ children }) => {
    );
    if (response.ok) {
      const jsonData = await response.json();
+     console.log('🐳 ~ fetchData ~ jsonData', jsonData)
      setProducts(jsonData);
      setLoading(false);
    } else {

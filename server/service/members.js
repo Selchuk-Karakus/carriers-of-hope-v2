@@ -1,4 +1,3 @@
-// const { request } = require("express");
 const {
   selectAllMembers,
   selectMemberById,
@@ -10,6 +9,18 @@ const {
 
 function isAdmin() {
   return false;
+}
+
+const getMemberByEmailAndPassword = async (email, password) => {
+  const result = await selectMemberByEmailAndPassword(email, password);
+  //if user record exist, then do the following 
+  if(result.rows.length > 0) {
+    return {
+      id: result.rows[0].id,
+      email: result.rows[0].email,
+      isAdmin: result.rows[0].isAdmin,
+    };
+  }
 }
 
 //GET all members.
@@ -69,4 +80,5 @@ module.exports = {
   updateMemberById,
   deleteMemberById,
   isAdmin,
+  getMemberByEmailAndPassword
 };

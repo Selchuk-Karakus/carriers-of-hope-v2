@@ -6,6 +6,7 @@ function ProductDetails() {
   return (
     <>
       <div>
+        <button onClick={() => navigate(-1)}>back</button>
         <p>Product name</p>
         <p>Product description</p>
         <img alt="" />

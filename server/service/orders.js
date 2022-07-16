@@ -1,29 +1,48 @@
 const productService = require("./products");
-const ordersDAL = require("../dal/ordersDAL");
+const {
+  selectOrders,
+  selectOrdersById,
+  insertOrder,
+  insertOrderItems,
+  updateOrder,
+} = require("../dal/ordersDAL");
+
 const memberService = require("./members");
 
-async function getOrders(userId) {
-  if (!memberService.isAdmin(userId)) {
-    const dbOrders = await ordersDAL.selectOrdersByMemberId(userId);
-
-    return Promise.all(
-      dbOrders.rows.map(async (dbOrder) => {
-        const productList = await productService.getAllProductsByOrderId(
-          dbOrder.id
-        );
-
-        return {
-          id: dbOrder.id,
-          orderDate: dbOrder.orderDate,
-          orderRef: dbOrder.orderRef,
-          products: productList,
-          orderStatus: dbOrder.orderStatus,
-        };
-      })
-    ).then((ordersList) => {
-      return ordersList;
-    });
+//getAllOrders - Admin & user
+async function getOrders(userObj) {
+  let orders;
+  if (userObj.isAdmin) {
+    // if user is admin
+    orders = await selectOrders();
+  } else {
+    // if user is NOT admin
+    orders = await selectOrders(userObj.id);
   }
+  return (orders)? buildOrderList(orders) : []; 
+}
+
+//getASingleOrderById - Admin & User
+async function getOrderById(userObj, orderId) {
+  let orders;
+  if (userObj.isAdmin) {
+    // if user is admin
+    orders = await selectOrdersById(orderId);
+  } else {
+    // if user is NOT admin
+    orders = await selectOrdersById(orderId, userObj.id);
+  }
+  return orders ? buildOrderList(orders) : []; 
+};
+
+//getAllOrdersUsingFilter - Admin & user
+async function getOrdersUsingFilter(userObj, filterObj) {
+  //By ProductId or By MemberId or By Date
+  // if user is NOT admin
+    // const dbOrders = await selectAllOrdersByMemberIdAndFilter(filterObj, userObj.id);
+
+  // if user is admin
+    // const dbOrders = await selectAllOrdersByMemberIdAndFilter(filterObj);
 }
 
 async function addOrder(orderObj, userId) {
@@ -45,7 +64,7 @@ async function addOrder(orderObj, userId) {
     orderStatus: initialState,
   };
 
-  const insertOrderResult = await ordersDAL.insertOrder(newOrderRecord);
+  const insertOrderResult = await insertOrder(newOrderRecord);
   if (!insertOrderResult.rowCount > 0) {
     return {
       statusCode: 500,
@@ -63,8 +82,7 @@ async function addOrder(orderObj, userId) {
     };
   });
 
-  return ordersDAL
-    .insertOrderItems(orderItems)
+  return insertOrderItems(orderItems)
     .then((insertRes) => {
       if (insertRes.rowCount === orderItems.length) {
         return {
@@ -88,18 +106,6 @@ async function addOrder(orderObj, userId) {
     });
 }
 
-function orderUpdateAllowed(reqBody, userId) {
-  const isAdmin = memberService.isAdmin(userId);
-
-  if (isAdmin && ["APPROVED", "DECLINED"].includes(reqBody.orderStatus)) {
-    return true;
-  }
-  if (!isAdmin && "CANCELLED" === reqBody.orderStatus) {
-    return true;
-  }
-  return false;
-}
-
 async function modifyOrder(reqBody, userId) {
   if (!orderUpdateAllowed(reqBody, userId)) {
     return {
@@ -115,7 +121,7 @@ async function modifyOrder(reqBody, userId) {
     orderStatus: reqBody.orderStatus,
   };
 
-  const result = ordersDAL.updateOrder(orderObj);
+  const result = updateOrder(orderObj);
 
   if ((await result).rowCount === 1) {
     return {
@@ -130,8 +136,44 @@ async function modifyOrder(reqBody, userId) {
   }
 }
 
+function orderUpdateAllowed(reqBody, userId) {
+  const isAdmin = memberService.isAdmin(userId);
+
+  if (isAdmin && ["APPROVED", "DECLINED"].includes(reqBody.orderStatus)) {
+    return true;
+  }
+  if (!isAdmin && "CANCELLED" === reqBody.orderStatus) {
+    return true;
+  }
+  return false;
+}
+
+async function buildOrderList(orders) {
+  console.log(orders)
+  return Promise.all(
+    orders.rows.map(async (order) => {
+      const products = await productService.getAllProductsByOrderId(order.id);
+
+      return buildOrderObj(order, products);
+    })
+  ).then((ordersList) => {
+    return ordersList;
+  });
+}
+
+function buildOrderObj(order, products) {
+  return {
+    id: order.id,
+    orderDate: order.orderDate,
+    orderRef: order.orderRef,
+    products: products,
+    orderStatus: order.orderStatus,
+  };
+}
+
 module.exports = {
   getOrders,
+  getOrderById,
   addOrder,
   modifyOrder,
 };
