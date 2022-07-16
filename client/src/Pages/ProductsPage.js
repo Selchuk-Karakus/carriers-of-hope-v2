@@ -7,21 +7,23 @@ import { ThreeDots } from "react-loading-icons";
 
 
 function ProductsPage() {
+  
   const  {products, loading, error, fetchData} =  useContext(ProductsContext);
 
   useEffect(() => {
     fetchData().catch(console.error);
+    console.log(products)
   }, []);
 
 
   return (
     <Styles>
-      <div className="card-container">
-        <button><IoIosArrowBack/><span></span>Back</button>
+      <div className="main-content">
+        <Link to={'/'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
           <div>
           {loading ? (
-            <ThreeDots stroke="#FFE61B" style={{margin:"auto"}}/>
+            <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
           ) : error ? (
             <div>
               {" "}
@@ -34,22 +36,26 @@ function ProductsPage() {
             </div>
           ) : (
             <div className="card-container">
-            {products?products.map(
-                ({product_name,category_name}, index) => {
+              {products?products.map(
+                ({id,product_name,category_name}, index) => {
                   return (
-                    <div className="video-card" key={index}> 
-                    <Link to={`/product-details/${product_name}`} >             
-                      <div className="card-body">
-                        <h3 className="title">{product_name}</h3>
-                        <p className="">{category_name}</p>
-                      </div>
-                    </Link>    
+                    <div className="product-card" key={id}> 
+                      <Link to={'/product-details/'+id} >   
+                        <div className="image-container">
+                        <img alt="product-images"
+                             src={'/images/' + category_name +'.jpg'} />        
+                        </div>  
+                        <div className="card-text">
+                          <h3 className="p-name">{product_name}</h3>
+                          <p className="p-category">{category_name}</p>
+                        </div>
+                      </Link>    
                   </div>
                 );
                 }
                 )
               : "Loading..."}
-        </div>
+          </div>
            
           )}
           </div>
