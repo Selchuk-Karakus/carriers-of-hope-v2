@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { StyledNav } from "./styles/Container.styled";
+import { StyledNav } from "../styles/Container.styled";
 import { NavLink } from "react-router-dom";
 import "./navbar.css";
 
@@ -9,6 +9,7 @@ function Navbar() {
   return (
     <>
       <StyledNav>
+        <p>carriers of hope</p>
         <div
           className={
             isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
