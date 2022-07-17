@@ -14,7 +14,7 @@ CREATE TABLE members (
   postcode     VARCHAR( 8 ) NOT NULL,
   country      VARCHAR( 20 ) NOT NULL,
   telephone    NUMERIC NOT NULL,
-  password     VARCHAR( 15 ) NOT NULL,
+  password     VARCHAR( 100 ) NOT NULL,
   isAdmin      BOOLEAN NOT NULL
 );
 
