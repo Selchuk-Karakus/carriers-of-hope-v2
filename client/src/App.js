@@ -13,7 +13,7 @@ import Global from './styles/global'
 import ProductsProvider from "./services/products.context"
 import FilteredProducts from "./components/FilteredProducts"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
-import SignUp from "./components/SignUp"
+import SignUp from "./Pages/SignUpPage"
 import { Container } from './styles/Container.styled'
 
 
@@ -42,7 +42,7 @@ function App() {
               path="forgotten-name-or-password"
               element={<ForgottenNameOrPassword />}
             ></Route>
-            <Route path="sign-up" element={<SignUp />}></Route>
+            <Route path="register" element={<SignUp />}></Route>
             <Route></Route>
             <Route path="request-form" element={<RequestForm />}></Route>
             <Route path="order-summary" element={<OrderSummary />}></Route>
