@@ -20,6 +20,7 @@ router.post("/login", function (req, res) {
 //POST /register
 router.post("/register", async function (req, res, next) {
   // check that user typed in all fields in the form
+  
   if (
     req.body.first_name &&
     req.body.last_name &&
@@ -33,10 +34,9 @@ router.post("/register", async function (req, res, next) {
   ) {
     // if all fields are ticked off store data into user variable
     let user = req.body;
-    console.log("USER requesting to register", user);
     // confirm that user typed same password twice
     if (user.password !== user.confirmPassword) {
-      var err = new Error("Passwords do not match.");
+      let err = new Error("Passwords do not match.");
       err.status = 400;
       return next(err);
     }
@@ -63,7 +63,7 @@ router.post("/register", async function (req, res, next) {
     //tell client that request made is a success!
     res.status(201).send();
   } else {
-    var err = new Error("All fields required.");
+    let err = new Error("All fields required.");
     err.status = 400;
 
     console.log(err);
