@@ -20,7 +20,7 @@ export const Styles = styled.div`
     
     .back-button{
       display:flex;
-      margin-left:4.5rem;
+      margin-left:0.5rem;
       background-color:transparent;
       border:none;
       
@@ -39,9 +39,32 @@ export const Styles = styled.div`
       
     }
     .title{
-      margin-left:2rem;
+      margin-left:1rem;
     }
 
+    .onlineShop-image{
+      margin-left:0.9rem;
+      margin-bottom:2rem;
+      width:350px;
+
+
+      @media (min-width: 500px) {
+        margin-left:2rem;
+        width:500px;
+
+     
+      }
+      @media (min-width: 700px) {
+        margin-left:4.5rem;
+        width:880px;
+
+      }
+
+      img{
+        width:100%;
+      }
+
+    }
 
 
     .card-container{
