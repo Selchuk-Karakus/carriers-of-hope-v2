@@ -21,9 +21,11 @@ function ProductsPage() {
       <div className="main-content">
         <Link to={'/'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
+        <div className=''>
           <h3 className="title">Online Shop</h3>
-         <div className="onlineShop-image">
-           <img src="images/online_shopping.jpeg"  alt="online-shopping photo"/>
+          <div className="onlineShop-image">
+            <img src="images/online_shopping.jpg"  alt="online-shopping photo"/>
+          </div>
         </div>
         <div>
           {loading ? (
