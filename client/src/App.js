@@ -15,7 +15,7 @@ import FilteredProducts from "./components/FilteredProducts"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
 import { Container } from './styles/Container.styled'
-
+import Dashboard from "./Pages/Dashboard";
 
 
 
@@ -46,6 +46,8 @@ function App() {
             <Route></Route>
             <Route path="request-form" element={<RequestForm />}></Route>
             <Route path="order-summary" element={<OrderSummary />}></Route>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            
             <Route path="*"  element={<NoMatch />}></Route>
           </Routes>
         </ProductsProvider>
