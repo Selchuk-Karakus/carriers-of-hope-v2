@@ -19,7 +19,7 @@ export const Styles = styled.div`
     }
     .back-button{
       display:flex;
-      margin-left:1rem;
+      margin-left:4.5rem;
       background-color:transparent;
       border:none;
       

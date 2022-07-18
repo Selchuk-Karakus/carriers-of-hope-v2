@@ -15,19 +15,34 @@ export const Styles = styled.div`
       margin: 0 auto;
     }
     @media (min-width: 1250px) {
-      width: 1150px;
+      width: 1050px;
     }
+    
     .back-button{
       display:flex;
-      margin-left:1rem;
+      margin-left:4.5rem;
       background-color:transparent;
       border:none;
       
       .icon{
         margin-top:1.2px;
       }
+
+      @media (min-width: 900px) {
+        margin-left:1rem;
+     
+      }
+      @media (min-width: 1050px) {
+        margin-left:4.5rem;
+
+      }
       
     }
+    .title{
+      margin-left:2rem;
+    }
+
+
 
     .card-container{
       display: flex;

@@ -24,7 +24,7 @@ function Navbar() {
                 <NavLink to="/login">Login</NavLink>
               </li>
               <li>
-                <NavLink to="/all-products">Products</NavLink>
+                <NavLink to="/products">Products</NavLink>
               </li>
             </ul>
           </nav>

@@ -21,7 +21,11 @@ function ProductsPage() {
       <div className="main-content">
         <Link to={'/'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
-          <div>
+          <h3 className="title">Online Shop</h3>
+         <div className="onlineShop-image">
+           <img src="images/online_shopping.jpeg"  alt="online-shopping photo"/>
+        </div>
+        <div>
           {loading ? (
             <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
           ) : error ? (
@@ -34,31 +38,31 @@ function ProductsPage() {
               />{" "}
               <p className="text-danger">Network response was not ok!</p>
             </div>
-          ) : (
-            <div className="card-container">
-              {products?products.map(
-                ({id,product_name,category_name}, index) => {
-                  return (
-                    <div className="product-card" key={id}> 
-                      <Link to={'/product-details/'+id} >   
-                        <div className="image-container">
-                        <img alt="product-images"
-                             src={'/images/' + category_name +'.jpg'} />        
-                        </div>  
-                        <div className="card-text">
-                          <h3 className="p-name">{product_name}</h3>
-                          <p className="p-category">{category_name}</p>
-                        </div>
-                      </Link>    
-                  </div>
-                );
-                }
-                )
-              : "Loading..."}
-          </div>
-           
+            ) : (
+              <div className="card-container">
+                {products?products.map(
+                  ({id,product_name,category_name}, index) => {
+                    return (
+                      <div className="product-card" key={id}> 
+                        <Link to={'/product-details/'+id} >   
+                          <div className="image-container">
+                          <img alt="product-images"
+                              src={'/images/' + category_name +'.jpg'} />        
+                          </div>  
+                          <div className="card-text">
+                            <h3 className="p-name">{product_name}</h3>
+                            <p className="p-category">{category_name}</p>
+                          </div>
+                        </Link>    
+                    </div>
+                  );
+                  }
+                  )
+                : "Loading..."}
+              </div>
+            
           )}
-          </div>
+        </div>
       </div>
     </Styles>
   );
