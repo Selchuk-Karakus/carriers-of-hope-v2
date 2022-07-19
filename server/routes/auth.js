@@ -30,7 +30,8 @@ router.post("/register", async function (req, res, next) {
     req.body.postcode &&
     req.body.country &&
     req.body.telephone &&
-    req.body.password
+    req.body.password &&
+    req.body.confirmPassword
   ) {
     // if all fields are ticked off store data into user variable
     let user = req.body;
@@ -64,7 +65,7 @@ router.post("/register", async function (req, res, next) {
     res.status(201).send();
   } else {
     let err = new Error("All fields required.");
-    err.status = 400;
+    err.status = 401;
 
     console.log(err);
     return next(err);
