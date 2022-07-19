@@ -4,21 +4,22 @@ const {
   insertMember,
   updateEditMemberById,
   deleteMemberByIdDb,
-  selectMemberByEmailAndPassword,
+  selectMemberByEmail,
 } = require("../dal/membersDAL");
 
 function isAdmin() {
   return false;
 }
 
-const getMemberByEmailAndPassword = async (email, password) => {
-  const result = await selectMemberByEmailAndPassword(email, password);
+const getMemberByEmail = async (email) => {
+  const result = await selectMemberByEmail(email);
   //if user record exist, then do the following 
   if(result.rows.length > 0) {
     return {
       id: result.rows[0].id,
       email: result.rows[0].email,
       isAdmin: result.rows[0].isAdmin,
+      password: result.rows[0].password
     };
   }
 }
@@ -80,5 +81,5 @@ module.exports = {
   updateMemberById,
   deleteMemberById,
   isAdmin,
-  getMemberByEmailAndPassword
+  getMemberByEmail
 };
