@@ -1,9 +1,9 @@
 const pgClient = require("../config/postgres");
 
-const selectMemberByEmailAndPassword = (email, password) => {
+const selectMemberByEmail = (email) => {
   return pgClient.pool.query(
-    "SELECT * FROM members WHERE email = $1 AND password = $2;",
-    [email, password]
+    "SELECT * FROM members WHERE email = $1",
+    [email]
   );
 };
 
@@ -87,7 +87,7 @@ const deleteMemberByIdDb = async (memberId) => {
 module.exports = {
   selectAllMembers,
   selectMemberById,
-  selectMemberByEmailAndPassword,
+  selectMemberByEmail,
   insertMember,
   updateEditMemberById,
   deleteMemberByIdDb
