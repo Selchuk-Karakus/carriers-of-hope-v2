@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const productId = parseInt(req.params.id);
   getOneProduct(productId).then(product => {
-      res.json(product);
+      res.json(product[0]);
   })
 })
 

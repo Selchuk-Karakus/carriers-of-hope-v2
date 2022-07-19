@@ -9,15 +9,14 @@ import Navbar from "./components/Navbar"
 import OrderSummary from "./components/OrderSummary"
 import Footer from "./components/Footer"
 import NoMatch from "./components/NoMatch"
-import Global from './styles/global'
+// import Global from './styles/global'
 import ProductsProvider from "./services/products.context"
-import FilteredProducts from "./components/FilteredProducts"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
 import { Container } from './styles/Container.styled'
 import Dashboard from "./Pages/Dashboard";
-
-
+import AddNewProductPage from "./Pages/AddNewProductPage";
+import UpdateProductPage from './Pages/UpdateProductPage';
 
 
 function App() {
@@ -35,8 +34,6 @@ function App() {
               path="/product-details/:id"
               element={<ProductDetails />}
             ></Route>
-            <Route path="filtered-products" element={<FilteredProducts />} />
-
             <Route path="login" element={<LoginPage />} />
             <Route
               path="forgotten-name-or-password"
@@ -46,9 +43,11 @@ function App() {
             <Route></Route>
             <Route path="request-form" element={<RequestForm />}></Route>
             <Route path="order-summary" element={<OrderSummary />}></Route>
-            <Route path="dashboard" element={<Dashboard />}></Route>
-            
-            <Route path="*"  element={<NoMatch />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/add-new-product" element={<AddNewProductPage />}></Route>
+            <Route path="/edit-product/:id" element={<UpdateProductPage />}></Route>
+
+              <Route path="*"  element={<NoMatch />}></Route>
           </Routes>
         </ProductsProvider>
         </div>

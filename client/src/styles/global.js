@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fonts,colors } from "../styles/variables/variables";
+import { fonts,colors } from "./variables/variables";
 
 const Styles = styled.div`
     background-color: ${colors.bg1};

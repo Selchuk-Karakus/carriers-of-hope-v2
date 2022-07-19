@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ProductsTable from '../components/ProductsTable'
 
 
 function Dashboard (){
@@ -12,7 +12,7 @@ function Dashboard (){
          <button>Orders</button>
          <button>Products</button>
          <button>Customers</button>
-
+      <ProductsTable/>
       </div>
    )
 }
