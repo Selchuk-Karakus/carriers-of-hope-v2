@@ -4,10 +4,10 @@ const format = require("pg-format");
 async function selectOrders(memberId) {
   return await pgClient.pool.query(
     `SELECT id, ` +
-      `order_date AS orderDate, ` +
-      `order_ref AS orderRef, ` +
-      `member_id AS memberId, ` +
-      `order_status AS orderStatus ` +
+      `order_date, ` +
+      `order_ref, ` +
+      `member_id, ` +
+      `order_status ` +
       `FROM orders WHERE member_id = COALESCE($1, member_id)`,
     [memberId]
   );
@@ -17,10 +17,10 @@ async function selectOrders(memberId) {
 async function selectOrdersById(orderId, memberId) {
   return await pgClient.pool.query(
     `SELECT id, ` +
-      `order_date AS orderDate, ` +
-      `order_ref AS orderRef, ` +
-      `member_id AS memberId, ` +
-      `order_status AS orderStatus ` +
+      `order_date, ` +
+      `order_ref, ` +
+      `member_id, ` +
+      `order_status ` +
       `FROM orders WHERE id = COALESCE($1, id) AND member_id = COALESCE($2, member_id)`,
     [orderId, memberId]
   );
