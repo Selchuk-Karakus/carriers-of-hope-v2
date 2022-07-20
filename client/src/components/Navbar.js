@@ -1,14 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { StyledNav } from "../styles/Container.styled";
 import { NavLink } from "react-router-dom";
-import "./navbar.css";
+import '../styles/navbar.scss';
+
 
 function Navbar() {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   return (
-    <>
-      <StyledNav>
+      <div className="navbar">
         <p>carriers of hope</p>
         <div
           className={
@@ -24,7 +23,7 @@ function Navbar() {
                 <NavLink to="/login">Login</NavLink>
               </li>
               <li>
-                <NavLink to="/all-products">Products</NavLink>
+                <NavLink to="/products">Products</NavLink>
               </li>
             </ul>
           </nav>
@@ -50,8 +49,7 @@ function Navbar() {
             />
           </svg>
         </button>
-      </StyledNav>
-    </>
+      </div>
   );
 }
 

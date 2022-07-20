@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Form } from "../styles/Container.styled";
 import { useNavigate } from "react-router-dom";
+import "../styles/signup.scss";
 import { signUp } from "../services/authService";
 
 const SignUpPage = () => {
@@ -110,7 +110,7 @@ const SignUpPage = () => {
       <div>
         <h1>Create an account</h1>
       </div>
-      <Form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>First Name</label>
         <input
           className="form-control"
@@ -187,7 +187,7 @@ const SignUpPage = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         <button>submit</button>
-      </Form>
+      </form>
     </>
   );
 };
