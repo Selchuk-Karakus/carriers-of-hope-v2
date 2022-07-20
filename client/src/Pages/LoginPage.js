@@ -16,8 +16,13 @@ function LoginPage() {
     login({
       email,
       password,
-    }).then((signedIn) => {
-      if (signedIn) {
+    }).then((res) => {
+      if(res.signedIn && res.isAdmin) {
+        console.log(res)
+        navigate('/admin/dashboard')
+      }
+      else if (res.signedIn) {
+        console.log(res)
         setDisplayError(false);
         navigate("/products");
       } else {

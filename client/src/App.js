@@ -11,11 +11,13 @@ import Footer from "./components/Footer"
 import NoMatch from "./components/NoMatch"
 import Global from './styles/global'
 import ProductsProvider from "./services/products.context"
+import OrdersContextProvider from "./Contexts/OrdersContext"
 import FilteredProducts from "./components/FilteredProducts"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
 import { Container } from './styles/Container.styled'
 import Dashboard from "./Pages/Dashboard";
+import OrderDetails from "./Pages/OrderDetails";
 
 
 
@@ -26,36 +28,45 @@ function App() {
       <Container>
         <Navbar />
         <div className="content-wrap">
-        <ProductsProvider>
-          <Routes>
-            <Route path="/" exact element={<Homepage />}></Route>
-            <Route path="/products"  element={<ProductsPage />}></Route>
-            <Route
-            
-              path="/product-details/:id"
-              element={<ProductDetails />}
-            ></Route>
-            <Route path="filtered-products" element={<FilteredProducts />} />
+          <ProductsProvider>
+            <OrdersContextProvider>
+              <Routes>
+                <Route path="/" exact element={<Homepage />}></Route>
+                <Route path="/products" element={<ProductsPage />}></Route>
+                <Route
+                  path="/product-details/:id"
+                  element={<ProductDetails />}
+                ></Route>
+                <Route
+                  path="filtered-products"
+                  element={<FilteredProducts />}
+                />
 
-            <Route path="login" element={<LoginPage />} />
-            <Route
-              path="forgotten-name-or-password"
-              element={<ForgottenNameOrPassword />}
-            ></Route>
-            <Route path="sign-up" element={<SignUp />}></Route>
-            <Route></Route>
-            <Route path="request-form" element={<RequestForm />}></Route>
-            <Route path="order-summary" element={<OrderSummary />}></Route>
-            <Route path="dashboard" element={<Dashboard />}></Route>
-            
-            <Route path="*"  element={<NoMatch />}></Route>
-          </Routes>
-        </ProductsProvider>
+                <Route path="login" element={<LoginPage />} />
+                <Route
+                  path="forgotten-name-or-password"
+                  element={<ForgottenNameOrPassword />}
+                ></Route>
+                <Route path="sign-up" element={<SignUp />}></Route>
+                <Route></Route>
+                <Route path="request-form" element={<RequestForm />}></Route>
+                <Route path="order-summary" element={<OrderSummary />}></Route>
+
+                <Route path="/admin/dashboard" element={<Dashboard />}></Route>
+                <Route
+                  path="/admin/order/:id"
+                  element={<OrderDetails />}
+                ></Route>
+
+                <Route path="*" element={<NoMatch />}></Route>
+              </Routes>
+            </OrdersContextProvider>
+          </ProductsProvider>
         </div>
         <Footer />
       </Container>
     </>
-  )
+  );
 }
 
 

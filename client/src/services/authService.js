@@ -8,16 +8,24 @@ export const login = (loginObj) => {
   }).then(async (res) => {
       if(!res.ok) {
         //return false because it failed to login successfully
-        return false;
+        return {
+          signedIn: false,
+        };
       }
       return res.json();
   }).then((data) => {
+    console.log(data)
     //store jwt token in session storage and return true as login response
-    setAccessToken(data.replace(/['"]+/g, ""));
-    return true;
-  }).catch(error => {
+    setAccessToken(data.token.replace(/['"]+/g, ""));
+    return {
+      signedIn: true,
+      isAdmin: data.isAdmin
+    }
+    }).catch(error => {
       //return false because it failed to login successfully
-      return false;
+      return {
+        signedIn: false
+      };
   });
 };
 
@@ -28,6 +36,5 @@ function setAccessToken(userToken) {
 
 export function getAccessToken() {
   const tokenString = sessionStorage.getItem("token");
-  const userToken = JSON.parse(tokenString);
-  return userToken?.token;
+  return tokenString.replace(/['"]+/g, "");
 }
