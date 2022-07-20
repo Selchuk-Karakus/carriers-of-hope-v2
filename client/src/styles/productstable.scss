@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import { colors } from "../styles/variables/variables";
+@import './variables/_variables.scss';  
 
-export const Styles = styled.div`
-    background-color: ${colors.bg1};
+.products-table{
+    background-color: var(bg);
    .product-dashboard{
       margin: 2rem;
       overflow-x:auto;
@@ -14,11 +13,11 @@ export const Styles = styled.div`
          padding: 0;
          width: 100%;
          thead{
-            background-color: ${colors.bg2};
+            background-color: var(bg2);
 
          }
          tr {
-            background-color: ${colors.bg1};
+            background-color: var(bg);
             border: 1px solid #ddd;
             padding: .35em;
 
@@ -59,13 +58,13 @@ export const Styles = styled.div`
                }
                .edit-btn{
                   :hover{
-                     color:${colors.green}
+                     color:var(green)
                   }
                }
                .delete-btn{
                   margin-left:1rem;
                   :hover{
-                     color:${colors.red}
+                     color:var(red)
                   }
                }
             }
@@ -77,6 +76,4 @@ export const Styles = styled.div`
    
    
    }
-  
-`;
-
+}

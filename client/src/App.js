@@ -13,6 +13,8 @@ import ProductsProvider from "./services/products.context"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
 import Dashboard from "./Pages/Dashboard";
+import AddNewProductPage from "./Pages/AddNewProductPage";
+import UpdateProductPage from './Pages/UpdateProductPage';
 import './styles/global.scss'
 
 
@@ -40,6 +42,8 @@ function App() {
             <Route path="request-form" element={<RequestForm />}></Route>
             <Route path="order-summary" element={<OrderSummary />}></Route>
             <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="/add-new-product" element={<AddNewProductPage />}></Route>
+            <Route path="/edit-product/:id" element={<UpdateProductPage />}></Route>
             <Route path="*"  element={<NoMatch />}></Route>
           </Routes>
         </ProductsProvider>

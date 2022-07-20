@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import {Styles} from '../styles/addproduct';
 import { Navigate, useParams } from "react-router-dom";
+import '../styles/addproduct.scss';
 
 
 export default function UpdateProductPage() {
@@ -70,7 +70,6 @@ export default function UpdateProductPage() {
   }
 
   return (
-    <Styles>
       <div className="form-container">
          <h3>Edit Product Listing</h3>
         <form>
@@ -116,6 +115,5 @@ export default function UpdateProductPage() {
           </button>
         </form>
       </div>
-    </Styles>
   );
 }

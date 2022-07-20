@@ -1,11 +1,10 @@
 import React, {useState, useEffect,useContext} from "react";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FiEdit2 } from 'react-icons/fi';
-import {Styles}  from '../styles/productstable';
 import {ProductsContext} from '../services/products.context';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
-
+import '../styles/productstable.scss';
 
 function ProductsTable(){
 
@@ -42,8 +41,7 @@ function ProductsTable(){
     
  
    return(
-      <Styles>
-         <div>
+        <div className="products-table">
           <Link to='/add-new-product'><button>Add New Product</button></Link>
           {loading ? (
             <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
@@ -97,8 +95,7 @@ function ProductsTable(){
             </div>
           )}
         </div>
-         
-      </Styles>
+
 )
 
 }

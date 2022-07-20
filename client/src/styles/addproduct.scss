@@ -1,7 +1,4 @@
-import styled from "styled-components";
-import { colors } from "../styles/variables/variables";
-
-export const Styles = styled.div`
+@import './variables/_variables.scss';  
 
 .form-container{
    
@@ -52,7 +49,7 @@ export const Styles = styled.div`
       font-size: 1.1em;
       border: none;
       cursor: pointer;
-      background: ${colors.green};
+      background: var(green);
       color: #FFF;
       margin-top: 1rem;
       margin-bottom: 0;
@@ -89,4 +86,3 @@ export const Styles = styled.div`
    border-bottom: 2px solid #37a000;
    }
 }
-`
