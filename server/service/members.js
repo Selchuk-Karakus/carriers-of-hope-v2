@@ -18,7 +18,7 @@ const getMemberByEmail = async (email) => {
     return {
       id: result.rows[0].id,
       email: result.rows[0].email,
-      password: result.rows[0].password
+      password: result.rows[0].password,
       isAdmin: result.rows[0].isadmin,
     };
   }
