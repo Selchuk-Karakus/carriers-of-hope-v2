@@ -152,22 +152,33 @@ async function buildOrderList(orders) {
   console.log(orders)
   return Promise.all(
     orders.rows.map(async (order) => {
+      const member = await memberService.getMemberById(order.member_id);
       const products = await productService.getAllProductsByOrderId(order.id);
 
-      return buildOrderObj(order, products);
+      return buildOrderObj(order, products, member);
     })
   ).then((ordersList) => {
     return ordersList;
   });
 }
 
-function buildOrderObj(order, products) {
+function buildOrderObj(order, products, member) {
   return {
     id: order.id,
-    orderDate: order.orderDate,
-    orderRef: order.orderRef,
+    orderDate: order.order_date,
+    orderRef: order.order_ref,
     products: products,
-    orderStatus: order.orderStatus,
+    orderStatus: order.order_status,
+    member: {
+      id: member[0].id,
+      fullName: member[0].first_name + ' ' + member[0].last_name,
+      email: member[0].email,
+      address: member[0].address,
+      city: member[0].city, 
+      postcode: member[0].postcode, 
+      country: member[0].country,
+      phoneNumber: member[0].telephone
+    },
   };
 }
 
