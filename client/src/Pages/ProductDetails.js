@@ -1,9 +1,8 @@
 import React, { useEffect,useState } from "react";
 import { Link,useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
-import {Styles} from '../styles/productdetails';
 import { ThreeDots } from "react-loading-icons";
-
+import '../styles/productdetails.scss'
 
 function ProductDetails() {
   const [product, setProduct]=useState({});
@@ -33,8 +32,7 @@ function ProductDetails() {
   }, [id]);
 
   return(
-        <Styles>
-          <div className="detail-content">
+        <div className="detail-content">
           <Link to={'/products'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
           <div>
@@ -73,8 +71,7 @@ function ProductDetails() {
            
           )}
           </div>
-          </div>
-        </Styles>
+        </div>
         );
 }
 
