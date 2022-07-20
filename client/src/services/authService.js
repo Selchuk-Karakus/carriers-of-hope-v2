@@ -5,24 +5,33 @@ export const login = (loginObj) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(loginObj),
-  }).then(async (res) => {
-      if(!res.ok) {
+  })
+    .then(async (res) => {
+      if (!res.ok) {
         //return false because it failed to login successfully
-        return false;
+        return {
+          signedIn: false,
+        };
       }
       return res.json();
   }).then((data) => {
+    console.log(data)
     //store jwt token in session storage and return true as login response
-    setAccessToken(data.replace(/['"]+/g, ""));
-    return true;
-  }).catch(error => {
+    setAccessToken(data.token.replace(/['"]+/g, ""));
+    return {
+      signedIn: true,
+      isAdmin: data.isAdmin
+    }
+    }).catch(error => {
       //return false because it failed to login successfully
-      return false;
+      return {
+        signedIn: false
+      };
   });
 };
 
 function setAccessToken(userToken) {
-   //stores jwt token in session storage
+  //stores jwt token in session storage
   sessionStorage.setItem("token", JSON.stringify(userToken));
 }
 
@@ -30,4 +39,29 @@ export function getAccessToken() {
   const tokenString = sessionStorage.getItem("token");
   const userToken = JSON.parse(tokenString);
   return userToken?.token;
+}
+
+// Post user registration data to /register
+export const signUp = (userObject) => {
+  return (
+    fetch("http://localhost:8000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userObject),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return Promise.resolve(res);
+        } else {
+          return Promise.reject(new Error(res.statusText));
+        }
+      })
+      //Only use if the server is sending back a JSON body in the response
+      // .then((res) => res.json())
+      // .then((data) => console.log(data))
+  );
+};
+  return tokenString.replace(/['"]+/g, "");
 }

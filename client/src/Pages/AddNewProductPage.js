@@ -40,7 +40,7 @@ export default function AddNewProductPage() {
 
   
   if (redirect) {
-    return <Navigate to={'/dashboard'}/>
+    return <Navigate to={'/admin/dashboard'}/>
   }
 
   return (

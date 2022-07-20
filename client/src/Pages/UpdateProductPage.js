@@ -66,7 +66,7 @@ export default function UpdateProductPage() {
 
 
   if (redirect) {
-    return <Navigate to={'/dashboard'}/>
+    return <Navigate to={'/admin/dashboard'}/>
   }
 
   return (
