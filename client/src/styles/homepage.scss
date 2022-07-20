@@ -1,0 +1,18 @@
+@import './variables/_variables.scss';  
+
+
+.home{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   padding: 30px;
+   background-color: var(bg);
+   img {
+   display: block;
+   width: 40%;
+   max-width: 100%;
+   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+   margin-bottom: 50px;
+}
+}

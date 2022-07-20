@@ -1,0 +1,24 @@
+   
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     a {
+      text-decoration: none;
+    }
+  :root {
+      font-size: 1.1rem;
+      font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      
+
+      @media (min-width: 768px) {
+        font-size: 1.1rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 1rem;
+      }
+    }
+
+  }

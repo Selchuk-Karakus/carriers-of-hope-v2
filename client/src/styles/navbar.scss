@@ -1,4 +1,26 @@
-/* // navbar.css */
+
+  .navbar{
+    height: 90px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    position: relative;
+    /* padding: 0.5rem 0rem; */
+    background-color: hsl(0, 0%, 4%);
+    color: black;
+    z-index: 1;
+    cursor: pointer;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+    p {
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 30px;
+    }
+    * // navbar.css */
 
 .navigation-menu {
   margin-left: auto;
@@ -88,4 +110,5 @@
   .navigation-menu li:hover {
     background-color: #eee;
   }
+}
 }

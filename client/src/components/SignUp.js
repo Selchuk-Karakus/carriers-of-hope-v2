@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "../styles/Container.styled";
+import '../styles/signup.scss';
 import { useNavigate } from "react-router-dom";
 
 function SignUp() {
@@ -7,7 +7,7 @@ function SignUp() {
   return (
     <>
       <button onClick={() => navigate(-1)}>back</button>
-      <Form>
+      <form>
         <label>First Name</label>
         <input type="text" />
         <label>Last Name</label>
@@ -25,7 +25,7 @@ function SignUp() {
         <label>Retype Password:</label>
         <input type="password" />
         <button>submit</button>
-      </Form>
+      </form>
     </>
   );
 }
