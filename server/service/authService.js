@@ -18,7 +18,7 @@ async function checkEmailAndPassword(loginObj) {
         if(!matches) {
           return {
           statusCode: 401,
-          message: "Incorrect password",
+          message: "Incorrect email or password",
           } 
         }
         // get the jwtSecretKey from the .env file
@@ -42,7 +42,7 @@ async function checkEmailAndPassword(loginObj) {
       } else {
         return {
           statusCode: 401,
-          message: "Incorrect email",
+          message: "Incorrect email or password",
         };
       }
     } catch (error) {

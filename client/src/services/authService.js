@@ -63,5 +63,5 @@ export const signUp = (userObject) => {
       // .then((data) => console.log(data))
   );
 };
-  // return tokenString.replace(/['"]+/g, "");
+//   return tokenString.replace(/['"]+/g, "");
 // }
