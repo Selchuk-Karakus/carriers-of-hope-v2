@@ -19,16 +19,18 @@ export function insertOrder(orderObj) {
 }
 
 export function getOrders() {
-  fetch(`http://localhost:8000/orders`, {
+  return fetch(`http://localhost:8000/orders`, {
     headers: {
       "x-access-token": getAccessToken(),
     },
   })
     .then((res) => {
       if (!res.ok) {
-        console.log(res);
         console.log("HTTP request unsuccessful");
       }
+      return res.json();
+    })
+    .then((res) => {
       return res;
     })
     .catch((error) => console.log(error));

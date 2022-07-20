@@ -34,7 +34,10 @@ async function checkEmailAndPassword(loginObj) {
         // give token to auth routes
         return {
           statusCode: 200,
-          message: token,
+          message: {
+            token: token,
+            isAdmin: memberObj.isAdmin
+          },
         };
       } else {
         return {
