@@ -9,15 +9,13 @@ import Navbar from "./components/Navbar"
 import OrderSummary from "./components/OrderSummary"
 import Footer from "./components/Footer"
 import NoMatch from "./components/NoMatch"
-import Global from './styles/global'
 import ProductsProvider from "./services/products.context"
 import OrdersContextProvider from "./Contexts/OrdersContext"
-import FilteredProducts from "./components/FilteredProducts"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
-import { Container } from './styles/Container.styled'
 import Dashboard from "./Pages/Dashboard";
 import OrderDetails from "./Pages/OrderDetails";
+import './styles/global.scss'
 
 
 
@@ -25,7 +23,6 @@ import OrderDetails from "./Pages/OrderDetails";
 function App() {
   return (
     <>
-      <Container>
         <Navbar />
         <div className="content-wrap">
           <ProductsProvider>
@@ -64,7 +61,6 @@ function App() {
           </ProductsProvider>
         </div>
         <Footer />
-      </Container>
     </>
   );
 }

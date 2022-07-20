@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledRequestForm } from "../styles/Container.styled";
+import '../styles/requestform.scss';
 
 function RequestForm() {
   const navigate = useNavigate();
   return (
-    <StyledRequestForm>
+    <div className="request-form">
       <div>Request Form</div>
       <form>
         <input type="text" />
@@ -13,7 +13,7 @@ function RequestForm() {
           submit
         </button>
       </form>
-    </StyledRequestForm>
+    </div>
   );
 }
 

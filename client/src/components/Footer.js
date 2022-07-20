@@ -1,8 +1,8 @@
 import React from "react";
-import { StyledFooter } from "../styles/Container.styled";
+import '../styles/footer.scss';
 
 function Footer() {
-  return <StyledFooter>carriers of hope</StyledFooter>;
+  return <div className="footer">carriers of hope</div>;
 }
 
 export default Footer;

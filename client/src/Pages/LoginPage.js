@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledUserLogin } from "../styles/Container.styled";
 import { Link } from "react-router-dom";
 import { login } from "../services/authService";
+import '../styles/userlogin.scss';
 
 function LoginPage() {
   const [email, setEmail] = useState();
@@ -35,7 +35,7 @@ function LoginPage() {
     <>
       {" "}
       <button onClick={() => navigate(-1)}>back</button>
-      <StyledUserLogin>
+      <div>
         <div>UserLogin</div>
         <form onSubmit={handleSubmit}>
           <label>Email:</label>
@@ -73,7 +73,7 @@ function LoginPage() {
         <div className="mb-3" style={displayError ? {} : { display: "none" }}>
           <label>Incorrect Email or Password</label>
         </div>
-      </StyledUserLogin>
+      </div>
     </>
   );
 }
