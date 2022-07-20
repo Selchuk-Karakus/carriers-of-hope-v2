@@ -65,7 +65,7 @@ function LoginPage() {
           </p>
           <p>
             Don't have an account? Sign up{" "}
-            <Link to="/sign-up">
+            <Link to="/register">
               <span style={{ color: "blue" }}>here</span>
             </Link>
           </p>

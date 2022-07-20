@@ -1,16 +1,26 @@
-const { getMemberByEmailAndPassword } = require("../service/members");
+const { getMemberByEmail } = require("../service/members");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 //check if user exists
 async function checkEmailAndPassword(loginObj) {
   const email = loginObj.email;
   const password = loginObj.password;
 
+
   if (email && password) {
     try {
-     const memberObj = await getMemberByEmailAndPassword(email, password);
+     const memberObj = await getMemberByEmail(email);
 
       if (memberObj) {
+        const matches = await bcrypt.compare(password, memberObj.password);
+        //console.log('Password matches: ' + matches);
+        if(!matches) {
+          return {
+          statusCode: 401,
+          message: "Incorrect password",
+          } 
+        }
         // get the jwtSecretKey from the .env file
         const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
@@ -20,7 +30,7 @@ async function checkEmailAndPassword(loginObj) {
         // generate JWT token using jsonwebtoken library with jwtSecrectKey
         const token = jwt.sign(memberObj, jwtSecretKey, {
           expiresIn: "24hr",
-    });
+        });
         // give token to auth routes
         return {
           statusCode: 200,
@@ -32,7 +42,7 @@ async function checkEmailAndPassword(loginObj) {
       } else {
         return {
           statusCode: 401,
-          message: "Incorrect email or password",
+          message: "Incorrect email",
         };
       }
     } catch (error) {
