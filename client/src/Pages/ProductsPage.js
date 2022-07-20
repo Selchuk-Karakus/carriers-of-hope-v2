@@ -1,10 +1,9 @@
 import React, { useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
-import {Styles} from '../styles/productspage';
 import { IoIosArrowBack } from 'react-icons/io';
 import {ProductsContext} from '../services/products.context';
 import { ThreeDots } from "react-loading-icons";
-
+import '../styles/productspage.scss';
 
 function ProductsPage() {
   
@@ -17,7 +16,6 @@ function ProductsPage() {
 
 
   return (
-    <Styles>
       <div className="main-content">
         <Link to={'/'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
@@ -66,7 +64,6 @@ function ProductsPage() {
           )}
         </div>
       </div>
-    </Styles>
   );
 }
 export default ProductsPage;

@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { StyledHomepage } from "../styles/Container.styled";
-import { Heading } from "../styles/Container.styled";
-import { Text } from "../styles/Container.styled";
-import coventry from "../images/coventry.jpg";
+import '../styles/homepage.scss';
+
 
 function Homepage() {
   return (
-    <StyledHomepage>
-      <Heading>Welcome</Heading>
-      <img alt="coventry" src={coventry} />
-      <Text>
+    <div className="home">
+      <h1>Welcome</h1>
+      <img alt="coventry" src='/images/coventry.jpg' />
+      <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
         condimentum urna risus, eget volutpat eros bibendum quis. Cras tempus
         diam ex, eu rutrum sapien tempor vitae. Cras egestas nibh non leo
@@ -26,9 +24,9 @@ function Homepage() {
         lorem bibendum, semper mauris quis, dapibus neque. Phasellus semper
         mattis nisl vel commodo. Praesent eu placerat nisi, eu congue nisl. Nam
         laoreet blandit tellus.
-      </Text>
+      </p>
       <Link to="/products">All Products</Link>
-    </StyledHomepage>
+    </div>
   );
 }
 

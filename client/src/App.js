@@ -9,20 +9,17 @@ import Navbar from "./components/Navbar"
 import OrderSummary from "./components/OrderSummary"
 import Footer from "./components/Footer"
 import NoMatch from "./components/NoMatch"
-// import Global from './styles/global'
 import ProductsProvider from "./services/products.context"
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword"
 import SignUp from "./components/SignUp"
-import { Container } from './styles/Container.styled'
 import Dashboard from "./Pages/Dashboard";
-import AddNewProductPage from "./Pages/AddNewProductPage";
-import UpdateProductPage from './Pages/UpdateProductPage';
+import './styles/global.scss'
+
 
 
 function App() {
   return (
     <>
-      <Container>
         <Navbar />
         <div className="content-wrap">
         <ProductsProvider>
@@ -30,7 +27,6 @@ function App() {
             <Route path="/" exact element={<Homepage />}></Route>
             <Route path="/products"  element={<ProductsPage />}></Route>
             <Route
-            
               path="/product-details/:id"
               element={<ProductDetails />}
             ></Route>
@@ -43,16 +39,12 @@ function App() {
             <Route></Route>
             <Route path="request-form" element={<RequestForm />}></Route>
             <Route path="order-summary" element={<OrderSummary />}></Route>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
-            <Route path="/add-new-product" element={<AddNewProductPage />}></Route>
-            <Route path="/edit-product/:id" element={<UpdateProductPage />}></Route>
-
-              <Route path="*"  element={<NoMatch />}></Route>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="*"  element={<NoMatch />}></Route>
           </Routes>
         </ProductsProvider>
         </div>
         <Footer />
-      </Container>
     </>
   )
 }

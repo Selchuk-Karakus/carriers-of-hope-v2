@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "../styles/Container.styled";
+import '../styles/forgottonNameorPasword.scss';
 import { useNavigate } from "react-router-dom";
 
 function ForgottenNameOrPassword() {
@@ -7,11 +7,11 @@ function ForgottenNameOrPassword() {
   return (
     <>
       <button onClick={() => navigate(-1)}>back</button>
-      <Form>
+      <form>
         <label>Email:</label>
         <input type="email" />
         <button>submit</button>
-      </Form>
+      </form>
     </>
   );
 }
