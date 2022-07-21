@@ -15,7 +15,8 @@ import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
 import "./styles/global.scss";
 import OrderDetails from "./Pages/OrderDetails";
-import OrdersContextProvider from "./Contexts/OrdersContext"
+import OrdersContextProvider from "./Contexts/OrdersContext";
+import MembersContextProvider from "./Contexts/MembersContext";
 
 function App() {
   return (
@@ -24,19 +25,27 @@ function App() {
       <div className="content-wrap">
         <ProductsProvider>
           <OrdersContextProvider>
-            <Routes>
-              <Route path="/" exact element={<Homepage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/product-details/:id" element={<ProductDetails />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="forgotten-name-or-password" element={<ForgottenNameOrPassword />}/>
-              <Route path="register" element={<SignUp />} />
-              <Route path="request-form" element={<RequestForm />} />
-              <Route path="order-summary" element={<OrderSummary />} />
-              <Route path="/admin/dashboard" element={<Dashboard />} />
-              <Route path="/admin/order/:id" element={<OrderDetails />} />
-              <Route path="*" element={<NoMatch />} />
-            </Routes>
+            <MembersContextProvider>
+              <Routes>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route
+                  path="/product-details/:id"
+                  element={<ProductDetails />}
+                />
+                <Route path="login" element={<LoginPage />} />
+                <Route
+                  path="forgotten-name-or-password"
+                  element={<ForgottenNameOrPassword />}
+                />
+                <Route path="register" element={<SignUp />} />
+                <Route path="request-form" element={<RequestForm />} />
+                <Route path="order-summary" element={<OrderSummary />} />
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+                <Route path="/admin/order/:id" element={<OrderDetails />} />
+                <Route path="*" element={<NoMatch />} />
+              </Routes>
+            </MembersContextProvider>
           </OrdersContextProvider>
         </ProductsProvider>
       </div>

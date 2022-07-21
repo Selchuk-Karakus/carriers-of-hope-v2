@@ -1,8 +1,8 @@
 import React from "react";
 import OrdersTable from "../components/OrdersTable";
+import MembersTable from "../components/MembersTable";
 import "../styles/dashboard.scss";
 import { CgProfile } from "react-icons/cg";
-
 
 function Dashboard() {
   return (
@@ -40,10 +40,11 @@ function Dashboard() {
       <h2>Orders</h2>
 
       <OrdersTable />
+      <MembersTable />
 
       <div className="results">
-        <span className='show-results'>Show 10 results</span>
-        <span className="number">{'< 1 >'}</span>
+        <span className="show-results">Show 10 results</span>
+        <span className="number">{"< 1 >"}</span>
       </div>
     </div>
   );
