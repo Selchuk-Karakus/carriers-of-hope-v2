@@ -20,39 +20,27 @@ import OrdersContextProvider from "./Contexts/OrdersContext"
 function App() {
   return (
     <>
-        <Navbar />
-        <div className="content-wrap">
-          <ProductsProvider>
-            <OrdersContextProvider>
-              <Routes>
-                <Route path="/" exact element={<Homepage />}></Route>
-                <Route path="/products" element={<ProductsPage />}></Route>
-                <Route
-                  path="/product-details/:id"
-                  element={<ProductDetails />}
-                ></Route>
-                <Route path="login" element={<LoginPage />} />
-                <Route
-                  path="forgotten-name-or-password"
-                  element={<ForgottenNameOrPassword />}
-                ></Route>
-                <Route path="register" element={<SignUp />}></Route>
-                <Route></Route>
-                <Route path="request-form" element={<RequestForm />}></Route>
-                <Route path="order-summary" element={<OrderSummary />}></Route>
-
-                <Route path="/admin/dashboard" element={<Dashboard />}></Route>
-                <Route
-                  path="/admin/order/:id"
-                  element={<OrderDetails />}
-                ></Route>
-
-                <Route path="*" element={<NoMatch />}></Route>
-              </Routes>
-            </OrdersContextProvider>
-          </ProductsProvider>
-        </div>
-        <Footer />
+      <Navbar />
+      <div className="content-wrap">
+        <ProductsProvider>
+          <OrdersContextProvider>
+            <Routes>
+              <Route path="/" exact element={<Homepage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/product-details/:id" element={<ProductDetails />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="forgotten-name-or-password" element={<ForgottenNameOrPassword />}/>
+              <Route path="register" element={<SignUp />} />
+              <Route path="request-form" element={<RequestForm />} />
+              <Route path="order-summary" element={<OrderSummary />} />
+              <Route path="/admin/dashboard" element={<Dashboard />} />
+              <Route path="/admin/order/:id" element={<OrderDetails />} />
+              <Route path="*" element={<NoMatch />} />
+            </Routes>
+          </OrdersContextProvider>
+        </ProductsProvider>
+      </div>
+      <Footer />
     </>
   );
 }
