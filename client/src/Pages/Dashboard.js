@@ -1,5 +1,6 @@
 import React from "react";
 import OrdersTable from "../components/OrdersTable";
+import ProductsTable from "../components/ProductsTable";
 import "../styles/dashboard.scss";
 import { CgProfile } from "react-icons/cg";
 

@@ -13,9 +13,12 @@ import ProductsProvider from "./services/products.context";
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword";
 import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
-import "./styles/global.scss";
+import AddNewProductPage from "./Pages/AddNewProductPage";
+import UpdateProductPage from './Pages/UpdateProductPage';
 import OrderDetails from "./Pages/OrderDetails";
 import OrdersContextProvider from "./Contexts/OrdersContext"
+import "./styles/global.scss";
+
 
 function App() {
   return (
@@ -35,6 +38,8 @@ function App() {
               <Route path="order-summary" element={<OrderSummary />} />
               <Route path="/admin/dashboard" element={<Dashboard />} />
               <Route path="/admin/order/:id" element={<OrderDetails />} />
+              <Route path="/add-new-product" element={<AddNewProductPage />}></Route>
+              <Route path="/edit-product/:id" element={<UpdateProductPage />}></Route>
               <Route path="*" element={<NoMatch />} />
             </Routes>
           </OrdersContextProvider>

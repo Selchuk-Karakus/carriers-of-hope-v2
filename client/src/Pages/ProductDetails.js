@@ -48,28 +48,20 @@ function ProductDetails() {
               />{" "}
               <p className="text-danger">Network response was not ok!</p>
             </div>
-          ) : (
-            <div >
-              {product?
-                 product.map(({product_name,category_name})=>{
-                  return(
-                    <div className="product-card">
-                      <div className="image-container">
-                          <img alt="product-images"
-                             src={'/images/' + category_name +'.jpg'} />        
-                        </div>  
-                      <div className="card-text">
-                      <h3 className="p-name">{product_name}</h3>
-                      <p className="p-category">{category_name}</p>
-                      <button className="nav-button" onClick={() => navigate("/request-form")}>Place request</button>
-                      </div>
-                    </div>
-                  )
-                })
-              : "Loading..."}
-          </div>
-           
-          )}
+          ) : (     
+              <div className="product-card">
+                <div className="image-container">
+                    <img alt="product-images"
+                        src={'/images/' + product.category_name +'.jpg'} />        
+                  </div>  
+                <div className="card-text">
+                <h3 className="p-name">{product.product_name}</h3>
+                <p className="p-category">{product.category_name}</p>
+                <button className="nav-button" onClick={() => navigate("/request-form")}>Place request</button>
+                </div>
+              </div>
+            
+           )}
           </div>
         </div>
         );

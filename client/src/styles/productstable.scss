@@ -1,0 +1,125 @@
+@import './variables/variables'; 
+
+.products-table{
+   width: 100%;
+   margin: 0;
+   text-align: center;
+   h3{
+      font-size: 1.5rem;
+   }
+   .table-controller{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin:1rem 3rem;
+
+      .filter-bar{
+         display: flex;
+         
+        
+         select{
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: $bg3;
+            font-size: 0.9rem;
+            padding:10px 8px;
+            margin-left: 10px;
+         }
+
+         .download-btn{
+            font-size: 1.7rem;
+            margin-left: 0.7rem;
+         }
+      }
+      .add-btn{
+         border: none;
+         border-radius: 4px;
+         background-color: $green3;
+         color: $text2;
+         font-size: 0.9rem;
+         padding:10px 8px;
+      }
+
+   }
+   .product-dashboard{
+      margin: 1rem 3rem;
+      overflow-x:auto;
+      table {
+         
+         border: 1px solid $text3;
+         border-collapse: collapse;
+         margin: 0;
+         padding: 0;
+         width: 100%;
+         thead{
+            background-color: $bg3;
+
+         }
+         tr {
+            border: 1px solid $text3;
+            padding: .35em;
+
+            th,
+            td {
+               padding: .625em;
+               text-align: center;
+            }
+
+            th {
+               font-size: .85em;
+               letter-spacing: .1em;
+               text-transform: uppercase;
+
+               @media (min-width: 740px) {
+                  font-size: .985em;
+ 
+                 }
+               
+            }
+            td{
+               font-size: .85em;
+
+               @media (min-width: 740px) {
+                 font-size: .985em;
+
+                }
+            }
+            .instock-row{
+               color: $red;
+            }
+            .actions{
+               span{
+                  cursor:pointer;
+                  font-size: 1.1em;
+                  @media (min-width: 740px) {
+                     font-size: 1.3em;;
+    
+                    }
+                  
+               }
+               .edit-btn{
+                  a{
+                     text-decoration: none;
+                     color: inherit;
+                  }
+                  :hover{
+                     color:$green;
+                  }
+               }
+               .delete-btn{
+                  margin-left:1rem;
+                  :hover{
+                     color:$red;
+                  }
+               }
+            }
+
+         }
+       
+
+      }
+   
+   
+   }
+}
