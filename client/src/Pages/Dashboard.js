@@ -1,6 +1,6 @@
 import React from "react";
 import OrdersTable from "../components/OrdersTable";
-import MembersTable from "../components/MembersTable";
+import CustomersTable from "../components/CustomersTable";
 import "../styles/dashboard.scss";
 import { CgProfile } from "react-icons/cg";
 
@@ -40,7 +40,7 @@ function Dashboard() {
       <h2>Orders</h2>
 
       <OrdersTable />
-      <MembersTable />
+      <CustomersTable />
 
       <div className="results">
         <span className="show-results">Show 10 results</span>
