@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/signup.scss";
 import { signUp } from "../services/authService";
+import { login } from "../services/authService";
 
 const SignUpPage = () => {
   // States for registration for holding form data
@@ -44,18 +45,19 @@ const SignUpPage = () => {
       setError(false);
     }
 
-    signUp({
-      first_name,
-      last_name,
-      address,
-      email,
-      city,
-      postcode,
-      country,
-      telephone,
-      password,
-      confirmPassword,
-    });
+    const signedUp = async () =>
+      await signUp({
+        first_name,
+        last_name,
+        address,
+        email,
+        city,
+        postcode,
+        country,
+        telephone,
+        password,
+        confirmPassword,
+      });
   };
 
   // Showing success message
@@ -100,7 +102,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <button onClick={() => navigate(-1)}>back</button>
+      <button className="back-button" onClick={() => navigate(-1)}> {"< "}back</button>
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
@@ -108,7 +110,7 @@ const SignUpPage = () => {
         {errorMessageConfirmPassword()}
       </div>
       <div>
-        <h1>Create an account</h1>
+        <h1 className="signUp-header">Create an account</h1>
       </div>
       <form onSubmit={handleSubmit}>
         <label>First Name</label>
@@ -186,7 +188,7 @@ const SignUpPage = () => {
           name="confirmPassword"
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <button>submit</button>
+        <button className="submit-btn">submit</button>
       </form>
     </>
   );
