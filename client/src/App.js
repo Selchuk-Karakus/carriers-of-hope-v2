@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar";
 import OrderSummary from "./components/OrderSummary";
 import Footer from "./components/Footer";
 import NoMatch from "./components/NoMatch";
-import ProductsProvider from "./services/products.context";
+import ProductsProvider from "./Contexts/ProductsContext";
 import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword";
 import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";

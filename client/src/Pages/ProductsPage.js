@@ -1,7 +1,8 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
-import {ProductsContext} from '../services/products.context';
+import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import '../styles/productspage.scss';
 
