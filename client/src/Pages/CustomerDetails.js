@@ -5,6 +5,9 @@ import { getMemberById } from "../services/membersService";
 function CustomerDetails() {
   const [membersDetails, setMembersDetails] = useState();
   const [loaded, setLoaded] = useState(false);
+  const [delivery, setDelivery] = useState(false);
+  const [pickUp, setPickUp] = useState(false);
+  const [cancel, setCancel] = useState(false);
 
   const { id } = useParams();
   useEffect(() => {
@@ -15,6 +18,17 @@ function CustomerDetails() {
     }
     load();
   }, []);
+
+  const handleOnChangeDelivery = () => {
+    setDelivery(!delivery);
+  };
+  const handleOnChangePickUp = () => {
+    setPickUp(!pickUp);
+  };
+
+  const handleOnChangeCancel = () => {
+    setCancel(!cancel);
+  };
 
   return loaded ? (
     <>
@@ -48,6 +62,38 @@ function CustomerDetails() {
           </div>
           <div>Phone Number: {membersDetails[0].telephone}</div>
         </div>
+        <div>
+          <input
+            type="checkbox"
+            id="delivery"
+            name="delivery"
+            value={delivery}
+            checked={delivery}
+            onChange={handleOnChangeDelivery}
+          />
+          Delivery
+          <input
+            type="checkbox"
+            id="pickup"
+            name="pickup"
+            value={pickUp}
+            checked={pickUp}
+            onChange={handleOnChangePickUp}
+          />
+          Pick Up
+          <input
+            type="checkbox"
+            id="cancel"
+            name="cancel"
+            value={cancel}
+            checked={cancel}
+            onChange={handleOnChangeCancel}
+          />
+          Cancel
+          <span>Date:</span>
+          <span>Date:</span>
+        </div>
+        <button></button>
       </div>
     </>
   ) : (
