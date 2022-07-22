@@ -32,10 +32,10 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const productId = parseInt(req.params.id);
-  deleteCartItemByProductId(productId).then(product => {
-    res.status(200).send({ message: 'cart-item deleted successfully!', productId });
+  // deleteCartItemByProductId(productId).then(product => {
+  //   res.status(200).send({ message: 'cart-item deleted successfully!', productId });
 
-  })
+  // })
   deleteOneProduct(productId).then(product => {
     res.status(200).send({ message: 'Product deleted successfully!', productId });
 

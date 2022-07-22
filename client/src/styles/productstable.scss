@@ -1,24 +1,63 @@
-@import './variables/_variables.scss';  
+@import './variables/variables'; 
 
 .products-table{
-    background-color: var(bg);
+   width: 100%;
+   margin: 0;
+   text-align: center;
+   h3{
+      font-size: 1.5rem;
+   }
+   .table-controller{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin:1rem 3rem;
+
+      .filter-bar{
+         display: flex;
+         
+        
+         select{
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: $bg3;
+            font-size: 0.9rem;
+            padding:10px 8px;
+            margin-left: 10px;
+         }
+
+         .download-btn{
+            font-size: 1.7rem;
+            margin-left: 0.7rem;
+         }
+      }
+      .add-btn{
+         border: none;
+         border-radius: 4px;
+         background-color: $green3;
+         color: $text2;
+         font-size: 0.9rem;
+         padding:10px 8px;
+      }
+
+   }
    .product-dashboard{
-      margin: 2rem;
+      margin: 1rem 3rem;
       overflow-x:auto;
       table {
          
-         border: 1px solid #ccc;
+         border: 1px solid $text3;
          border-collapse: collapse;
          margin: 0;
          padding: 0;
          width: 100%;
          thead{
-            background-color: var(bg2);
+            background-color: $bg3;
 
          }
          tr {
-            background-color: var(bg);
-            border: 1px solid #ddd;
+            border: 1px solid $text3;
             padding: .35em;
 
             th,
@@ -46,6 +85,9 @@
 
                 }
             }
+            .instock-row{
+               color: $red;
+            }
             .actions{
                span{
                   cursor:pointer;
@@ -57,14 +99,18 @@
                   
                }
                .edit-btn{
+                  a{
+                     text-decoration: none;
+                     color: inherit;
+                  }
                   :hover{
-                     color:var(green)
+                     color:$green;
                   }
                }
                .delete-btn{
                   margin-left:1rem;
                   :hover{
-                     color:var(red)
+                     color:$red;
                   }
                }
             }

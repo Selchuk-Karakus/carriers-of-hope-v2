@@ -34,10 +34,7 @@ function App() {
                   path="/product-details/:id"
                   element={<ProductDetails />}
                 ></Route>
-<<<<<<< HEAD
 
-=======
->>>>>>> 094d5c90ae5b1d41043b5d798d5c34137cf2c906
                 <Route path="login" element={<LoginPage />} />
                 <Route
                   path="forgotten-name-or-password"

@@ -11,7 +11,7 @@ function Dashboard() {
        <button>Products</button>
        <button>Customers</button>
        <ProductsTable/>
-       <OrdersTable />
+       {/* <OrdersTable /> */}
      </div>
    );
 }
