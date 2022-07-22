@@ -1,6 +1,6 @@
 let router = require("express").Router();
 let {getAllProducts,getOneProduct,createProduct, deleteOneProduct, updateProductById } = require('../service/products');
-
+let {deleteCartItemByProductId} = require('../service/cartItem');
 
 //getAll
 router.get('/', (req, res) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const productId = parseInt(req.params.id);
   getOneProduct(productId).then(product => {
-      res.json(product);
+      res.json(product[0]);
   })
 })
 
@@ -32,6 +32,10 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const productId = parseInt(req.params.id);
+  // deleteCartItemByProductId(productId).then(product => {
+  //   res.status(200).send({ message: 'cart-item deleted successfully!', productId });
+
+  // })
   deleteOneProduct(productId).then(product => {
     res.status(200).send({ message: 'Product deleted successfully!', productId });
 

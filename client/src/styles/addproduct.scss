@@ -1,0 +1,146 @@
+@import './variables/_variables.scss';  
+
+
+
+.form-container{
+   width:100%;
+   margin:1rem auto;
+   padding: 2rem;
+   text-align: center;
+   font-family: $poppins;
+   h3{
+      font-size: 1.2rem;
+   }
+   .product-form{
+      min-width:950px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto;
+      text-align: left;
+      
+      .product-name{
+         grid-column: 1/-1;
+         grid-row: 1/2;
+         margin-top: 3rem;
+      }
+      .add-image{
+         grid-column: 1/-1;
+         grid-row: 2/3;
+         padding: 1rem 0; 
+         margin-top: 3.1rem;
+         margin-bottom: 4rem;
+
+         .addImage-icon{
+            font-size: 2rem;
+            padding: 6rem 7.6rem;
+            border: none;
+            background-color: $bg2;
+         }
+         .middle-img{
+            margin:0 2rem;
+
+         }
+      }
+      .status{
+         grid-column: 8/-1;
+         grid-row: 3/4;
+         margin-top:4rem;
+      }
+      .category{
+         grid-column: 8/-1;
+         grid-row: 4/5;
+         margin-bottom:4rem;
+
+      }
+      .status,.category{
+         display: flex;
+         flex-direction: column;
+        
+         select{
+            padding: 1rem;
+         }
+      }
+      .description{
+         grid-column: 1/8;
+         grid-row: 3/5;
+
+      }
+
+      .submit-btn{
+         grid-column: 5/7;
+         grid-row: 5;
+         background: $green3;
+         margin-left: 10px;
+         border: none;
+         color: $text2;
+      }
+
+      .cancel-btn{
+         grid-column: 7/9;
+         grid-row: 5;
+         background: $bg3;
+         margin-left: 10px;
+         background-color: $text2;
+         border: 1px solid $green3;
+         color: $green3;
+      }
+
+      input{
+         padding: 1rem;
+         margin-bottom: 30px;
+      }
+      textarea{
+         height: 170px;
+         padding: 1rem;
+         margin-top: 1rem;
+      }
+
+      input,  textarea, select {
+         width: 100%;
+         box-sizing: border-box;
+         box-shadow: none;
+         outline: none;
+         border: none;
+         margin-top: 0.8rem;
+         background-color: $bg2;
+      }
+
+      .submit-btn, .cancel-btn {
+         font-size: 1.1em;
+         cursor: pointer;
+         margin-top: 1rem;
+         margin-bottom: 0;
+         padding:6px 16px;
+      }
+
+      form{
+         
+         div{
+            position: relative;
+            
+            label {
+               // position: absolute;
+               top: 10px;
+               left: 0;
+               color: #999;
+               pointer-events: none;
+               transition: .5s;
+            }
+         }
+      }
+
+      input:focus ~ label,  textarea:focus ~ label, 
+      input:valid ~ label,  textarea:valid ~ label {
+         top: -12px;
+         left: 0;
+         color: #37a000;
+         font-size: 1em;
+         font-weight: bold;
+      }
+
+      input:focus ~ label,  textarea:focus ~ label, 
+      input:valid,  textarea:valid {
+      border-bottom: 2px solid #37a000;
+    }
+   }
+}

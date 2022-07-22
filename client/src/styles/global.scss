@@ -1,3 +1,4 @@
+@import './variables/variables'; 
    
   
   * {
@@ -9,7 +10,7 @@
     }
   :root {
       font-size: 1.1rem;
-      font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: $roboto;
       
 
       @media (min-width: 768px) {

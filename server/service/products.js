@@ -46,7 +46,9 @@ async function createProduct(body){
 async function deleteOneProduct(id){
   try {
     const {rows}  = await productsDAL.deleteProductByProductId(id);
+    console.log(rows)
     return rows 
+
   } catch (error) {
     console.log(error)
   }

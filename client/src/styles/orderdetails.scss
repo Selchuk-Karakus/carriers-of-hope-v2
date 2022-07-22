@@ -1,0 +1,126 @@
+@use "./variables/_variables.scss" as var;
+
+.admin-navbar {
+  display: flex;
+  flex-direction: column;
+
+  .admin-profile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  h1 {
+    font-family: var.$georgia;
+  }
+
+  .profile-icon {
+    font-size: 4em;
+    padding-left: 0.4em;
+  }
+
+  .logout {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5.7em;
+    color: var.$red2;
+    font-family: var.$georgia;
+  }
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  padding-left: 2.5em;
+}
+
+h2 {
+    padding: 2em 2em 4em 0;
+    font-family: "Georgia", serif;
+    font-weight: bold;
+    font-size: x-large;
+    text-decoration: underline;
+    text-align: center;
+  }
+
+
+.order-details-container {
+    display: flex;
+    justify-content: flex-start;
+
+    .product-img{
+        padding-left: 9em;
+      }
+
+    img {
+        width: 13em;
+        height: auto;
+    }
+
+  .product-details-container {
+    display: flex;
+    padding: 0 0 4em 4em;
+    flex-direction: column;
+  }
+
+  .products-description-details {
+    width: 30em;
+    height: auto;
+    padding-bottom: 6em;
+  }
+
+  span {
+    font-weight: bolder;
+    font-size: larger;
+  }
+
+  .product-description {
+    padding: 0.8em 0em;
+  }
+
+  .product-quantity {
+    padding-top: 0.6em;
+    font-weight: 700;
+  }
+
+
+  .customer-details-container {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 3em;
+
+      .customer-name,
+      .customer-email,
+      .customer-address,
+      .customer-number {
+        display: flex;
+        padding-top: 0.4em;
+      }
+
+      p {
+        padding-right: 1em;
+        font-weight: 600;
+      }
+    }
+}
+
+
+    
+
+.form-container{
+    background-color: var.$bg2;
+    margin: 0;
+    padding: 0;
+
+
+    form{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    
+
+}
+

@@ -37,7 +37,8 @@ function setAccessToken(userToken) {
 
 export function getAccessToken() {
   const tokenString = sessionStorage.getItem("token");
-  return JSON.parse(tokenString);
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token;
 }
 
 // Post user registration data to /register
@@ -62,3 +63,5 @@ export const signUp = (userObject) => {
       // .then((data) => console.log(data))
   );
 };
+//   return tokenString.replace(/['"]+/g, "");
+// }

@@ -4,7 +4,7 @@
    margin-top:2rem;
    padding: 1rem;
    // width: 100%;
-   background-color:  var(bg);
+   background-color:  $bg;
    a {
      text-decoration: none;
    }
@@ -32,7 +32,7 @@
      padding-bottom: 1.5rem;
      width: 350px;
      height: 270px;
-     color:  var(text1);
+     color:  $text1;
      box-shadow: #1B1A17;
      margin: 1rem 0.4rem;
 
@@ -98,7 +98,7 @@
          font-size: 1rem;
          font-weight: 500;
          margin-bottom: 0;
-         color:  var(text1);
+         color:  $text1;
          @media (min-width: 950px) {
          font-size: 1.3rem;
          }
@@ -108,7 +108,7 @@
          font-size: 0.9rem;
          font-weight: 500;
          margin-bottom: 2rem;
-         color:  var(text1);
+         color:  $text1;
        
          @media (min-width: 950px) {
          font-size: 1.1rem;
