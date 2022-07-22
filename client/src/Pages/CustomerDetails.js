@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getMemberById } from "../services/membersService";
+import Calendar from "react-calendar";
 
 function CustomerDetails() {
   const [membersDetails, setMembersDetails] = useState();
@@ -8,6 +9,8 @@ function CustomerDetails() {
   const [delivery, setDelivery] = useState(false);
   const [pickUp, setPickUp] = useState(false);
   const [cancel, setCancel] = useState(false);
+  const [deliveryDate, setDeliveryDate] = useState(new Date());
+  const [pickUpDate, setPickUpDate] = useState(new Date());
 
   const { id } = useParams();
   useEffect(() => {
@@ -17,7 +20,7 @@ function CustomerDetails() {
       setLoaded(true);
     }
     load();
-  }, []);
+  }, [id]);
 
   const handleOnChangeDelivery = () => {
     setDelivery(!delivery);
@@ -28,6 +31,14 @@ function CustomerDetails() {
 
   const handleOnChangeCancel = () => {
     setCancel(!cancel);
+  };
+
+  const onChangeDeliveryDate = (date) => {
+    setDeliveryDate(date);
+  };
+
+  const onChangePickUpDate = (date) => {
+    setPickUpDate(date);
   };
 
   return loaded ? (
@@ -90,10 +101,14 @@ function CustomerDetails() {
             onChange={handleOnChangeCancel}
           />
           Cancel
+        </div>
+        <div>
+          <Calendar onChange={onChangeDeliveryDate} value={deliveryDate} />
           <span>Date:</span>
+          <Calendar onChange={onChangePickUpDate} value={pickUpDate} />
           <span>Date:</span>
         </div>
-        <button></button>
+        <button>Done</button>
       </div>
     </>
   ) : (
