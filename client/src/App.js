@@ -15,6 +15,7 @@ import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
 import "./styles/global.scss";
 import OrderDetails from "./Pages/OrderDetails";
+import CustomerDetails from "./Pages/CustomerDetails";
 import OrdersContextProvider from "./Contexts/OrdersContext";
 import MembersContextProvider from "./Contexts/MembersContext";
 
@@ -43,6 +44,7 @@ function App() {
                 <Route path="order-summary" element={<OrderSummary />} />
                 <Route path="/admin/dashboard" element={<Dashboard />} />
                 <Route path="/admin/order/:id" element={<OrderDetails />} />
+                <Route path="/admin/member/:id" element={<CustomerDetails />} />
                 <Route path="*" element={<NoMatch />} />
               </Routes>
             </MembersContextProvider>
