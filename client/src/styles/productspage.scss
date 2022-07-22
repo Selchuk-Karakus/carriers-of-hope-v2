@@ -4,7 +4,7 @@
   margin-top:2rem;
   padding: 1rem;
   // width: 100%;
-  background-color:  var(bg);
+  background-color:  $bg;
   a {
     text-decoration: none;
   }
@@ -72,7 +72,7 @@
     justify-content: center;
 
     .product-card {
-      background-color: var(bg);
+      background-color: $bg;
       padding-bottom: 1.5rem;
       width: 177px;
       height: 213px;
@@ -127,7 +127,7 @@
           font-size: 0.9rem;
           font-weight: 500;
           margin-bottom: 0;
-          color: var(text1);
+          color: $text1;
           @media (min-width: 950px) {
           font-size: 1rem;
           }
