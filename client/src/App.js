@@ -14,11 +14,12 @@ import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword";
 import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
 import AddNewProductPage from "./Pages/AddNewProductPage";
-import UpdateProductPage from './Pages/UpdateProductPage';
+import UpdateProductPage from "./Pages/UpdateProductPage";
 import OrderDetails from "./Pages/OrderDetails";
-import OrdersContextProvider from "./Contexts/OrdersContext"
+import CustomerDetails from "./Pages/CustomerDetails";
+import OrdersContextProvider from "./Contexts/OrdersContext";
+import MembersContextProvider from "./Contexts/MembersContext";
 import "./styles/global.scss";
-
 
 function App() {
   return (
@@ -27,21 +28,36 @@ function App() {
       <div className="content-wrap">
         <ProductsProvider>
           <OrdersContextProvider>
-            <Routes>
-              <Route path="/" exact element={<Homepage />} />
-              <Route path="/products" element={<ProductsPage />} />
-              <Route path="/product-details/:id" element={<ProductDetails />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="forgotten-name-or-password" element={<ForgottenNameOrPassword />}/>
-              <Route path="register" element={<SignUp />} />
-              <Route path="request-form" element={<RequestForm />} />
-              <Route path="order-summary" element={<OrderSummary />} />
-              <Route path="/admin/dashboard" element={<Dashboard />} />
-              <Route path="/admin/order/:id" element={<OrderDetails />} />
-              <Route path="/add-new-product" element={<AddNewProductPage />}></Route>
-              <Route path="/edit-product/:id" element={<UpdateProductPage />}></Route>
-              <Route path="*" element={<NoMatch />} />
-            </Routes>
+            <MembersContextProvider>
+              <Routes>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/products" element={<ProductsPage />} />
+                <Route
+                  path="/product-details/:id"
+                  element={<ProductDetails />}
+                />
+                <Route path="login" element={<LoginPage />} />
+                <Route
+                  path="forgotten-name-or-password"
+                  element={<ForgottenNameOrPassword />}
+                />
+                <Route path="register" element={<SignUp />} />
+                <Route path="request-form" element={<RequestForm />} />
+                <Route path="order-summary" element={<OrderSummary />} />
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+                <Route path="/admin/order/:id" element={<OrderDetails />} />
+                <Route
+                  path="/add-new-product"
+                  element={<AddNewProductPage />}
+                ></Route>
+                <Route
+                  path="/edit-product/:id"
+                  element={<UpdateProductPage />}
+                ></Route>
+                <Route path="/admin/member/:id" element={<CustomerDetails />} />
+                <Route path="*" element={<NoMatch />} />
+              </Routes>
+            </MembersContextProvider>
           </OrdersContextProvider>
         </ProductsProvider>
       </div>

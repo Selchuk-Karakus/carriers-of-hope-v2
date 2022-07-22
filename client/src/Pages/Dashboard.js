@@ -1,9 +1,9 @@
 import React from "react";
 import OrdersTable from "../components/OrdersTable";
+import CustomersTable from "../components/CustomersTable";
 import ProductsTable from "../components/ProductsTable";
 import "../styles/dashboard.scss";
 import { CgProfile } from "react-icons/cg";
-
 
 function Dashboard() {
   return (
@@ -41,10 +41,11 @@ function Dashboard() {
       <h2>Orders</h2>
 
       <OrdersTable />
+      <CustomersTable />
 
       <div className="results">
-        <span className='show-results'>Show 10 results</span>
-        <span className="number">{'< 1 >'}</span>
+        <span className="show-results">Show 10 results</span>
+        <span className="number">{"< 1 >"}</span>
       </div>
     </div>
   );
