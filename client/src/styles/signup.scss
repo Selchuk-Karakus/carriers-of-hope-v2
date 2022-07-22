@@ -1,12 +1,11 @@
+@use "./variables/_variables.scss" as var;
 @import "./variables/variables";
 
-form {
+.signUp-container {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  max-width: 350px;
-  gap: 10px;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .submit-btn {
@@ -25,16 +24,15 @@ input[type="text"],
 input[type="password"],
 input[type="tel"],
 input[type="email"] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 5px 0;
-  display: inline-block;
+  padding: 1em 5em 1em 1em;
+  background-color: var.$bg2;
+  border-radius: 10px;
   border: none;
-  background: #f1f1f1;
+  width: 300px;
 }
 
 .signUp-header {
-  text-align: center;
+  // text-align: center;
   margin: 3rem 0 2rem 0;
 }
 
@@ -48,4 +46,25 @@ input[type="email"] {
   .icon {
     margin-top: 1.2px;
   }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  font-family: var.$georgia;
+}
+
+.sign-up-btn {
+  padding: 0.9em 0;
+  width: 300px;
+  border: none;
+  background-color: var.$green3;
+  color: white;
+  border-radius: 5px;
 }
