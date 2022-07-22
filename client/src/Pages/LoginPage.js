@@ -20,7 +20,7 @@ function LoginPage() {
       if(res.signedIn && res.isAdmin) {
         console.log(res)
         navigate('/admin/dashboard')
-      }
+      } 
       else if (res.signedIn) {
         console.log(res)
         setDisplayError(false);
@@ -33,12 +33,16 @@ function LoginPage() {
 
   return (
     <>
-      {" "}
-      <button onClick={() => navigate(-1)}>back</button>
-      <div>
-        <div>UserLogin</div>
+      <div className="login-container">
+        <div className="login-with-message">
+          <div className="login">Login</div>
+          <p className="login-message">
+            Welcome back, please login to your account
+          </p>
+        </div>
+
         <form onSubmit={handleSubmit}>
-          <label>Email:</label>
+          <label>Email</label>
           <input
             type="email"
             className="form-control"
@@ -46,33 +50,33 @@ function LoginPage() {
             name="email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password:</label>
+          <label>Password</label>
           <input
             type="password"
             className="form-control"
-            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
             name="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button>Login</button>
+
+          <nav className="nav-links">
+            <p className="remember-me-message">
+              <Link to="/forgotten-name-or-password">
+                <span style={{ color: "black" }}>Remember me</span>
+              </Link>
+            </p>
+            <p className="forgotten-password">
+              <Link to="/forgotten-name-or-password">
+                <span style={{ color: "black" }}>Forgotten password ?</span>
+              </Link>
+            </p>
+          </nav>
+
+          <div className="button-container">
+            <button className="sign-up-btn">Sign up</button>
+            <button className="login-btn">Login</button>
+          </div>
         </form>
-        <nav>
-          <p>
-            Forgotten password? Click{" "}
-            <Link to="/forgotten-name-or-password">
-              <span style={{ color: "blue" }}>here</span>
-            </Link>
-          </p>
-          <p>
-            Don't have an account? Sign up{" "}
-            <Link to="/register">
-              <span style={{ color: "blue" }}>here</span>
-            </Link>
-          </p>
-        </nav>
-        <div className="mb-3" style={displayError ? {} : { display: "none" }}>
-          <label>Incorrect Email or Password</label>
-        </div>
       </div>
     </>
   );
