@@ -1,7 +1,69 @@
+@use './variables/_variables.scss' as var;  
 
-  form {
+  .login-container{
     display: flex;
     flex-direction: column;
 
-    align-items: center;
+    .login,
+    .login-message,
+    .remember-me-message,
+    .forgotten-password,
+    .button-container
+    {
+      text-align: center;
+      font-family: var.$georgia;
+    }
+
+    .login{
+      padding-top: 5em;
+      font-size: 150%;
+      font-weight: bolder;
+    }
+
+    .login-message{
+      padding: 2em;
+      font-size: 107%;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 700px;
+      gap: 15px;
+    }
+
+    label{
+      font-weight: bold;
+      font-family: var.$georgia;
+    }
+
+    input{
+      padding: 1em 5em 1em 1em;
+      background-color: var.$bg2;
+      border-radius: 10px;
+      border: none;
+      width: 300px
+    }
+
+    .nav-links{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .button-container{
+      display: flex;
+      flex-direction: column;
+      padding-top: 2em;
+      gap: 18px;
+    }
+
+    .sign-up-btn,
+    .login-btn{
+      padding: 0.9em 0;
+      width: 300px;
+      border: none;
+      background-color: var.$green3;
+      color:white;
+      border-radius: 5px;
+    }
   }
