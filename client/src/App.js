@@ -15,44 +15,43 @@ import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
 import "./styles/global.scss";
 import OrderDetails from "./Pages/OrderDetails";
-import OrdersContextProvider from "./Contexts/OrdersContext"
+import CustomerDetails from "./Pages/CustomerDetails";
+import OrdersContextProvider from "./Contexts/OrdersContext";
+import MembersContextProvider from "./Contexts/MembersContext";
 
 function App() {
   return (
     <>
-        <Navbar />
-        <div className="content-wrap">
-          <ProductsProvider>
-            <OrdersContextProvider>
+      <Navbar />
+      <div className="content-wrap">
+        <ProductsProvider>
+          <OrdersContextProvider>
+            <MembersContextProvider>
               <Routes>
-                <Route path="/" exact element={<Homepage />}></Route>
-                <Route path="/products" element={<ProductsPage />}></Route>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/products" element={<ProductsPage />} />
                 <Route
                   path="/product-details/:id"
                   element={<ProductDetails />}
-                ></Route>
+                />
                 <Route path="login" element={<LoginPage />} />
                 <Route
                   path="forgotten-name-or-password"
                   element={<ForgottenNameOrPassword />}
-                ></Route>
-                <Route path="register" element={<SignUp />}></Route>
-                <Route></Route>
-                <Route path="request-form" element={<RequestForm />}></Route>
-                <Route path="order-summary" element={<OrderSummary />}></Route>
-
-                <Route path="/admin/dashboard" element={<Dashboard />}></Route>
-                <Route
-                  path="/admin/order/:id"
-                  element={<OrderDetails />}
-                ></Route>
-
-                <Route path="*" element={<NoMatch />}></Route>
+                />
+                <Route path="register" element={<SignUp />} />
+                <Route path="request-form" element={<RequestForm />} />
+                <Route path="order-summary" element={<OrderSummary />} />
+                <Route path="/admin/dashboard" element={<Dashboard />} />
+                <Route path="/admin/order/:id" element={<OrderDetails />} />
+                <Route path="/admin/member/:id" element={<CustomerDetails />} />
+                <Route path="*" element={<NoMatch />} />
               </Routes>
-            </OrdersContextProvider>
-          </ProductsProvider>
-        </div>
-        <Footer />
+            </MembersContextProvider>
+          </OrdersContextProvider>
+        </ProductsProvider>
+      </div>
+      <Footer />
     </>
   );
 }
