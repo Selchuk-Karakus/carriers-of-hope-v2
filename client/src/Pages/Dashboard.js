@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState}from "react";
 import OrdersTable from "../components/OrdersTable";
 import CustomersTable from "../components/CustomersTable";
 import ProductsTable from "../components/ProductsTable";
@@ -6,6 +6,10 @@ import "../styles/dashboard.scss";
 import { CgProfile } from "react-icons/cg";
 
 function Dashboard() {
+  const[tableComponent, setTableComponent] = useState('Orders');
+
+  
+
   return (
     <div className="admin-dashboard">
       <div className="admin-navbar">
@@ -20,28 +24,29 @@ function Dashboard() {
 
       <div className="button-container">
         <div className="button">
-          <button className="admin-tab-button" id="orders-button">
+          <button onClick={(e)=>setTableComponent(e.target.innerText)} className="admin-tab-button" id="orders-button">
             Orders
           </button>
         </div>
 
         <div className="button">
-          <button className="admin-tab-button" id="products-button">
+          <button onClick={(e)=>setTableComponent(e.target.innerText)} className="admin-tab-button" id="products-button">
             Products
           </button>
         </div>
 
         <div className="button">
-          <button className="admin-tab-button" id="customers-button">
+          <button onClick={(e)=>setTableComponent(e.target.innerText)} className="admin-tab-button" id="customers-button">
             Customers
           </button>
         </div>
       </div>
 
-      <h2>Orders</h2>
-
-      <OrdersTable />
-      <CustomersTable />
+      <h2>{tableComponent}</h2>
+      {tableComponent==="Orders"? <OrdersTable/>:
+      tableComponent==='Products'? <ProductsTable/>:
+                                   <CustomersTable/>
+      }
 
       <div className="results">
         <span className="show-results">Show 10 results</span>

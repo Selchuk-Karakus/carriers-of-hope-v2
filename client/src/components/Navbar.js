@@ -23,8 +23,10 @@ function Navbar() {
                 <NavLink to="/login">Login</NavLink>
               </li>
               <li>
-                <NavLink to="/products">Products</NavLink>
+                <NavLink to="/products">Online Shop</NavLink>
               </li>
+              <li>About Us</li>
+              <li>Our Work</li>
             </ul>
           </nav>
         </div>

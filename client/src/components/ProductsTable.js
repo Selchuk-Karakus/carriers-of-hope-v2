@@ -1,7 +1,7 @@
 import React, {useState, useEffect,useContext} from "react";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { FiEdit2,FiDownload } from 'react-icons/fi';
-import {ProductsContext} from '../services/products.context';
+import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
 import '../styles/productstable.scss';
@@ -82,7 +82,6 @@ function ProductsTable(){
  
    return(
         <div className="products-table">
-          <h3>Products</h3>
           <div className="table-controller">
             <Link to='/add-new-product'><button className="add-btn">Add New Product</button></Link>
             <div className="filter-bar">
