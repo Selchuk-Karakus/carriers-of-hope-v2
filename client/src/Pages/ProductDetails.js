@@ -57,7 +57,10 @@ function ProductDetails() {
                 <div className="card-text">
                 <h3 className="p-name">{product.product_name}</h3>
                 <p className="p-category">{product.category_name}</p>
-                <button className="nav-button" onClick={() => navigate("/request-form")}>Place request</button>
+                <p className="p-description"> Cras egestas nibh non leo
+        viverra, vitae blandit sapien scelerisque. In non tortor a augue tempus
+        tempus id sit amet libero. </p>
+                <button className="nav-button" onClick={() => navigate("/request-form")}>Add to bag</button>
                 </div>
               </div>
             
