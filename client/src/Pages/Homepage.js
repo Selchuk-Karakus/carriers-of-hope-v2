@@ -25,7 +25,8 @@ function Homepage() {
         mattis nisl vel commodo. Praesent eu placerat nisi, eu congue nisl. Nam
         laoreet blandit tellus.
       </p>
-      <Link to="/products">All Products</Link>
+      <Link to="/products">Online Shop</Link>
+    
     </div>
   );
 }

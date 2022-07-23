@@ -14,5 +14,18 @@
    max-width: 100%;
    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
    margin-bottom: 50px;
-}
+   }
+   a{
+      color: $text2;
+      border: none;
+      background-color: $green3;
+      padding: 0.8rem;
+      width: 100%;
+      text-align: center;
+      @media (min-width: 500px) {
+         width: 150px;
+
+      
+       }
+   }
 }
