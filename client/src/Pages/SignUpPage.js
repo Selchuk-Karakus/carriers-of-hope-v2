@@ -45,19 +45,34 @@ const SignUpPage = () => {
       setError(false);
     }
 
-    const signedUp = async () =>
-      await signUp({
-        first_name,
-        last_name,
-        address,
-        email,
-        city,
-        postcode,
-        country,
-        telephone,
-        password,
-        confirmPassword,
-      });
+    signUp({
+      first_name,
+      last_name,
+      address,
+      email,
+      city,
+      postcode,
+      country,
+      telephone,
+      password,
+      confirmPassword,
+    }).then((res) => {
+      if (res) {
+        if (
+          first_name !== "" ||
+          last_name !== "" ||
+          address !== "" ||
+          email !== "" ||
+          city !== "" ||
+          postcode !== "" ||
+          country !== "" ||
+          telephone !== "" ||
+          password !== "" ||
+          confirmPassword !== ""
+        )
+          navigate("/login");
+      }
+    });
   };
 
   // Showing success message
@@ -100,6 +115,7 @@ const SignUpPage = () => {
   };
 
   const navigate = useNavigate();
+  
   return (
     <>
       <button className="back-button" onClick={() => navigate(-1)}>
@@ -170,8 +186,6 @@ const SignUpPage = () => {
             className="form-control"
             type="tel"
             name="phone"
-            //           pattern="^\s*\(?(020[7,8]{1}\)?[ ]?[1-9]{1}[0-9{2}[ ]?[0-9]{4})|(0[1-8]{1}[0-9]{3}\)?[ ]?[1-9]{1}[0-9]{2}[ ]?[0-9]{3})\s*$
-            // "
             onChange={(e) => setTelephone(e.target.value)}
           />
           <label>Password</label>
