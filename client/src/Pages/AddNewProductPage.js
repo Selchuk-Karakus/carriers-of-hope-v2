@@ -49,8 +49,9 @@ export default function AddNewProductPage() {
   }
 
   return (
-      <div className="form-container">  
+      <div className="form-container-products">  
       <h3>Add a new product</h3>
+      <div className="form-wrapper">
         <form className="product-form">
           <div  className="product-name">
             <label for="product_name">
@@ -112,6 +113,7 @@ export default function AddNewProductPage() {
               Cancel
             </button>
         </form>
+        </div>
       </div>
   );
 }

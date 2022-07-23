@@ -78,7 +78,7 @@ function OrdersTable() {
                 </td>
               </tr>
             );
-          })}
+          })} 
         </tbody>
       </table>
     </div>

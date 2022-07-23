@@ -75,7 +75,7 @@ export default function UpdateProductPage() {
   console.log(product)
 
   return (
-      <div className="form-container">
+      <div className="form-container-products">
          <h3>Edit Product</h3>
          {loading ? (
             <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
@@ -89,8 +89,10 @@ export default function UpdateProductPage() {
               />{" "}
               <p className="text-danger">Network response was not ok!</p>
             </div>
-          ) : (     
-            <form className="product-form"> 
+          ) : (  
+          <div className="form-wrapper">
+   
+             <form className="product-form"> 
             <div  className="product-name">
               <label for="product_name">
                 Product Name
@@ -152,7 +154,8 @@ export default function UpdateProductPage() {
               <button className="cancel-btn" onClick={cancelUpdateProduct}>
                 Cancel
               </button>
-          </form>
+             </form>
+            </div>
            )}
         
       </div>

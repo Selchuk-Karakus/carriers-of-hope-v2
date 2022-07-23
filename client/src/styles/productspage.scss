@@ -1,24 +1,28 @@
 @import './variables/_variables.scss';  
 
 .main-content {
-  margin-top:2rem;
   padding: 1rem;
   // width: 100%;
-  background-color:  $bg;
   a {
     text-decoration: none;
   }
   @media (min-width: 800px) {
     width: 750px;
+    padding: 1rem 2rem;
+
     margin: 0 auto;
+    text-align: center;
   }
   @media (min-width: 1250px) {
     width: 1050px;
+    padding: 4rem;
+
+    text-align: center;
   }
   
   .back-button{
     display:flex;
-    margin-left:0.5rem;
+    margin-bottom: 0.5rem;
     background-color:transparent;
     border:none;
     
@@ -39,7 +43,8 @@
   }
   .title{
     margin-left:1rem;
-  }
+    margin-bottom: 1rem;
+}
 
   .onlineShop-image{
     margin-left:0.9rem;
@@ -55,10 +60,17 @@
     }
     @media (min-width: 700px) {
       margin-left:4.5rem;
-      width:880px;
-
+      width:550px;
     }
 
+    @media (min-width: 900px) {
+      margin-left:4.5rem;
+      width:650px;
+    }
+    @media (min-width: 1050px) {
+      margin-left:4.5rem;
+      width:750px;
+    }
     img{
       width:100%;
     }
@@ -72,12 +84,12 @@
     justify-content: center;
 
     .product-card {
-      background-color: $bg;
-      padding-bottom: 1.5rem;
+      padding: 1rem 0.5rem;
       width: 177px;
       height: 213px;
       color:var(text1);
       box-shadow: #1B1A17;
+      border-radius: 6px;
       margin: 1rem 0.4rem;
 
       @media (min-width: 605px) {
@@ -92,7 +104,7 @@
         height: 240px;    
       }
       @media (min-width: 1250px) {
-        margin: 2rem 1rem;
+       
         width: 220px;
         height: 260px;
       }
