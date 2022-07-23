@@ -61,10 +61,10 @@ INSERT INTO members (first_name, last_name, email, address, city, postcode, coun
          ('Mahri','Atdayeva','m.atdayeva@johnsmith.org','14 New Road','London','L10 2AB','UK', 45678912345, 'mahriatdayeva', FALSE),
          ('Sami','Hakim','s.hakim@johnsmith.org','15 New Road','London','L10 2AB','UK', 56789012345, 'samihakim', TRUE),
          ('Hedyeh','Etemadi','h.etemedi@johnsmith.org','16 New Road','Manchester','L10 2AB','UK', 67890123456, 'hedyehetemaddi', TRUE),
-         ('Olga','Olga','o.olga@johnsmith.org','17 New Road','London','L10 2AB','UK', 78901234567, 'olgaolga', TRUE);
+         ('Olga','Olga','o.olga@johnsmith.org','17 New Road','London','L10 2AB','UK', 78901234567, 'olgaolga', TRUE),
          ('george', 'Karakus', 'h@kklllkk8.org', '25 New Road', 'London', 'L10 2AB', 'UK', 23456789101, '$2b$10$1mfWjqXDwpPAbwVcvfs8IumGSzUwubsvPYpn76Hm6b1os/WssVrc2', TRUE);
 
-INSERT INTO products (product_name, category_name),
+INSERT INTO products (product_name, category_name,product_status )
     VALUES  ('Single bed frame', 'Furniture', true),
             ('Double bed frame', 'Furniture', true),
             ('Bunk beds', 'Furniture', true),
@@ -94,7 +94,7 @@ INSERT INTO products (product_name, category_name),
             ('Blender','Electrical items', true),
             ('Fan','Electrical items', true),
             ('Heater','Electrical items', true),
-            ('Plates', , 'Household', true),
+            ('Plates', 'Household', true),
             ('Bowls', 'Household', true),
             ('Glasses', 'Household', true),
             ('Cups', 'Household', true),
