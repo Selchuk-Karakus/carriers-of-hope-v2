@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/signup.scss";
 import { signUp } from "../services/authService";
+import { login } from "../services/authService";
 
 const SignUpPage = () => {
   // States for registration for holding form data
@@ -44,18 +45,19 @@ const SignUpPage = () => {
       setError(false);
     }
 
-    signUp({
-      first_name,
-      last_name,
-      address,
-      email,
-      city,
-      postcode,
-      country,
-      telephone,
-      password,
-      confirmPassword,
-    });
+    const signedUp = async () =>
+      await signUp({
+        first_name,
+        last_name,
+        address,
+        email,
+        city,
+        postcode,
+        country,
+        telephone,
+        password,
+        confirmPassword,
+      });
   };
 
   // Showing success message
@@ -100,94 +102,97 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   return (
     <>
-      <button onClick={() => navigate(-1)}>back</button>
+      <button className="back-button" onClick={() => navigate(-1)}>
+        {" "}
+        {"< "}back
+      </button>
       {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
         {errorMessageConfirmPassword()}
       </div>
-      <div>
-        <h1>Create an account</h1>
+      <div className="signUp-container">
+        <h1 className="signUp-header">Sign Up</h1>
+        <form onSubmit={handleSubmit}>
+          <label>First Name</label>
+          <input
+            className="form-control"
+            type="text"
+            name="first_name"
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <label>Last Name</label>
+          <input
+            className="form-control"
+            type="text"
+            name="last_name"
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <label>Address Line 1</label>
+          <input
+            className="form-control"
+            type="text"
+            name="address"
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <label>Town/City</label>
+          <input
+            className="form-control"
+            type="text"
+            name="city"
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <label>Postcode</label>
+          <input
+            className="form-control"
+            type="text"
+            name="postcode"
+            onChange={(e) => setPostcode(e.target.value)}
+          />
+          <label>Country</label>
+          <input
+            className="form-control"
+            type="text"
+            name="country"
+            onChange={(e) => setCountry(e.target.value)}
+          />
+          <label>Email</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="email@example.com"
+            name="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label>Phone Number</label>
+          <input
+            className="form-control"
+            type="tel"
+            name="phone"
+            //           pattern="^\s*\(?(020[7,8]{1}\)?[ ]?[1-9]{1}[0-9{2}[ ]?[0-9]{4})|(0[1-8]{1}[0-9]{3}\)?[ ]?[1-9]{1}[0-9]{2}[ ]?[0-9]{3})\s*$
+            // "
+            onChange={(e) => setTelephone(e.target.value)}
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+            name="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <label>Retype Password</label>
+          <input
+            type="password"
+            className="form-control"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+            name="confirmPassword"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          <button className="sign-up-btn">Sign Up</button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit}>
-        <label>First Name</label>
-        <input
-          className="form-control"
-          type="text"
-          name="first_name"
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <label>Last Name</label>
-        <input
-          className="form-control"
-          type="text"
-          name="last_name"
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <label>Address Line 1</label>
-        <input
-          className="form-control"
-          type="text"
-          name="address"
-          onChange={(e) => setAddress(e.target.value)}
-        />
-        <label>Town/City</label>
-        <input
-          className="form-control"
-          type="text"
-          name="city"
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <label>Postcode</label>
-        <input
-          className="form-control"
-          type="text"
-          name="postcode"
-          onChange={(e) => setPostcode(e.target.value)}
-        />
-        <label>Country</label>
-        <input
-          className="form-control"
-          type="text"
-          name="country"
-          onChange={(e) => setCountry(e.target.value)}
-        />
-        <label>Email</label>
-        <input
-          type="email"
-          className="form-control"
-          placeholder="email@example.com"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label>Phone Number</label>
-        <input
-          className="form-control"
-          type="tel"
-          name="phone"
-          //           pattern="^\s*\(?(020[7,8]{1}\)?[ ]?[1-9]{1}[0-9{2}[ ]?[0-9]{4})|(0[1-8]{1}[0-9]{3}\)?[ ]?[1-9]{1}[0-9]{2}[ ]?[0-9]{3})\s*$
-          // "
-          onChange={(e) => setTelephone(e.target.value)}
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-          name="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <label>Retype Password</label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-          name="confirmPassword"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button>submit</button>
-      </form>
     </>
   );
 };

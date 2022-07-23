@@ -38,7 +38,7 @@ function setAccessToken(userToken) {
 export function getAccessToken() {
   const tokenString = sessionStorage.getItem("token");
   const userToken = JSON.parse(tokenString);
-  return userToken?.token;
+  return userToken;
 }
 
 // Post user registration data to /register
