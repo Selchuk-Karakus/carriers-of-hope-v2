@@ -1,7 +1,7 @@
 import { getAccessToken } from "./authService";
 
 export function insertOrder(orderObj) {
-  fetch(`http://localhost:8000/orders`, {
+  fetch(`/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export function insertOrder(orderObj) {
 }
 
 export function getOrders() {
-  return fetch(`http://localhost:8000/orders`, {
+  return fetch(`/orders`, {
     headers: {
       "x-access-token": getAccessToken(),
     },
@@ -37,7 +37,7 @@ export function getOrders() {
 }
 
 export function getOrderById(orderId) {
-  fetch(`http://localhost:8000/orders/${orderId}`, {
+  fetch(`/orders/${orderId}`, {
     headers: {
       "x-access-token": getAccessToken(),
     },

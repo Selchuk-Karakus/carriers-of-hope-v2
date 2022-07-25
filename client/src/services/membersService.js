@@ -1,6 +1,6 @@
 // Send a default GET request to /members to GET all members
 export const getMembers = async () => {
-  return await fetch("http://localhost:8000/members")
+  return await fetch("/members")
     .then(checkStatus)
     .then((res) => {
       return res.json();
@@ -12,7 +12,7 @@ export const getMembers = async () => {
 
 // Send a default GET request to /member/:id to GET a member
 export const getMemberById = async (memberId) => {
-  return await fetch(`http://localhost:8000/members/${memberId}`)
+  return await fetch(`/members/${memberId}`)
     .then(checkStatus)
     .then((res) => {
       return res.json();
