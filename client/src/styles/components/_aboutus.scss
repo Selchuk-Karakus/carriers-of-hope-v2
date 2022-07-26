@@ -1,0 +1,18 @@
+@import '../variables/_variables.scss';  
+
+.about-us{
+   width: 100%;
+   padding: 3rem 1rem;
+   height: 350px;
+   @media (min-width: 1250px) {
+      width: 1050px;
+      padding: 4rem;
+   }
+
+   .image-container{
+      width: 100%;
+      img{
+         width: 100%;
+      }
+   }
+}
