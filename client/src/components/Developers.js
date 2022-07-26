@@ -31,7 +31,7 @@ function Developers() {
                <div className="text-content">
                   <h4>{dev.name}</h4>
                   <p>Junior Full Stack developer</p>
-                  <a  target='_blank' href={dev.linkedin}>Find out More</a>
+                  <a  href={dev.linkedin}>Find out More</a>
                </div> 
             </div>
             )
