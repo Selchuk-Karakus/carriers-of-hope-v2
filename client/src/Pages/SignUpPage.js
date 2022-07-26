@@ -45,6 +45,7 @@ const SignUpPage = () => {
       setError(false);
     }
 
+    // if the validation above passes register the user then log them in diverting the user to a different UI depending on user credentials
     signUp({
       first_name,
       last_name,
@@ -57,24 +58,26 @@ const SignUpPage = () => {
       password,
       confirmPassword,
     }).then((res) => {
-      if (res) {
-        if (
-          first_name !== "" ||
-          last_name !== "" ||
-          address !== "" ||
-          email !== "" ||
-          city !== "" ||
-          postcode !== "" ||
-          country !== "" ||
-          telephone !== "" ||
-          password !== "" ||
-          confirmPassword !== ""
-        )
-          navigate("/login");
+      console.log(res.statusText)
+      if(res.status === 201) {
+         login({
+           email,
+           password,
+         }).then((res) => {
+           if (res.signedIn && res.isAdmin) {
+             console.log(res);
+             navigate("/admin/dashboard");
+           } else if (res.signedIn) {
+             console.log(res.statusText);
+             navigate("/products");
+           } else {
+            setError(true)
+           }
+         });
       }
     });
-  };
 
+  }
   // Showing success message
   const successMessage = () => {
     return (
