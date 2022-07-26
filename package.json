@@ -8,7 +8,7 @@
     "npm": "8.1.0"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cd client && npm install && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build"
