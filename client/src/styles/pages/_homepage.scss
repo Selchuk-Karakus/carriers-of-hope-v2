@@ -6,7 +6,7 @@
    .home{
       position: relative;
       width: 100%;   
-      height: 63vh;
+      height: 60vh;
       background: $green2;
 
       @media(min-width:540px){
@@ -14,7 +14,7 @@
       }
 
       @media(min-width:620px){
-         height: 74vh;
+         height: 70vh;
       }
       @media(min-width:750px){
          border-bottom-right-radius: 50% 250px;
@@ -120,33 +120,34 @@
          }
          .online-shop{
             width: 100%;
-            text-align: center;
+            text-align: left;
             margin-top: 1.5rem;
             @media (min-width: 730px) { 
                margin-top: 1rem;    
             }
             @media (min-width: 950px) { 
-               margin-top: 2.5rem;    
+               text-align: center;
+               margin-top: 1.8rem;    
             }
             a{
                color: $text2;
                border: none;
                background-color: $green3;
-               padding: 0.8rem 2rem;
+               padding: 0.5rem 2.5rem;
                text-align: center;
                margin-right: 2rem;
                font-size: 0.9rem;
+               border-radius: 23px;
                @media (min-width: 650px) {     
-                   margin-top: 3rem;
+                  margin-top: 3rem;
                   font-size: 1rem;
-                  padding: 0.8rem 2.2rem;
-                  
-               
+                  padding: 0.5rem 2.8rem;
+
                }
                @media (min-width: 950px) {     
                  margin-top: 3rem;
                  font-size: 1.1rem;
-                 padding: 0.9rem 2.8rem;
+                 padding: 0.5rem 3.3rem;
                  
               
               }

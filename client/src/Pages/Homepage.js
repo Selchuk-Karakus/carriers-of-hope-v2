@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../components/AboutUs';
 import AboutUs from "../components/AboutUs";
+import Developers from "../components/Developers";
 
 function Homepage() {
   return (
@@ -18,6 +19,7 @@ function Homepage() {
         </div>
       </div>
       <AboutUs/>
+      <Developers/>
       </div>
       
   );
