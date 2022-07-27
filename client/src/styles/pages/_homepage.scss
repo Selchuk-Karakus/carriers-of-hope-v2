@@ -1,0 +1,161 @@
+@import '../variables/_variables.scss';  
+
+.container{
+   width: 100%;
+   font-family: $kanit;
+   .home{
+      position: relative;
+      width: 100%;   
+      height: 60vh;
+      background: $green2;
+
+      @media(min-width:540px){
+         height: 67vh;
+      }
+
+      @media(min-width:620px){
+         height: 70vh;
+      }
+      @media(min-width:750px){
+         border-bottom-right-radius: 50% 250px;
+         height: 63vh;
+         
+      }
+      @media(min-width:1050px){
+         border-bottom-left-radius:70% 20px;
+         border-bottom-right-radius: 50% 400px;
+         height: 65vh;
+      }
+    
+      @media(min-width:1250px){
+         bottom-left-radius:60% 500px;
+         border-bottom-right-radius: 50% 500px;
+         height: 71vh;
+      }
+
+      .homeImg{position: absolute;
+        
+         width: 100%;
+         border-radius: 0 0 50% 0;
+         min-height: inherit;
+         overflow-y: hidden;
+         border: none;
+       
+         @media(min-width:750px){
+            width: 70%;
+            border-radius: 0 0 90% 0;
+         }
+         @media(min-width:950px){
+            width: 60%;
+         }
+        
+         @media(min-width:1150px){
+            width: 50%;
+
+         }
+         img {
+           width: 100%;
+         }
+   
+      }
+
+      .content-text{
+         position: absolute;
+         text-align:center;
+         width: 80%;
+         right: 10%;
+         bottom:10%;
+         @media(min-width:520px) {
+            width: 420px;   
+         }
+         @media(min-width:630px) {     
+            right:20%;
+            bottom: 5%;
+         }
+         @media(min-width:750px) {     
+            right: 10%;
+            bottom: 15%;
+         }
+         @media(min-width:950px) {
+            right: 5%;
+         }
+         @media(min-width:1080px) {
+            width: 450px;   
+            right: 5%;
+         }
+         @media(min-width:1250px) {
+            right: 8%;
+            width: 580px;   
+            bottom: 25%;
+
+         }
+         h1{
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+            font-family: $cinzel;
+            text-align: left;
+            @media(min-width:650px) {
+               font-size: 1.5rem;
+            }
+            @media (min-width: 950px) {
+               font-size: 2.5rem;
+            }  
+            @media (min-width: 1150px) {
+               font-size: 3.2rem;
+            }
+         }
+         p{
+            font-size: 0.9rem;
+            text-align: left;
+
+            @media (min-width: 650px) {
+               font-size: 1rem;
+            } 
+            @media (min-width: 970px) {
+               font-size: 1.2rem;
+            }
+            @media (min-width: 1150px) {
+               font-size: 1.4rem;
+            }
+         }
+         .online-shop{
+            width: 100%;
+            text-align: left;
+            margin-top: 1.5rem;
+            @media (min-width: 730px) { 
+               margin-top: 1rem;    
+            }
+            @media (min-width: 950px) { 
+               text-align: center;
+               margin-top: 1.8rem;    
+            }
+            a{
+               color: $text2;
+               border: none;
+               background-color: $green3;
+               padding: 0.5rem 2.5rem;
+               text-align: center;
+               margin-right: 2rem;
+               font-size: 0.9rem;
+               border-radius: 23px;
+               @media (min-width: 650px) {     
+                  margin-top: 3rem;
+                  font-size: 1rem;
+                  padding: 0.5rem 2.8rem;
+
+               }
+               @media (min-width: 950px) {     
+                 margin-top: 3rem;
+                 font-size: 1.1rem;
+                 padding: 0.5rem 3.3rem;
+                 
+              
+              }
+            }
+         }
+         
+      }
+  
+}
+
+}
