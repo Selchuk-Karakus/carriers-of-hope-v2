@@ -3,10 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { OrdersContext } from "../Contexts/OrdersContext";
 import { getOrders } from "../services/orderService";
 import { CgSoftwareDownload } from "react-icons/cg";
+import { CSVLink } from "react-csv";
 
 function OrdersTable() {
   const { orders, setOrders } = useContext(OrdersContext);
   const navigate = useNavigate();
+  const headers = [
+    { label: "Order ID", key: "orderRef" },
+    { label: "Date of Order", key: "orderDate" },
+    { label: "Customer", key: "member.fullName" },
+    { label: "Status", key: "orderStatus" },
+  ];
 
   useEffect(() => {
     getOrders().then((orders) => {
@@ -41,7 +48,16 @@ function OrdersTable() {
           </div>
         </div>
 
-        <span className="download"><CgSoftwareDownload /></span>
+        {orders && orders.length > 0 && (
+          <CSVLink
+            className="download"
+            headers={headers}
+            data={orders}
+            filename="customer_orders.csv"
+          >
+            <CgSoftwareDownload />
+          </CSVLink>
+        )}
       </div>
 
       <table className="orders-table">
@@ -78,7 +94,7 @@ function OrdersTable() {
                 </td>
               </tr>
             );
-          })} 
+          })}
         </tbody>
       </table>
     </div>
