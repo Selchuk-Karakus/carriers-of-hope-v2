@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 
 app.use(cors());
 
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
   }  
 });
 
+
 //include routes
 app.use("/", auth);
 app.use("/orders", orders);
@@ -37,11 +39,15 @@ app.use("/members", members);
 // // Have Node serve the files for our built React app
 // //this serves the react app files to users machine from heroku
 // app.use(express.static(path.resolve(__dirname, '../client/build')));
+if(process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve(__dirname, "client/build")));
+
+}
 
 // // All other GET requests not handled before will return our React app
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+});
 
 //Middleware - Error handler for routes that doesnt exist
 app.use((req, res, next) => {

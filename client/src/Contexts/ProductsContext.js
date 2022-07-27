@@ -9,7 +9,7 @@ const ProductsProvider = ({ children }) => {
   
  const fetchData = async () => {
    const response = await fetch(
-     "http://localhost:8000/products"
+     "/products"
    );
    if (response.ok) {
      const jsonData = await response.json();

@@ -1,5 +1,5 @@
 export const login = (loginObj) => {
-  return fetch("http://localhost:8000/login", {
+  return fetch("/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export function getAccessToken() {
 // Post user registration data to /register
 export const signUp = (userObject) => {
   return (
-    fetch("http://localhost:8000/register", {
+    fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
