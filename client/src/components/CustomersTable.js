@@ -85,7 +85,7 @@ function CustomersTable() {
           </tr>
 
           {members.map((member, index) => {
-            if (!member.isadmin)
+            if (!member.isadmin) {
               return (
                 <tr key={index} className="orders-table-row">
                   <td className="order-id">{member.id}</td>
@@ -105,6 +105,8 @@ function CustomersTable() {
                   </td>
                 </tr>
               );
+            }
+            return <></>
           })}
         </tbody>
       </table>

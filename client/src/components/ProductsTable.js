@@ -23,7 +23,7 @@ function ProductsTable(){
   
    useEffect(() => {
      fetchData().catch(console.error);
-   }, []);
+   }, [fetchData]);
    
    useEffect(() => {
     const filterProducts = () => {
