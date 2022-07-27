@@ -20,6 +20,7 @@ import CustomerDetails from "./Pages/CustomerDetails";
 import OrdersContextProvider from "./Contexts/OrdersContext";
 import MembersContextProvider from "./Contexts/MembersContext";
 import "./styles/global.scss";
+import './styles/main.scss';
 
 function App() {
   return (

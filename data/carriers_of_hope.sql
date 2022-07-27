@@ -38,7 +38,7 @@ CREATE TABLE order_item (
     id              SERIAL PRIMARY KEY,
     quantity        INT NOT NULL,
     order_id        INT REFERENCES orders(id),
-    product_id      INT REFERENCES products(id)
+    product_id      INT REFERENCES products(id) ON DELETE CASCADE
 );
 
 CREATE TABLE cart (
@@ -49,7 +49,7 @@ CREATE TABLE cart (
 CREATE TABLE cart_item (
     id              SERIAL PRIMARY KEY,
     cart_id         INT REFERENCES cart(id),
-    product_id      INT REFERENCES products(id),
+    product_id      INT REFERENCES products(id) ON DELETE CASCADE,
     created_at      TIMESTAMP DEFAULT NULL,
     quantity        INT NOT NULL
 );
