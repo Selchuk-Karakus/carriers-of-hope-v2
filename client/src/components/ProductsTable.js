@@ -5,6 +5,7 @@ import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
 import '../styles/productstable.scss';
+import { CSVLink } from "react-csv";
 
 function ProductsTable(){
 
@@ -12,11 +13,17 @@ function ProductsTable(){
    const [filterByStatus, setFilterByStatus] = useState('');
    const [sortQuery, setSortQuery] = useState('');
    const [filteredProducts, setFilteredProducts] = useState(products);
-   
+    const headers = [
+      { label: "Product ID", key: "id" },
+      { label: "Product Name", key: "product_name" },
+      { label: "Category", key: "category_name" },
+      // { label: "Status", key: "" },
+      // { label: "Staff notes", key: "" },
+    ];
   
    useEffect(() => {
      fetchData().catch(console.error);
-   }, []);
+   }, [fetchData]);
    
    useEffect(() => {
     const filterProducts = () => {
@@ -80,83 +87,108 @@ function ProductsTable(){
 
     
  
-   return(
-        <div className="products-table">
-          <div className="table-controller">
-            <Link to='/add-new-product'><button className="add-btn">Add New Product</button></Link>
-            <div className="filter-bar">
-              <select className="sort-option" onChange={(e)=> setFilterByStatus(e.target.value)}>
-                <option  selected="true" value="All">Filter by Status</option>
-                <option value="In Stock">In Stock</option>
-                <option value="Out of Stock">Out of Stock</option>             
-              </select>
-              <select className="sort-option" onChange={handleSelectOptionValue}>
-                <option  selected="true" disabled="disabled">Sort by</option>
-                <option value="id">Product Id</option>
-                <option value="product_name">Product Name</option>
-                <option value="category_name">Category Name</option>
-                <option value="status">Status</option>
-              </select>
-              <span className="download-btn"><FiDownload/></span>
-            </div>
-          </div>
-          {loading ? (
-            <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
-          ) : error ? (
-            <div>
-              {" "}
-              <img
-                src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png"
-                width={"50px"}
-                alt='error-img'
-              />{" "}
-              <p className="text-danger">Network response was not ok!</p>
-            </div>
-            ) : (
-            <div className="product-dashboard">
-              <table id="products-table">
-                <thead>
-                  <tr>
-                      <th>Product ID</th>
-                      <th>Product Name</th>
-                      <th>Category</th>
-                      <th>Status</th>
-                      <th>Staff notes</th>
-                      <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredProducts?filteredProducts.map(
-                      ({id,product_name,category_name}, index) => {
-                      return (
-                        <tr key={id}>       
-                          <td>{id}</td>
-                          <td>{product_name}</td>
-                          <td>{category_name}</td>
-                          <td className="instock-row">In Stock</td>
-                          <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
+   return (
+     <div className="products-table">
+       <div className="table-controller">
+         <Link to="/add-new-product">
+           <button className="add-btn">Add New Product</button>
+         </Link>
+         <div className="filter-bar">
+           <select
+             className="sort-option"
+             onChange={(e) => setFilterByStatus(e.target.value)}
+           >
+             <option selected="true" value="All">
+               Filter by Status
+             </option>
+             <option value="In Stock">In Stock</option>
+             <option value="Out of Stock">Out of Stock</option>
+           </select>
+           <select className="sort-option" onChange={handleSelectOptionValue}>
+             <option selected="true" disabled="disabled">
+               Sort by
+             </option>
+             <option value="id">Product Id</option>
+             <option value="product_name">Product Name</option>
+             <option value="category_name">Category Name</option>
+             <option value="status">Status</option>
+           </select>
 
-                          <td className="actions">
-                            <span className="edit-btn">
-                                <Link to={'/edit-product/'+id}><FiEdit2/></Link>
-                            </span>
-                            <span className="delete-btn">
-                                <RiDeleteBin6Line onClick={()=>deleteProduct(id)}/>
-                            </span>
-                            </td>
-                          </tr>
-                      );
-                      }
-                    )
-                  : "Loading..."
-                  }
-                </tbody>
-              </table>
-            </div>
-          )}
-        </div>
+           {filteredProducts && filteredProducts.length > 0 && (
+             <CSVLink
+               className="download-btn"
+               headers={headers}
+               data={filteredProducts}
+               filename="products.csv"
+             >
+               <FiDownload />
+             </CSVLink>
+           )}
+         </div>
+       </div>
+       {loading ? (
+         <ThreeDots stroke="#FFE61B" style={{ "margin-left": "5rem" }} />
+       ) : error ? (
+         <div>
+           {" "}
+           <img
+             src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png"
+             width={"50px"}
+             alt="error-img"
+           />{" "}
+           <p className="text-danger">Network response was not ok!</p>
+         </div>
+       ) : (
+         <div className="product-dashboard">
+           <table id="products-table">
+             <thead>
+               <tr>
+                 <th>Product ID</th>
+                 <th>Product Name</th>
+                 <th>Category</th>
+                 <th>Status</th>
+                 <th>Staff notes</th>
+                 <th>Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               {filteredProducts
+                 ? filteredProducts.map(
+                     ({ id, product_name, category_name }, index) => {
+                       return (
+                         <tr key={id}>
+                           <td>{id}</td>
+                           <td>{product_name}</td>
+                           <td>{category_name}</td>
+                           <td className="instock-row">In Stock</td>
+                           <td>
+                             "Lorem ipsum dolor sit amet, consectetur adipiscing
+                             elit.{" "}
+                           </td>
 
-)
+                           <td className="actions">
+                             <span className="edit-btn">
+                               <Link to={"/edit-product/" + id}>
+                                 <FiEdit2 />
+                               </Link>
+                             </span>
+                             <span className="delete-btn">
+                               <RiDeleteBin6Line
+                                 onClick={() => deleteProduct(id)}
+                               />
+                             </span>
+                           </td>
+                         </tr>
+                       );
+                     }
+                   )
+                 : "Loading..."}
+             </tbody>
+           </table>
+         </div>
+       )}
+     </div>
+   );
 
 }
 

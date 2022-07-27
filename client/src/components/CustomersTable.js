@@ -1,17 +1,40 @@
-import { React, useEffect, useContext } from "react";
+import { React, useEffect, useContext, useState } from "react";
 import { MembersContext } from "../Contexts/MembersContext";
 import { getMembers } from "../services/membersService";
 import { useNavigate } from "react-router-dom";
+import { CgSoftwareDownload } from "react-icons/cg";
+import { CSVLink } from "react-csv";
+
+
+  const populateCsvData = (members) => {
+    return members.map((member) => {
+      return {
+        id: member.id,
+        fullName: member.first_name + " " + member.last_name,
+        telephone: member.telephone,
+        address: `${member.address}, ${member.city}, ${member.postcode}`,
+      };
+    });
+  };
 
 function CustomersTable() {
   const { members, setMembers } = useContext(MembersContext);
+  const [ csvData, setCsvData ] = useState(populateCsvData(members));
   const navigate = useNavigate();
+  const headers = [
+    { label: "Customer ID", key: "id" },
+    { label: "Customer Name", key: "fullName" },
+    { label: "Customer Phone", key: "telephone" },
+    { label: "Customer Address", key: "address" },
+  ];
 
   useEffect(() => {
     getMembers().then((members) => {
       setMembers(members);
+      const result = populateCsvData(members);
+      setCsvData(result);
     });
-  }, [setMembers]);
+  }, [setMembers, setCsvData]);
 
   const handleRedirect = (customerId) => {
     navigate(`/admin/member/${customerId}`);
@@ -39,6 +62,16 @@ function CustomersTable() {
             </select>
           </div>
         </div>
+        {csvData && csvData.length > 0 && (
+          <CSVLink
+            className="download"
+            headers={headers}
+            data={csvData}
+            filename="customers.csv"
+          >
+            <CgSoftwareDownload />
+          </CSVLink>
+        )}
       </div>
 
       <table className="orders-table">
@@ -52,7 +85,7 @@ function CustomersTable() {
           </tr>
 
           {members.map((member, index) => {
-            if (!member.isadmin)
+            if (!member.isadmin) {
               return (
                 <tr key={index} className="orders-table-row">
                   <td className="order-id">{member.id}</td>
@@ -72,6 +105,8 @@ function CustomersTable() {
                   </td>
                 </tr>
               );
+            }
+            return <></>
           })}
         </tbody>
       </table>
