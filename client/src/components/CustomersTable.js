@@ -5,21 +5,20 @@ import { useNavigate } from "react-router-dom";
 import { CgSoftwareDownload } from "react-icons/cg";
 import { CSVLink } from "react-csv";
 
-
-  const populateCsvData = (members) => {
-    return members.map((member) => {
-      return {
-        id: member.id,
-        fullName: member.first_name + " " + member.last_name,
-        telephone: member.telephone,
-        address: `${member.address}, ${member.city}, ${member.postcode}`,
-      };
-    });
-  };
+const populateCsvData = (members) => {
+  return members.map((member) => {
+    return {
+      id: member.id,
+      fullName: member.first_name + " " + member.last_name,
+      telephone: member.telephone,
+      address: `${member.address}, ${member.city}, ${member.postcode}`,
+    };
+  });
+};
 
 function CustomersTable() {
   const { members, setMembers } = useContext(MembersContext);
-  const [ csvData, setCsvData ] = useState(populateCsvData(members));
+  const [csvData, setCsvData] = useState(populateCsvData(members));
   const navigate = useNavigate();
   const headers = [
     { label: "Customer ID", key: "id" },
@@ -34,7 +33,24 @@ function CustomersTable() {
       const result = populateCsvData(members);
       setCsvData(result);
     });
-  }, [setMembers, setCsvData]);
+  }, [setCsvData, setMembers]);
+
+  // Sort the customer table first name, last name or id number by ASC order
+  const sortArray = (type) => {
+    let sorted;
+    if (type === "first-name") {
+      sorted = []
+        .concat(members)
+        .sort((b, a) => b.first_name.localeCompare(a.first_name));
+    } else if (type === "last-name") {
+      sorted = []
+        .concat(members)
+        .sort((b, a) => b.last_name.localeCompare(a.last_name));
+    } else {
+      sorted = [].concat(members).sort((b, a) => b.id - a.id);
+    }
+    setMembers(sorted);
+  };
 
   const handleRedirect = (customerId) => {
     navigate(`/admin/member/${customerId}`);
@@ -44,21 +60,14 @@ function CustomersTable() {
     <div className="orders-tab">
       <div className="dropdown-menu-container">
         <div className="filter-by">
-          <div className="dropdown-menu">
-            <label className="status">Filter by status</label>
-            <select>
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="declined">Declined</option>
-              <option value="cancelled">Cancelled</option>
-            </select>
-          </div>
-
           <div className="dropdown-menu" id="sort-by">
-            <label className="status">sort by</label>
-            <select>
-              <option value="first-name">First name</option>
-              <option value="last-name">Last name</option>
+            <select onChange={(e) => sortArray(e.target.value)}>
+              <option selected="true" disabled="disabled">
+                Sort by
+              </option>
+              <option value="first-name">First Name</option>
+              <option value="last-name">Last Name</option>
+              <option value="customer-id">Customer Id</option>
             </select>
           </div>
         </div>
@@ -84,10 +93,10 @@ function CustomersTable() {
             <th className="column-title">Customer/Order Detail</th>
           </tr>
 
-          {members.map((member, index) => {
+          {members.map((member) => {
             if (!member.isadmin) {
               return (
-                <tr key={index} className="orders-table-row">
+                <tr key={member.id} className="orders-table-row">
                   <td className="order-id">{member.id}</td>
 
                   <td className="customer-name">{`${member.first_name} ${member.last_name}`}</td>
@@ -106,7 +115,7 @@ function CustomersTable() {
                 </tr>
               );
             }
-            return <></>
+            return <></>;
           })}
         </tbody>
       </table>
