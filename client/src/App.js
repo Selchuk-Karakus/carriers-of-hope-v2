@@ -19,6 +19,7 @@ import OrderDetails from "./Pages/OrderDetails";
 import CustomerDetails from "./Pages/CustomerDetails";
 import OrdersContextProvider from "./Contexts/OrdersContext";
 import MembersContextProvider from "./Contexts/MembersContext";
+import ProductCategories from './Pages/ProductCategories';
 import "./styles/global.scss";
 import './styles/main.scss';
 
@@ -32,7 +33,8 @@ function App() {
             <MembersContextProvider>
               <Routes>
                 <Route path="/" exact element={<Homepage />} />
-                <Route path="/products" element={<ProductsPage />} />
+                <Route path="/products" element={<ProductCategories />} />
+                <Route path="/products-list/:category" element={<ProductsPage />} />
                 <Route
                   path="/product-details/:id"
                   element={<ProductDetails />}

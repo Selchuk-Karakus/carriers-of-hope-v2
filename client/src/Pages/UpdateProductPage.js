@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { RiAddCircleFill } from 'react-icons/ri';
 import { ThreeDots } from "react-loading-icons";
+import {ProductsContext} from '../Contexts/ProductsContext';
 import '../styles/addproduct.scss';
 
 
@@ -11,6 +12,7 @@ export default function UpdateProductPage() {
   const [error, setError] = useState(false);
   const [product, setProduct] = useState({});
   const [redirect, setRedirect] = useState(false);
+  const {setProductsTable} =  useContext(ProductsContext);
 
 
   const handleInputValue = (e) => {
@@ -62,11 +64,14 @@ export default function UpdateProductPage() {
     } catch (error) {
       console.log(error);
     }
-    setRedirect(true)
+    setRedirect(true);
+    setProductsTable(true);
   };
 
   const cancelUpdateProduct=()=>{
-    setRedirect(true)
+    setRedirect(true);
+    setProductsTable(true);
+
   }
 
   if (redirect) {

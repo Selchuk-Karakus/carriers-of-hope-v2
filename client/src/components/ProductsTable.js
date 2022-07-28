@@ -1,15 +1,16 @@
 import React, {useState, useEffect,useContext} from "react";
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { FiEdit2,FiDownload } from 'react-icons/fi';
+import { FiEdit2 } from 'react-icons/fi';
+import {CgSoftwareDownload} from 'react-icons/cg'
 import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
 import '../styles/productstable.scss';
 import { CSVLink } from "react-csv";
 
-function ProductsTable(){
+function ProductsTable({setTableComponent}){
 
-   const  {products, loading, error, fetchData} =  useContext(ProductsContext);
+   const {products, loading, error, fetchData} =  useContext(ProductsContext);
    const [filterByStatus, setFilterByStatus] = useState('');
    const [sortQuery, setSortQuery] = useState('');
    const [filteredProducts, setFilteredProducts] = useState(products);
@@ -23,8 +24,7 @@ function ProductsTable(){
   
    useEffect(() => {
      fetchData().catch(console.error);
-   }, [fetchData]);
-   
+   }, []);
    useEffect(() => {
     const filterProducts = () => {
       let filteredProducts = products.filter((product) => {
@@ -39,7 +39,7 @@ function ProductsTable(){
       setFilteredProducts(filteredProducts);
     };
     filterProducts();
-    console.log(filterByStatus)
+    // console.log(filterByStatus)
   }, [filterByStatus,products]);
 
 
@@ -52,7 +52,7 @@ function ProductsTable(){
       })
       setFilteredProducts(filteredArray)
     }
-    console.log(sortQuery)
+    // console.log(sortQuery)
     sortProducts()
   }, [sortQuery,products]);
 
@@ -81,113 +81,88 @@ function ProductsTable(){
       }
     };
 
+
     const handleSelectOptionValue=(e)=>{
      setSortQuery(e.target.value)
     }
 
     
  
-   return (
-     <div className="products-table">
-       <div className="table-controller">
-         <Link to="/add-new-product">
-           <button className="add-btn">Add New Product</button>
-         </Link>
-         <div className="filter-bar">
-           <select
-             className="sort-option"
-             onChange={(e) => setFilterByStatus(e.target.value)}
-           >
-             <option selected="true" value="All">
-               Filter by Status
-             </option>
-             <option value="In Stock">In Stock</option>
-             <option value="Out of Stock">Out of Stock</option>
-           </select>
-           <select className="sort-option" onChange={handleSelectOptionValue}>
-             <option selected="true" disabled="disabled">
-               Sort by
-             </option>
-             <option value="id">Product Id</option>
-             <option value="product_name">Product Name</option>
-             <option value="category_name">Category Name</option>
-             <option value="status">Status</option>
-           </select>
+   return(
+        <div className="products-table">
+          <div className="table-controller">
+            <Link to='/add-new-product'><button className="add-btn">Add New Product</button></Link>
+            <div className="filter-bar">
+              <select className="sort-option" onChange={(e)=> setFilterByStatus(e.target.value)}>
+                <option  selected="true" value="All">Filter by Status</option>
+                <option value="In Stock">In Stock</option>
+                <option value="Out of Stock">Out of Stock</option>             
+              </select>
+              <select className="sort-option" onChange={handleSelectOptionValue}>
+                <option  selected="true" disabled="disabled">Sort by</option>
+                <option value="id">Product Id</option>
+                <option value="product_name">Product Name</option>
+                <option value="category_name">Category Name</option>
+                <option value="status">Status</option>
+              </select>
+              <span className="download-btn"><CgSoftwareDownload/></span>
+            </div>
+          </div>
+          {loading ? (
+            <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
+          ) : error ? (
+            <div>
+              {" "}
+              <img
+                src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png"
+                width={"50px"}
+                alt='error-img'
+              />{" "}
+              <p className="text-danger">Network response was not ok!</p>
+            </div>
+            ) : (
+            <div className="product-dashboard">
+              <table id="products-table">
+                <thead>
+                  <tr>
+                      <th>Product ID</th>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredProducts?filteredProducts.map(
+                      ({id,product_name,category_name, product_status}, index) => {
+                      return (
+                        <tr key={id}>       
+                          <td>{id}</td>
+                          <td>{product_name}</td>
+                          <td>{category_name}</td>
+                          <td className="instock-row">{product_status?'In Stock':"Out of Stock"}</td>
+                          <td className="actions">
+                            <span className="edit-btn">
+                                <Link to={'/edit-product/'+id}><FiEdit2/></Link>
+                            </span>
+                            <span className="delete-btn">
+                                <RiDeleteBin6Line onClick={()=>deleteProduct(id)}/>
+                            </span>
+                            </td>
+                          </tr>
+                      );
+                      }
+                    )
+                  : "Loading..."
+                  }
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
 
-           {filteredProducts && filteredProducts.length > 0 && (
-             <CSVLink
-               className="download-btn"
-               headers={headers}
-               data={filteredProducts}
-               filename="products.csv"
-             >
-               <FiDownload />
-             </CSVLink>
-           )}
-         </div>
-       </div>
-       {loading ? (
-         <ThreeDots stroke="#FFE61B" style={{ "margin-left": "5rem" }} />
-       ) : error ? (
-         <div>
-           {" "}
-           <img
-             src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png"
-             width={"50px"}
-             alt="error-img"
-           />{" "}
-           <p className="text-danger">Network response was not ok!</p>
-         </div>
-       ) : (
-         <div className="product-dashboard">
-           <table id="products-table">
-             <thead>
-               <tr>
-                 <th>Product ID</th>
-                 <th>Product Name</th>
-                 <th>Category</th>
-                 <th>Status</th>
-                 <th>Staff notes</th>
-                 <th>Action</th>
-               </tr>
-             </thead>
-             <tbody>
-               {filteredProducts
-                 ? filteredProducts.map(
-                     ({ id, product_name, category_name }, index) => {
-                       return (
-                         <tr key={id}>
-                           <td>{id}</td>
-                           <td>{product_name}</td>
-                           <td>{category_name}</td>
-                           <td className="instock-row">In Stock</td>
-                           <td>
-                             "Lorem ipsum dolor sit amet, consectetur adipiscing
-                             elit.{" "}
-                           </td>
+                      
 
-                           <td className="actions">
-                             <span className="edit-btn">
-                               <Link to={"/edit-product/" + id}>
-                                 <FiEdit2 />
-                               </Link>
-                             </span>
-                             <span className="delete-btn">
-                               <RiDeleteBin6Line
-                                 onClick={() => deleteProduct(id)}
-                               />
-                             </span>
-                           </td>
-                         </tr>
-                       );
-                     }
-                   )
-                 : "Loading..."}
-             </tbody>
-           </table>
-         </div>
-       )}
-     </div>
    );
 
 }

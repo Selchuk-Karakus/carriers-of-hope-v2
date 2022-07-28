@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import '../components/AboutUs';
+
 import AboutUs from "../components/AboutUs";
 import Developers from "../components/Developers";
 
@@ -15,7 +16,7 @@ function Homepage() {
               Supporting Refugees, Asylum Seekers and other Migrants in Coventry since 2009
               Charitable Incorporated
             </p>
-            <div className="online-shop"><Link to="/products">Online Shop</Link></div>
+            <div className="online-shop"><Link to="/products">Visit Online Shop </Link></div>
         </div>
       </div>
       <AboutUs/>

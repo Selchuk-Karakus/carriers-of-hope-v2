@@ -42,7 +42,7 @@
         background-color: var.$green3;
         color: var.$bg;
     }
-
+    
     .admin-tab-button{
         background-color: var.$bg;
         color: var.$green3;
@@ -53,6 +53,11 @@
         font-family: var.$georgia;
         font-size:100%;
     }  
+
+    .active-btn{
+        background-color: var.$green3;
+        color: var.$bg;
+    }
 
     h2{
         text-align: center;

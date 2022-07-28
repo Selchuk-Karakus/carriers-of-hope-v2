@@ -69,7 +69,7 @@ function OrdersTable() {
             <th className="column-title">Status</th>
             <th className="column-title">Order details</th>
           </tr>
-           {orders.map((order, index) => {
+            {orders.map((order, index) => {
             return (
               <tr key={index} className="order-table-row">
                 <td className="order-id">{order.orderRef}</td>

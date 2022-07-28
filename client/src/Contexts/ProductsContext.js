@@ -6,9 +6,10 @@ const ProductsProvider = ({ children }) => {
    const [products, setProducts]=useState([]);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState(false);
-  
- const fetchData = async () => {
-   const response = await fetch(
+   const [productsTable, setProductsTable] = useState(false);
+    
+    const fetchData = async () => {
+    const response = await fetch(
      "/products"
    );
    if (response.ok) {
@@ -23,7 +24,7 @@ const ProductsProvider = ({ children }) => {
   };
   
   return (
-    <ProductsContext.Provider value={{ products, loading, error, fetchData}}>
+    <ProductsContext.Provider value={{ products, loading, error, fetchData, productsTable, setProductsTable}}>
       {" "}
       {children}
     </ProductsContext.Provider>
