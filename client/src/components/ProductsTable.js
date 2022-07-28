@@ -1,14 +1,15 @@
 import React, {useState, useEffect,useContext} from "react";
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import { FiEdit2,FiDownload } from 'react-icons/fi';
+import { FiEdit2 } from 'react-icons/fi';
+import {CgSoftwareDownload} from 'react-icons/cg'
 import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
 import '../styles/productstable.scss';
 
-function ProductsTable(){
+function ProductsTable({setTableComponent}){
 
-   const  {products, loading, error, fetchData} =  useContext(ProductsContext);
+   const {products, loading, error, fetchData} =  useContext(ProductsContext);
    const [filterByStatus, setFilterByStatus] = useState('');
    const [sortQuery, setSortQuery] = useState('');
    const [filteredProducts, setFilteredProducts] = useState(products);
@@ -17,7 +18,6 @@ function ProductsTable(){
    useEffect(() => {
      fetchData().catch(console.error);
    }, []);
-   
    useEffect(() => {
     const filterProducts = () => {
       let filteredProducts = products.filter((product) => {
@@ -32,7 +32,7 @@ function ProductsTable(){
       setFilteredProducts(filteredProducts);
     };
     filterProducts();
-    console.log(filterByStatus)
+    // console.log(filterByStatus)
   }, [filterByStatus,products]);
 
 
@@ -45,7 +45,7 @@ function ProductsTable(){
       })
       setFilteredProducts(filteredArray)
     }
-    console.log(sortQuery)
+    // console.log(sortQuery)
     sortProducts()
   }, [sortQuery,products]);
 
@@ -74,6 +74,7 @@ function ProductsTable(){
       }
     };
 
+
     const handleSelectOptionValue=(e)=>{
      setSortQuery(e.target.value)
     }
@@ -97,7 +98,7 @@ function ProductsTable(){
                 <option value="category_name">Category Name</option>
                 <option value="status">Status</option>
               </select>
-              <span className="download-btn"><FiDownload/></span>
+              <span className="download-btn"><CgSoftwareDownload/></span>
             </div>
           </div>
           {loading ? (
@@ -121,21 +122,18 @@ function ProductsTable(){
                       <th>Product Name</th>
                       <th>Category</th>
                       <th>Status</th>
-                      <th>Staff notes</th>
                       <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredProducts?filteredProducts.map(
-                      ({id,product_name,category_name}, index) => {
+                      ({id,product_name,category_name, product_status}, index) => {
                       return (
                         <tr key={id}>       
                           <td>{id}</td>
                           <td>{product_name}</td>
                           <td>{category_name}</td>
-                          <td className="instock-row">In Stock</td>
-                          <td>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. </td>
-
+                          <td className="instock-row">{product_status?'In Stock':"Out of Stock"}</td>
                           <td className="actions">
                             <span className="edit-btn">
                                 <Link to={'/edit-product/'+id}><FiEdit2/></Link>

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaAngleRight } from 'react-icons/fa';
 
 function AboutUs() {
   return (
@@ -11,7 +12,9 @@ function AboutUs() {
       <p>Our Mission is to provide a warm welcome, practical support and care, to Asylum Seekers, Refugees and Migrant families in need
       To befriend and empower individuals to be active citizens.
       </p>
-      <a href="https://carriersofhope.org.uk/about-us/">Learn More</a>
+      <a href="https://carriersofhope.org.uk/about-us/"><span>Learn More</span>
+         {/* <span className="icon"><FaAngleRight/></span>  */}
+      </a>
    </div>
   </div>
   );

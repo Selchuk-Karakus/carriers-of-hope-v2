@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { useEffect,useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect,useContext, useState} from "react";
+import { Link,useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
 import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
@@ -9,22 +9,34 @@ import '../styles/productspage.scss';
 function ProductsPage() {
   
   const  {products, loading, error, fetchData} =  useContext(ProductsContext);
+  const [filteredProducts, setFilteredProducts]=useState([]);
+
+  let { category } = useParams();
 
   useEffect(() => {
     fetchData().catch(console.error);
-    console.log(products)
   }, []);
+
+  useEffect(() => {
+    let filteredData = products.filter((p) => {
+      if(category!=='Electrical-items'){
+       return p.category_name.includes(category)}
+       else{
+        return p.category_name.includes('Electrical items')
+       }
+    });
+    setFilteredProducts(filteredData)
+  }, [category]);
+  console.log(filteredProducts)
+
 
 
   return (
       <div className="main-content">
-        <Link to={'/'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
+        <Link to={'/products'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
         <div className=''>
-          <h3 className="title">Online Shop</h3>
-          <div className="onlineShop-image">
-            <img src="images/online_shopping.jpg"  alt="online-shopping photo"/>
-          </div>
+          <h3 className="title">Request {category}</h3>
         </div>
         <div>
           {loading ? (
@@ -41,14 +53,14 @@ function ProductsPage() {
             </div>
             ) : (
               <div className="card-container">
-                {products?products.map(
+                {filteredProducts?filteredProducts.map(
                   ({id,product_name,category_name}, index) => {
                     return (
                       <div className="product-card" key={id}> 
                         <Link to={'/product-details/'+id} >   
                           <div className="image-container">
                           <img alt="product-images"
-                              src={'/images/' + category_name +'.jpg'} />        
+                              src={category_name==='Electrical items' ?'/images/Electrical-items.jpg':'/images/:'+category_name+'.jpg'} />        
                           </div>  
                           <div className="card-text">
                             <h3 className="p-name">{product_name}</h3>

@@ -1,0 +1,120 @@
+.categories-page{
+   width: 100%;
+   margin: 0 auto;
+   font-family: $georgia;
+   padding: 1rem;
+   @media (min-width: 1250px) {
+      width: 1170px;
+      padding: 1rem;
+   }
+   .back-btn{
+      display:flex;
+      margin: 1rem 0;
+      background-color:transparent;
+      border:none;
+      cursor: pointer;
+      .icon{
+        margin-top:1.2px;
+      }
+  
+      @media (min-width: 900px) {
+        margin-left:1rem;
+     
+      }
+      @media (min-width: 1050px) {
+        margin-left:4.5rem;
+  
+      }
+   }
+   .shop-online{
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 3.5rem;
+   }
+
+    h3{
+      text-align: center;
+      font-size: 1.25rem;
+      margin-top: 0.5rem;
+      @media (min-width: 1050px) {
+         font-size: 1.5rem;   
+       }
+    }
+
+   .onlineShop-image{
+      width: 100%; 
+      text-align: center;
+      margin-top: 1rem;
+      img{
+         width: 87%;
+         border-radius: 12px;
+      }
+   }
+
+   p{
+      font-size: 0.9rem;
+      margin-left: 5rem;
+      margin-top: 1.2rem;
+
+      @media (min-width: 1050px) {
+         font-size: 1.1rem;   
+       }
+   }
+
+   .cards-section{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.8rem 1rem;
+      width: 100%;
+      .categories-card{
+         width: 44.5%;
+         margin-bottom: 2rem;
+         @media (min-width: 680px) {
+            width: 29%;
+         }
+         .image-container{
+            width: 92%;
+            height: 130px;
+            text-align: center;
+            @media (min-width: 530px) {
+               height: 160px;
+            }
+            @media (min-width: 680px) {
+               height: 175px;
+            }
+            @media (min-width: 900px) {
+               height: 200px;
+            }
+         
+            img{
+               width: 100%;
+               height: 100%;
+               border-radius: 6%;
+            }
+         }
+         h4{
+            display:flex;
+            margin: 1rem 0;
+            background-color:transparent;
+            border:none;
+            cursor: pointer;
+            text-align: left;
+            color: $text1;
+            margin-left: 7px;
+            margin-top: 1rem;
+            font-size: 1rem;
+            .icon{
+              margin-top:1.2px;
+            }
+
+            @media (min-width: 900px) {
+            font-size: 1.1rem;
+
+            }
+
+         }
+      }
+   }
+  
+}

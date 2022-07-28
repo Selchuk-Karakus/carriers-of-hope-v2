@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import {Navigate} from 'react-router-dom';
 import { RiAddCircleFill } from 'react-icons/ri';
+import {ProductsContext} from '../Contexts/ProductsContext';
 import '../styles/addproduct.scss';
 
 export default function AddNewProductPage() {
 
   const [formProduct, setFormProduct] = useState({});
   const [redirect, setRedirect] = useState(false);
+  const {setProductsTable} =  useContext(ProductsContext);
 
 
   const handleInputValue = (e) => {
@@ -34,14 +36,15 @@ export default function AddNewProductPage() {
     } catch (error) {
       console.log(error);
     }
-    setRedirect(true)
-    
+    setRedirect(true);
+    setProductsTable(true);
   };
 
   console.log(formProduct);
 
   const cancelAddProduct=()=>{
-    setRedirect(true)
+    setRedirect(true);
+    setProductsTable(true);
   }
   
   if (redirect) {
