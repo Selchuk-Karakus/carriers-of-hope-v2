@@ -1,115 +1,111 @@
-@import './variables/variables'; 
+@import "./variables/variables";
 
-  .navbar{
-    height: 90px;
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
+@media only screen and (min-width: 300px) {
+  .navbar {
     position: relative;
-    /* padding: 0.5rem 0rem; */
     background-color: $bg4;
-    color: black;
-    z-index: 1;
-    cursor: pointer;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-    p {
-      color: white;
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 30px;
-    }
-    * // navbar.css */
-
-.navigation-menu {
-  margin-left: auto;
-}
-.navigation-menu ul {
-  display: flex;
-  padding: 0;
-}
-
-.navigation-menu li {
-  /* // removes default disc bullet for li tags and applies margin to left & right side */
-  list-style-type: none;
-  margin: 0 1rem;
-}
-
-.navigation-menu li a {
-  /* // increases the surface area of the anchor tag to span more than just the anchor text */
-  text-decoration: none;
-  display: block;
-  width: 100%;
-}
-
-.hamburger {
-  /* // removes default border on button element */
-  border: 0;
-  height: 40px;
-  width: 40px;
-  padding: 0.5rem;
-  border-radius: 50%;
-  background-color: #283b8b;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  /* // positions the icon to the right and center aligns it vertically */
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  transform: translateY(-50%);
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-  .hamburger {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
   }
-}
 
-@media screen and (max-width: 768px) {
-  .navigation-menu ul {
+  h4 {
+    color: $bg;
+    font-family: $georgia;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
+  }
+
+  .navbar button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  svg {
+    stroke: $bg;
+  }
+
+  .menuNav {
+    overflow-y: scroll;
+    list-style: none;
+    position: fixed;
+    top: 0;
+    background: $bg4;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 0;
+    overflow: hidden;
+    z-index: 9;
+  }
+
+  .menuNav.showMenu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav a {
+    display: block;
+    padding: 17px 100px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $green6;
+  }
+
+  .menuNav li:first-child {
+    margin-top: 5rem;
+  }
+
+  .desktopMenuBar {
     display: none;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .navigation-menu.expanded ul {
-    display: block;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .navigation-menu ul {
-    /* // navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar) */
-    position: absolute;
-    top: 60px;
-    left: 0;
-    /* // stacks the li tags vertically  */
-    flex-direction: column;
-    /* // makes menu span full height and width */
-    width: 100%;
-    height: calc(100vh - 77px);
-    background-color: white;
-    border-top: 1px solid black;
+@media only screen and (min-width: 767px) {
+  .navbar{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 1.5rem 0rem;
   }
 
-  .navigation-menu li {
-    /* // centers link text and strips off margin */
-    text-align: center;
-    margin: 0;
+  .desktopMenuBar {
+    display: flex;
+    padding: 0rem 1rem;
   }
 
-  .navigation-menu li a {
-    color: black;
-    /* // increases the surface area of the anchor tag to span the full width of the menu */
-    width: 100%;
-    padding: 1.5rem 0;
+  h4 {
+    padding-right: 4rem;
   }
 
-  .navigation-menu li:hover {
-    background-color: #eee;
+  .mobileMenuBar {
+    display: none;
   }
-}
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  li {
+    padding: 0rem 4rem 0rem 0rem;
+    list-style-type: none;
+    font-size: x-small;
+  }
+
+  li :hover {
+    color: $green4;
+  }
+
+  nav a {
+    padding: 0;
+    color: $bg;
+  }
 }
