@@ -6,6 +6,7 @@ import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
 import '../styles/productstable.scss';
+import { CSVLink } from "react-csv";
 
 function ProductsTable({setTableComponent}){
 
@@ -13,7 +14,13 @@ function ProductsTable({setTableComponent}){
    const [filterByStatus, setFilterByStatus] = useState('');
    const [sortQuery, setSortQuery] = useState('');
    const [filteredProducts, setFilteredProducts] = useState(products);
-   
+    const headers = [
+      { label: "Product ID", key: "id" },
+      { label: "Product Name", key: "product_name" },
+      { label: "Category", key: "category_name" },
+      // { label: "Status", key: "" },
+      // { label: "Staff notes", key: "" },
+    ];
   
    useEffect(() => {
      fetchData().catch(console.error);
@@ -154,7 +161,9 @@ function ProductsTable({setTableComponent}){
           )}
         </div>
 
-)
+                      
+
+   );
 
 }
 
