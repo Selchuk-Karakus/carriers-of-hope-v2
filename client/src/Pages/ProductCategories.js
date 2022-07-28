@@ -16,7 +16,7 @@ function ProductCategories () {
           <div className="onlineShop-image">
             <img src="images/Online-Shopping2.jpg"  alt="online-shopping photo"/>
           </div>
-          <p>LOrem ipsumjDD hbjbsxjasdxh  ASJDX   XHSUJJ   JJJJ</p>
+          <p>Carriers of Hope online shop allow you to enjoy the unique shopping experience in the comfort of your own home.</p>
         </div>
         <h3>Request items by categories</h3>
         <div className="cards-section">

@@ -2,12 +2,13 @@ import React, { useEffect,useState } from "react";
 import { Link,useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
 import { ThreeDots } from "react-loading-icons";
-import '../styles/productdetails.scss'
 
 function ProductDetails() {
   const [product, setProduct]=useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
   const navigate = useNavigate();
   let { id } = useParams();
 
@@ -31,9 +32,19 @@ function ProductDetails() {
     console.log(product)
   }, [id]);
 
+
+  const increaseQty =()=>{
+    setQuantity(quantity+1);
+  }
+
+  const decreaseQty =()=>{
+    if(quantity!==0)
+    setQuantity(quantity-1);
+  }
+
   return(
-        <div className="detail-content">
-          <Link to={'/products'}><button className="back-button"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
+        <div className="product-details">
+          <Link to={'/products-list/'+product.category_name}><button className="back-btn"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
           {" "}
           <div>
           {loading ? (
@@ -51,16 +62,25 @@ function ProductDetails() {
           ) : (     
               <div className="product-card">
                 <div className="image-container">
-                    <img alt="product-images"
-                        src={'/images/' + product.category_name +'.jpg'} />        
-                  </div>  
-                <div className="card-text">
-                <h3 className="p-name">{product.product_name}</h3>
-                <p className="p-category">{product.category_name}</p>
-                <p className="p-description"> Cras egestas nibh non leo
-        viverra, vitae blandit sapien scelerisque. In non tortor a augue tempus
-        tempus id sit amet libero. </p>
-                <button className="nav-button" onClick={() => navigate("/request-form")}>Add to bag</button>
+                  <img alt="product-images"
+                    src={'/images/' + product.category_name +'.jpg'} />        
+                </div> 
+                <div>
+                  <div className="qnt-content">
+                    <h3>Qty.</h3><span className='qty-btn' onClick={decreaseQty}>-</span><p>{quantity}</p><span className='qty-btn' onClick={increaseQty}>+</span>
+                  </div> 
+                  <div className="card-text">
+                    <h3 className="p-name">{product.product_name}</h3>
+                    <h4>Product Description</h4>
+                    <p className="description">
+                      <span>-Lorem ipsum dolor sit amet</span>
+                      <span>-Consectetur adipiscing elit.</span>
+                      <span>-Quisque sit amet porttitor arcu.</span>
+                    </p>
+                    <h4>Delivery</h4>
+                    <p>Lorem ipsum dolor sit amet</p>
+                    <button className="nav-button" onClick={() => navigate("/request-form")}>Request Item</button>
+                  </div>
                 </div>
               </div>
             
