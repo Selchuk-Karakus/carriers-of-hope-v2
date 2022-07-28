@@ -1,57 +1,125 @@
 import React from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import '../styles/navbar.scss';
-
+import { MdClose } from "react-icons/md";
+import { FiMenu } from "react-icons/fi";
 
 function Navbar() {
-  const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
+
+  const handleToggle = () => {
+    setNavbarOpen((prev) => !prev);
+  };
+
+  const closeMenu = () => {
+    setNavbarOpen(false);
+  };
+
+  let url = "https://carriersofhope.org.uk/about-us/";
+
   return (
+    <>
       <div className="navbar">
-        <p>carriers of hope</p>
-        <div
-          className={
-            isNavExpanded ? "navigation-menu expanded" : "navigation-menu"
-          }
-        >
-          <nav>
-            <ul>
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/login">Login</NavLink>
-              </li>
-              <li>
-                <NavLink to="/products">Online Shop</NavLink>
-              </li>
-              <li>About Us</li>
-              <li>Our Work</li>
-            </ul>
-          </nav>
+        <h4>CARRIERS OF HOPE</h4>
+
+        <div>
+          <div className="desktopMenuBar">
+            <nav>
+              <ul>
+                <li>
+                  <NavLink
+                    to="/"
+                    activeClassName="active-link"
+                    onClick={() => closeMenu()}
+                    exact
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/login"
+                    activeClassName="active-link"
+                    onClick={() => closeMenu()}
+                    exact
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/products"
+                    activeClassName="active-link"
+                    onClick={() => closeMenu()}
+                    exact
+                  >
+                    Online Shop
+                  </NavLink>
+                </li>
+                <li>
+                  <a href={url} target="_blank" rel="noreferrer noopener">
+                    About Us
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div className="mobileMenuBar">
+            <button onClick={handleToggle}>
+              {navbarOpen ? (
+                <MdClose
+                  style={{ color: "#fff", width: "40px", height: "40px" }}
+                />
+              ) : (
+                <FiMenu
+                  style={{ color: "#7b7b7b", width: "40px", height: "40px" }}
+                />
+              )}
+            </button>
+            <nav>
+              <ul className={`menuNav ${navbarOpen ? " showMenu" : ""}`}>
+                <li>
+                  <NavLink
+                    to="/"
+                    activeClassName="active-link"
+                    onClick={() => closeMenu()}
+                    exact
+                  >
+                    Home
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/login"
+                    activeClassName="active-link"
+                    onClick={() => closeMenu()}
+                    exact
+                  >
+                    Login
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/products"
+                    activeClassName="active-link"
+                    onClick={() => closeMenu()}
+                    exact
+                  >
+                    Online Shop
+                  </NavLink>
+                </li>
+                <li>
+                  <a href={url} target="_blank" rel="noreferrer noopener">
+                    About Us
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <button
-          className="hamburger"
-          onClick={() => {
-            setIsNavExpanded(!isNavExpanded);
-          }}
-        >
-          {/* hamburger svg code... */}
-          {/* icon from heroicons.com */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="white"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
       </div>
+    </>
   );
 }
 
