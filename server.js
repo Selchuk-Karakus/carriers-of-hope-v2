@@ -17,18 +17,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-app.get("/", (req, res) => {
-  if (req.session.loggedin){
-    res.send({
-      express: "You're logged in.",
-    });
-  } else {
-    res.send({
-      express: "You're not logged in.",
-    });
-  }  
-});
+//app.get("/", (req, res) => {
+//  if (req.session.loggedin){
+//    res.send({
+//      express: "You're logged in.",
+//    });
+//  } else {
+//    res.send({
+//      express: "You're not logged in.",
+//    });
+//  }  
+//});
 
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+});
 
 //include routes
 app.use("/", auth);
