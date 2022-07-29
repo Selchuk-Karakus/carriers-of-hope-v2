@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 function Logout() {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     logout();
     navigate('/');
   }
@@ -21,9 +22,11 @@ function Logout() {
             <CgProfile />
           </span>
         </div>
-        <button onClick={handleLogout} className="logout">
-          Logout
-        </button>
+        <div className="logout">
+          <a href="/" className="logout-btn" onClick={handleLogout}>
+            Logout
+          </a>
+        </div>
       </div>
     </>
   );
