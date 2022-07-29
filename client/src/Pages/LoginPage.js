@@ -60,11 +60,11 @@ function LoginPage() {
           />
 
           <nav className="nav-links">
-            <p className="remember-me-message">
+            {/* <p className="remember-me-message">
               <Link to="/forgotten-name-or-password">
                 <span style={{ color: "black" }}>Remember me</span>
               </Link>
-            </p>
+            </p> */}
             <p className="forgotten-password">
               <Link to="/forgotten-name-or-password">
                 <span style={{ color: "black" }}>Forgotten password ?</span>

@@ -7,10 +7,13 @@
   width: 100%;
   height: 120px;
   cursor: pointer;
-  color: white;
   font-weight: bold;
   text-transform: uppercase;
-  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: static;
+  z-index: 9999;
 }
 
 .goog-te-combo:nth-child(2) {
