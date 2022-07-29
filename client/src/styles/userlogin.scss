@@ -59,6 +59,13 @@
       gap: 18px;
     }
 
+    .sign-up-button-container{
+      display: flex;
+      flex-direction: column;
+      padding-top: 1em;
+      gap: 18px;
+    }
+
     .sign-up-btn,
     .login-btn{
       padding: 0.9em 0;

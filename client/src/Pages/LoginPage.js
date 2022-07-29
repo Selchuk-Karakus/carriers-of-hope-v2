@@ -31,6 +31,10 @@ function LoginPage() {
     });
   };
 
+  const handleSignUp = () => {
+    navigate("/register");
+  }
+  
   return (
     <>
       <div className="login-container">
@@ -73,10 +77,13 @@ function LoginPage() {
           </nav>
 
           <div className="button-container">
-            <button className="sign-up-btn">Sign up</button>
             <button className="login-btn">Login</button>
           </div>
         </form>
+
+        <div className="sign-up-button-container">
+          <button onClick={handleSignUp} className="sign-up-btn">Sign up</button>
+        </div>
       </div>
     </>
   );
