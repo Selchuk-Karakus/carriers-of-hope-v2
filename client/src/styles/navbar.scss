@@ -10,15 +10,17 @@
     padding: 0.5rem 1rem;
 
     position: fixed;
-    z-index: 999; 
+    z-index: 999;
     width: 100%;
-  
+
     h4 {
       font-weight: 600;
       color: $bg;
     }
 
-    h4, nav a {
+    h4,
+    nav a,
+    .login-logout a {
       font-family: $lato;
       letter-spacing: 0.01rem;
     }
@@ -64,6 +66,14 @@
       color: $green6;
     }
 
+    .login-logout a {
+      display: block;
+      padding: 17px 100px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $green6;
+    }
     .menuNav li:first-child {
       margin-top: 5rem;
     }
@@ -71,24 +81,44 @@
     .desktopMenuBar {
       display: none;
     }
+    .mobileMenuBar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .mobileMenuBar h4 {
+      display: flex;
+    }
+    .mobileMenuBar .hamburger-section {
+      display: flex;
+    }
+
   }
 }
 
-
 @media only screen and (min-width: 767px) {
-  .navbar-container{
+  .navbar-container {
     padding-bottom: 4rem;
-
   }
 
-  .navbar{
+  .menubar {
     display: flex;
-    justify-content: center;
+    flex-grow: 13;
+    align-content: stretch;
     flex-direction: row;
+    justify-content: center;
+  }
+
+  .navbar {
+
+    display: block;
     padding: 2rem 0rem;
-  
+
     .desktopMenuBar {
       display: flex;
+      width: auto;
     }
 
     h4 {
@@ -120,5 +150,11 @@
       color: $bg;
       font-weight: 200;
     }
-  } 
+
+    .login-logout a {
+      padding: 0;
+      color: $bg;
+      font-weight: 200;
+    }
+  }
 }

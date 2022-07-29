@@ -12,7 +12,7 @@ function Logout() {
   const handleLogout = (e) => {
     e.preventDefault();
     logout();
-    setUser({isAdmin: false})
+    setUser({isLoggedIn: false, isAdmin: false})
     navigate('/');
   }
 

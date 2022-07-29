@@ -21,13 +21,15 @@ function LoginPage() {
     }).then((res) => {
       if(res.signedIn && res.isAdmin) {
         setUser({
-          isAdmin: res.isAdmin
-        })
+          isLoggedIn: res.signedIn,
+          isAdmin: res.isAdmin,
+        });
 
         navigate('/admin/dashboard')
       } 
       else if (res.signedIn) {
         setUser({
+          isLoggedIn: res.signedIn,
           isAdmin: false,
         });
         setDisplayError(false);
