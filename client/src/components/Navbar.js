@@ -4,9 +4,12 @@ import { NavLink } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
 import { UserContext } from "../Contexts/UserContext";
+import { logout } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { user } = useContext(UserContext);
+  const { user, setUser} = useContext(UserContext);
+  const navigate = useNavigate();
 
   const [navbarOpen, setNavbarOpen] = useState(false);
 
@@ -18,6 +21,13 @@ function Navbar() {
     setNavbarOpen(false);
   };
 
+  const handleLogout = () => {
+    logout();
+    setUser({ isLoggedIn: false, isAdmin: false });
+    navigate("/");
+    closeMenu();
+  }
+
   let url = "https://carriersofhope.org.uk/about-us/";
 
   return (
@@ -25,10 +35,9 @@ function Navbar() {
       {!user?.isAdmin && (
         <div className="navbar-container">
           <div className="navbar">
-            <h4>CARRIERS OF HOPE</h4>
-
-            <div>
-              <div className="desktopMenuBar">
+            <div className="desktopMenuBar">
+              <div className="menubar">
+                <h4>CARRIERS OF HOPE</h4>
                 <nav>
                   <ul>
                     <li>
@@ -39,16 +48,6 @@ function Navbar() {
                         exact
                       >
                         Home
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        to="/login"
-                        activeClassName="active-link"
-                        onClick={() => closeMenu()}
-                        exact
-                      >
-                        Login
                       </NavLink>
                     </li>
                     <li>
@@ -69,8 +68,40 @@ function Navbar() {
                   </ul>
                 </nav>
               </div>
+              <div className="login-logout">
+                <ul>
+                  {user.isLoggedIn && (
+                    <li>
+                      <a
+                        href="/"
+                        activeClassName="active-link"
+                        onClick={() => handleLogout()}
+                        exact
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  )}
+                  {!user.isLoggedIn && (
+                    <li>
+                      <NavLink
+                        to="/login"
+                        activeClassName="active-link"
+                        onClick={() => closeMenu()}
+                        exact
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
 
-              <div className="mobileMenuBar">
+            <div className="mobileMenuBar">
+              <h4>CARRIERS OF HOPE</h4>
+
+              <div className="hamburger-section">
                 <button onClick={handleToggle}>
                   {navbarOpen ? (
                     <MdClose
@@ -98,16 +129,30 @@ function Navbar() {
                         Home
                       </NavLink>
                     </li>
-                    <li>
-                      <NavLink
-                        to="/login"
-                        activeClassName="active-link"
-                        onClick={() => closeMenu()}
-                        exact
-                      >
-                        Login
-                      </NavLink>
-                    </li>
+                    {user.isLoggedIn && (
+                      <li>
+                        <a
+                          href="/"
+                          activeClassName="active-link"
+                          onClick={() => handleLogout()}
+                          exact
+                        >
+                          Logout
+                        </a>
+                      </li>
+                    )}
+                    {!user.isLoggedIn && (
+                      <li>
+                        <NavLink
+                          to="/login"
+                          activeClassName="active-link"
+                          onClick={() => closeMenu()}
+                          exact
+                        >
+                          Login
+                        </NavLink>
+                      </li>
+                    )}
                     <li>
                       <NavLink
                         to="/products"
