@@ -5,7 +5,7 @@ import { getOrders } from "../services/orderService";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import "../styles/orderdetails.scss";
-import { CgProfile } from "react-icons/cg";
+import Logout from "../components/Logout";
 
 function OrderDetails() {
   const { orders, setOrders } = useContext(OrdersContext);
@@ -24,16 +24,8 @@ function OrderDetails() {
   }, [orders, id, setOrderDetailsObj, setOrders]);
   return (
     <>
-      <div className="admin-navbar">
-        <div className="admin-profile">
-          <h1>Admin name</h1>
-          <span className="profile-icon">
-            <CgProfile />
-          </span>
-        </div>
-        <div className="logout">Logout</div>
-      </div>
-
+      <Logout/>
+      
       <Link to={"/admin/dashboard"}>
         <button className="back-button">
           <span className="icon">

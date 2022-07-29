@@ -1,0 +1,24 @@
+@import '../../styles/variables/variables';  
+
+h1 {
+    font-family: $georgia;
+}
+
+ .admin-profile {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+.profile-icon {
+    font-size: 4em;
+    padding-left: 0.4em;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5.7em;
+    color: $red2;
+    font-family: $georgia;
+}
