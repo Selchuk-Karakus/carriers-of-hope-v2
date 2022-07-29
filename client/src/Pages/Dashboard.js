@@ -5,6 +5,7 @@ import ProductsTable from "../components/ProductsTable";
 import {ProductsContext} from '../Contexts/ProductsContext';
 import "../styles/dashboard.scss";
 import { CgProfile } from "react-icons/cg";
+import Logout from "../components/Logout";
 
 
 function Dashboard() {
@@ -20,13 +21,7 @@ function Dashboard() {
   return (
     <div className="admin-dashboard">
       <div className="admin-navbar">
-        <div className="admin-profile">
-          <h1>Admin name</h1>
-          <span className="profile-icon">
-            <CgProfile />
-          </span>
-        </div>
-        <div className="logout">Logout</div>
+        <Logout />
       </div>
 
       <div className="button-container">
