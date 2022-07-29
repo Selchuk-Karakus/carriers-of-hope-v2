@@ -1,4 +1,4 @@
-@use './variables/_variables.scss' as var;  
+@import './variables/variables'; 
 
 .admin-dashboard{
     padding: 2em;
@@ -16,37 +16,37 @@
     }
 
     .admin-tab-button:focus{
-        background-color: var.$green3;
-        color: var.$bg;
+        background-color: $green3;
+        color: $bg;
     }
     
     .admin-tab-button{
-        background-color: var.$bg;
-        color: var.$green3;
+        background-color: $bg;
+        color: $green3;
         padding: 0.8em 4.3em 0.8em 4.3em;
         border-radius: 4px;
         border-style: solid;
-        border-color: var.$green3;
-        font-family: var.$georgia;
+        border-color: $green3;
+        font-family: $georgia;
         font-size:100%;
     }  
 
     .active-btn{
-        background-color: var.$green3;
-        color: var.$bg;
+        background-color: $green3;
+        color: $bg;
     }
 
     h2{
         text-align: center;
         padding: 0.7em 0em;
-        font-family: var.$georgia;
+        font-family: $georgia;
     }
 
     .results{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        font-family: var.$georgia;
+        font-family: $georgia;
         padding-top: 2em;
     }
 }
@@ -67,35 +67,43 @@
     }
 
     .dropdown-menu{
-        padding-right: 1em;
+        // padding-right: 1em;
     }
 
     label{
         padding-right: 1em;
-        font-family: var.$georgia;
+        font-family: $georgia;
     }
 
     select{
-        padding: 0.6em;
-        background-color: var.$bg3;
-        font-family: var.$georgia;
+        background-color: $bg3;
+        font-famly: $georgia;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        background-color: #AAAAAA;
+        font-size: 0.9rem;
+        padding: 10px 8px;
+        margin-left: 10px;
     }
 
     .download{
         font-size: 3.2rem;
+        margin-left: 0.2em;
+        color: #000000;
     }
 
     table{
-        border: 0.5px solid var.$black2;
+        border: 0.5px solid $black2;
             border-collapse: collapse;
             margin: 0;
             padding: 0;
             width: 100%;
-            font-family: var.$georgia;
+            font-family: $georgia;
     }
 
     tr {
-        border: 0.5px solid var.$black2;
+        border: 0.5px solid $black2;
         padding: .35em;
 
         th,
@@ -108,7 +116,7 @@
             font-size: .85em;
             letter-spacing: .1em;
             text-transform: uppercase;
-            background-color: var.$bg2;
+            background-color: $bg2;
 
             @media (min-width: 740px) {
                 font-size: .985em;
@@ -124,7 +132,7 @@
         }
 
         button{
-            background-color: var.$bg2;
+            background-color: $bg2;
             padding-top: 0.5em;
             padding-bottom: 0.5em;
             padding-left: 2.5em;
@@ -133,7 +141,7 @@
         }
 
         button:hover{
-            background-color: var.$bg;
+            background-color: $bg;
         }
     }  
 }

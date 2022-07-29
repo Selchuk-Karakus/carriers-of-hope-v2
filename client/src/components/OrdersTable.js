@@ -29,8 +29,8 @@ function OrdersTable() {
       <div className="dropdown-menu-container">
         <div className="filter-by">
           <div className="dropdown-menu">
-            <label className="status">Filter by:</label>
             <select>
+              <option value="filter-by">Filter by status</option>
               <option value="pending">Pending</option>
               <option value="approved">Approved</option>
               <option value="declined">Declined</option>
@@ -39,7 +39,8 @@ function OrdersTable() {
           </div>
 
           <div className="dropdown-menu" id="sort-by">
-            <select>
+            <select className="dropdown-menu-options">
+              <option value="filter-by">Filter by range</option>
               <option value="last-week">Last 7 days</option>
               <option value="last-month">Last 14 days</option>
               <option value="last-two-months">Last month</option>
@@ -69,32 +70,33 @@ function OrdersTable() {
             <th className="column-title">Status</th>
             <th className="column-title">Order details</th>
           </tr>
-            {orders && orders.map((order, index) => {
-            return (
-              <tr key={index} className="order-table-row">
-                <td className="order-id">{order.orderRef}</td>
-                <td className="order-date">
-                  {new Date(order.orderDate).toLocaleDateString({
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "4-digit",
-                  })}
-                </td>
-                <td className="customer-name">{order.member.fullName}</td>
+          {orders &&
+            orders.map((order, index) => {
+              return (
+                <tr key={index} className="order-table-row">
+                  <td className="order-id">{order.orderRef}</td>
+                  <td className="order-date">
+                    {new Date(order.orderDate).toLocaleDateString({
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "4-digit",
+                    })}
+                  </td>
+                  <td className="customer-name">{order.member.fullName}</td>
 
-                <td className="order-status">{order.orderStatus}</td>
+                  <td className="order-status">{order.orderStatus}</td>
 
-                <td className="order-details">
-                  <button
-                    className="view-button"
-                    onClick={() => handleRedirect(order.id)}
-                  >
-                    View {">"}
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+                  <td className="order-details">
+                    <button
+                      className="view-button"
+                      onClick={() => handleRedirect(order.id)}
+                    >
+                      View {">"}
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
