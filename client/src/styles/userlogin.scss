@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 5rem;
+    padding-top: 8rem;
     
     .login,
     .login-message,
@@ -16,7 +17,6 @@
     }
 
     .login{
-      padding-top: 3em;
       font-size: 150%;
       font-weight: bolder;
     }
