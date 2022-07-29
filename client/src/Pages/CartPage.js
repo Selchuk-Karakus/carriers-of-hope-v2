@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import "../styles/requestform.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import { getProductById } from "../services/productsService";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 const CartPage = () => {
   const [product, setProduct] = useState({});
@@ -44,12 +45,16 @@ const CartPage = () => {
 
           <div>
             <span>Qty 1 </span>
-            <button>Remove</button>
+            <span>Remove</span>
+            <RiDeleteBin6Line />
           </div>
         </div>
       </div>
       <div>
-        <button onClick={() => navigate("/checkout", { replace: true })}>
+        <button
+          className="nav-button"
+          onClick={() => navigate(`/checkout`, { replace: true })}
+        >
           Checkout
         </button>
       </div>
