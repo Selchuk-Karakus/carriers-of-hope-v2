@@ -26,45 +26,53 @@ import './styles/main.scss';
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="content-wrap">
-        <ProductsProvider>
-          <OrdersContextProvider>
-            <MembersContextProvider>
-              <Routes>
-                <Route path="/" exact element={<Homepage />} />
-                <Route path="/products" element={<ProductCategories />} />
-                <Route path="/products-list/:category" element={<ProductsPage />} />
-                <Route
-                  path="/product-details/:id"
-                  element={<ProductDetails />}
-                />
-                <Route path="login" element={<LoginPage />} />
-                <Route
-                  path="forgotten-name-or-password"
-                  element={<ForgottenNameOrPassword />}
-                />
-                <Route path="register" element={<SignUp />} />
-                <Route path="request-form/:id" element={<CartPage />} />
-                <Route path="checkout" element={<CheckoutPage />} />
-                <Route path="/admin/dashboard" element={<Dashboard />} />
-                <Route path="/admin/order/:id" element={<OrderDetails />} />
-                <Route
-                  path="/add-new-product"
-                  element={<AddNewProductPage />}
-                ></Route>
-                <Route
-                  path="/edit-product/:id"
-                  element={<UpdateProductPage />}
-                ></Route>
-                <Route path="/admin/member/:id" element={<CustomerDetails />} />
-                <Route path="*" element={<NoMatch />} />
-              </Routes>
-            </MembersContextProvider>
-          </OrdersContextProvider>
-        </ProductsProvider>
+      <div class="page-template">
+        <Navbar />
+        <div className="content-wrap">
+          <ProductsProvider>
+            <OrdersContextProvider>
+              <MembersContextProvider>
+                <Routes>
+                  <Route path="/" exact element={<Homepage />} />
+                  <Route path="/products" element={<ProductCategories />} />
+                  <Route
+                    path="/products-list/:category"
+                    element={<ProductsPage />}
+                  />
+                  <Route
+                    path="/product-details/:id"
+                    element={<ProductDetails />}
+                  />
+                  <Route path="login" element={<LoginPage />} />
+                  <Route
+                    path="forgotten-name-or-password"
+                    element={<ForgottenNameOrPassword />}
+                  />
+                  <Route path="register" element={<SignUp />} />
+                  <Route path="request-form/:id" element={<CartPage />} />
+                  <Route path="checkout" element={<CheckoutPage />} />
+                  <Route path="/admin/dashboard" element={<Dashboard />} />
+                  <Route path="/admin/order/:id" element={<OrderDetails />} />
+                  <Route
+                    path="/add-new-product"
+                    element={<AddNewProductPage />}
+                  ></Route>
+                  <Route
+                    path="/edit-product/:id"
+                    element={<UpdateProductPage />}
+                  ></Route>
+                  <Route
+                    path="/admin/member/:id"
+                    element={<CustomerDetails />}
+                  />
+                  <Route path="*" element={<NoMatch />} />
+                </Routes>
+              </MembersContextProvider>
+            </OrdersContextProvider>
+          </ProductsProvider>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }
