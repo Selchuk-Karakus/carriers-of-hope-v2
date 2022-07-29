@@ -30,6 +30,11 @@ export const login = (loginObj) => {
   });
 };
 
+
+export const logout = () => {
+  setAccessToken("");
+};
+
 function setAccessToken(userToken) {
   //stores jwt token in session storage
   sessionStorage.setItem("token", JSON.stringify(userToken));

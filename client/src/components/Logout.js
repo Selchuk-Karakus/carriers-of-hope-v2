@@ -1,7 +1,17 @@
 import React from "react";
 import { CgProfile } from "react-icons/cg";
+import { logout } from "../services/authService";
+import { useNavigate } from "react-router-dom";
+
 
 function Logout() {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  }
+
   return (
     <>
       <div>
@@ -11,7 +21,9 @@ function Logout() {
             <CgProfile />
           </span>
         </div>
-        <div className="logout">Logout</div>
+        <button onClick={handleLogout} className="logout">
+          Logout
+        </button>
       </div>
     </>
   );
