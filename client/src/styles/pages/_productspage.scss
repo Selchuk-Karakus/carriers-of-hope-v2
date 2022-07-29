@@ -16,6 +16,7 @@
   .header{
     display: flex;
     flex-direction: column-reverse;
+    margin-top: 59px;
     @media (min-width: 650px) {
       flex-direction: column;
     }
@@ -73,7 +74,7 @@
 
   .back-btn{
     display:flex;
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-left: 2.8%;
     background-color:transparent;
     border:none;

@@ -5,12 +5,16 @@
   margin: 0 auto;
   font-family: $georgia;
   box-sizing: border-box;
+
   padding: 1rem;
+  padding-top: 3rem;
 
     a {
       text-decoration: none;
     }
     @media (min-width: 900px) {
+     padding-top: 1rem;
+
       width: 850px;
     }
     @media (min-width: 1250px) {
@@ -37,7 +41,7 @@
 
     }
     @media (min-width: 655px) {
-      margin-left:11%;
+      margin-left:14%;
 
       .icon{
         margin-top:0;
