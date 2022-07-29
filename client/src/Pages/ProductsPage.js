@@ -100,19 +100,31 @@ function ProductsPage() {
                 {filteredProducts.map(
                   ({id,product_name,category_name}, index) => {
                     return (
-                      <div className="product-card" key={id}> 
-                        <Link to={'/product-details/'+id} >   
+                      <div className="product-card" key={id}>
+                        <Link to={"/product-details/" + id}>
                           <div className="image-container">
-                            <img alt="product-images"
-                              src={category_name==='Electrical items' ?
-                              '/images/Electrical-items.jpg':'/images/'+category_name+'.jpg'} />        
-                          </div>  
-                          <div className="card-text">
-                            <h4 className="p-name">{product_name}<span className="icon"><FiChevronRight/></span></h4>
+                            <img
+                              alt="product-images"
+                              src={
+                                category_name === "Electrical items"
+                                  ? "/images/Electrical-items.jpg"
+                                  : "/images/" +
+                                    category_name.replaceAll(" ", "") +
+                                    ".jpg"
+                              }
+                            />
                           </div>
-                        </Link>    
-                    </div>
-                  );
+                          <div className="card-text">
+                            <h4 className="p-name">
+                              {product_name}
+                              <span className="icon">
+                                <FiChevronRight />
+                              </span>
+                            </h4>
+                          </div>
+                        </Link>
+                      </div>
+                    );
                   }
                   )
                 }

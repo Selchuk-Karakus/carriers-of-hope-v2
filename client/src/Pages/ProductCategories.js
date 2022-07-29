@@ -26,7 +26,7 @@ function ProductCategories () {
                 <Link to={'/products-list/'+category} >   
                   <div className="image-container">
                   <img alt="product-images"
-                      src={'/images/' + category +'.jpg'} />        
+                      src={'/images/' + category.replace(" ", "") +'.jpg'} />        
                   </div>  
                   <h4 className="p-name">{category}<span className="icon"><FiChevronRight/></span></h4>
                 </Link>    

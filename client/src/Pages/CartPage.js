@@ -35,7 +35,9 @@ const CartPage = () => {
       <div className="product-card">
         <div className="image-container">
           <img
-            src={"/images/" + product.category_name + ".jpg"}
+            src={
+              "/images/" + product.category_name.replaceAll(" ", "") + ".jpg"
+            }
             alt={product.product_name}
           />
         </div>
