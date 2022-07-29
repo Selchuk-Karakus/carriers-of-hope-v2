@@ -5,26 +5,26 @@ import {CgSoftwareDownload} from 'react-icons/cg'
 import {ProductsContext} from '../Contexts/ProductsContext';
 import { ThreeDots } from "react-loading-icons";
 import {Link} from 'react-router-dom';
-import '../styles/productstable.scss';
 import { CSVLink } from "react-csv";
 
-function ProductsTable({setTableComponent}){
+function ProductsTable(){
 
    const {products, loading, error, fetchData} =  useContext(ProductsContext);
    const [filterByStatus, setFilterByStatus] = useState('');
    const [sortQuery, setSortQuery] = useState('');
    const [filteredProducts, setFilteredProducts] = useState(products);
-    const headers = [
+    
+   const headers = [
       { label: "Product ID", key: "id" },
       { label: "Product Name", key: "product_name" },
       { label: "Category", key: "category_name" },
-      // { label: "Status", key: "" },
-      // { label: "Staff notes", key: "" },
+      // { label: "Status", key: "product_status" },
     ];
   
    useEffect(() => {
      fetchData().catch(console.error);
    }, []);
+
    useEffect(() => {
     const filterProducts = () => {
       let filteredProducts = products.filter((product) => {
@@ -39,8 +39,7 @@ function ProductsTable({setTableComponent}){
       setFilteredProducts(filteredProducts);
     };
     filterProducts();
-    // console.log(filterByStatus)
-  }, [filterByStatus,products]);
+  }, [filterByStatus]);
 
 
   useEffect(() => {
@@ -52,11 +51,11 @@ function ProductsTable({setTableComponent}){
       })
       setFilteredProducts(filteredArray)
     }
-    // console.log(sortQuery)
     sortProducts()
   }, [sortQuery,products]);
 
-     
+  
+
    const deleteProduct = async (id) => {
       if (window.confirm("Are you sure you want to delete this product?")) {
         const url = `http://localhost:8000/products/${id}`;
@@ -105,8 +104,17 @@ function ProductsTable({setTableComponent}){
                 <option value="category_name">Category Name</option>
                 <option value="status">Status</option>
               </select>
-              <span className="download-btn"><CgSoftwareDownload/></span>
-            </div>
+              {
+                <CSVLink 
+                className ="download-btn"
+                headers={headers}
+                data={filteredProducts}
+                filename='products_list.csv'
+                >
+                  <CgSoftwareDownload/>
+                </CSVLink>
+              }
+           </div>
           </div>
           {loading ? (
             <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
@@ -142,9 +150,9 @@ function ProductsTable({setTableComponent}){
                           <td>{category_name}</td>
                           <td className="instock-row">{product_status?'In Stock':"Out of Stock"}</td>
                           <td className="actions">
-                            <span className="edit-btn">
-                                <Link to={'/edit-product/'+id}><FiEdit2/></Link>
-                            </span>
+                           
+                            <Link to={'/edit-product/'+id}> <span className="edit-btn"><FiEdit2/></span></Link>
+                            
                             <span className="delete-btn">
                                 <RiDeleteBin6Line onClick={()=>deleteProduct(id)}/>
                             </span>

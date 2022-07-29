@@ -10,13 +10,14 @@
     a {
       text-decoration: none;
     }
-    @media (min-width: 800px) {
-      width: 750px;
+    @media (min-width: 900px) {
+      width: 850px;
     }
     @media (min-width: 1250px) {
-      width: 1170px;
-      text-align: center;
+      width: 950px;
+      
     }
+
    .back-btn{
     display:flex;
     margin-top: 1.2rem;
@@ -28,12 +29,16 @@
     cursor: pointer;
     .icon{
       margin-top:0.1rem;
-    }
-
-    @media (min-width: 900px) {
-      margin-left:5%;
+    } 
+    @media (min-width: 580px) {
       margin-top: 2rem;
       font-size: 0.9rem;
+      margin-left:5%;
+
+    }
+    @media (min-width: 655px) {
+      margin-left:11%;
+
       .icon{
         margin-top:0;
       }
@@ -43,7 +48,6 @@
 
    .product-card {
      padding-bottom: 1.5rem;
-     width: 100%;
      color:  $text1;
      box-shadow: #1B1A17;
      margin: 1rem 0.4rem;
@@ -52,56 +56,46 @@
      @media (min-width: 580px) {
        margin:2rem;    
        flex-direction: row;
-
+       justify-content: center;
      }
-
      @media (min-width: 750px) {
-       margin: 2rem 3rem;
-       width: 700px;
-       height: 450px;    
+       margin: 2rem 4rem;
+
      }
      @media (min-width: 1250px) {
-         margin: 2rem 3rem;
-         width: 800px;
-         height: 600px;
+        margin: 2rem 3rem;
+    
       }
 
      &:hover {
          color: #1B1A17;
      }
      
-     .image-container {
-         width: 100%;
-         
-        @media (min-width: 605px) {
-          width: 330px;
-                
+    .image-container {
+        width: 100%;
+      @media (min-width: 580px) {
+        width: 50%;  
+        padding-top: 1.5rem;
+      
+      }
+        img{
+          border-radius:16px;
+          width:100%;
+          height: auto;
+          object-fit:cover;
         }
-
-         @media (min-width: 950px) {
-            width: 350px;
-         }
-         @media (min-width: 1250px) {
-            width: 450px;
-         }
-
-
-         img{
-            border-radius:16px;
-            width:100%;
-            height: auto;
-            object-fit:cover;
-            @media (min-width: 950px) {
-            
-            }
-         }
-     } 
-     
+    } 
+    
      .qnt-content{
       display: flex;
       width: 100%;
       justify-content: flex-end;
       align-items: center;
+      @media (min-width: 580px) {
+        justify-content:flex-start;
+        margin-left: 8px;
+       
+      }
       h3{
         margin-right: 8px;
       }
@@ -117,22 +111,27 @@
       }
      }
 
-     .card-text {     
+     .body {     
          padding-bottom: 0.5rem;
          padding-left:0.5rem;
+         @media (min-width: 580px) {
+              margin-left:1.2rem;   
+          }
          @media (min-width: 650px) {
             display:flex;
             flex-direction:column;
          }
-         h4{
-          margin-top: 15px;
+         .sub-title{
+          color: #1B1A17;
+          font-weight: 600;
+          margin-top: 1.5rem;
           margin-bottom: 5px;
          }
          .p-name{
           text-decoration:none;
           font-size: 1.2rem;
           font-weight: 600;
-          margin-bottom: 1.2rem;
+          margin: 1.2rem 0;
           color:  $text1;
           @media (min-width: 950px) {
           font-size: 1.3rem;
@@ -157,10 +156,8 @@
 
          @media (min-width: 950px) {
             width: 175px;
-            margin-left:5rem;
             font-size: 1.2rem;
           
-
            }
            
          }

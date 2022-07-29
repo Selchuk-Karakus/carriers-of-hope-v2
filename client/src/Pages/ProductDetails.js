@@ -63,25 +63,24 @@ function ProductDetails() {
               <div className="product-card">
                 <div className="image-container">
                   <img alt="product-images"
-                    src={'/images/' + product.category_name +'.jpg'} />        
-                </div> 
-                <div>
-                  <div className="qnt-content">
-                    <h3>Qty.</h3><span className='qty-btn' onClick={decreaseQty}>-</span><p>{quantity}</p><span className='qty-btn' onClick={increaseQty}>+</span>
-                  </div> 
-                  <div className="card-text">
+                    src={product.category_name==='Electrical items' ?
+                              '/images/Electrical-items.jpg':'/images/'+product.category_name+'.jpg'} />        
+                </div>                   
+                <div className="body">
                     <h3 className="p-name">{product.product_name}</h3>
-                    <h4>Product Description</h4>
+                    <h4 className="sub-title">Product Description</h4>
                     <p className="description">
                       <span>-Lorem ipsum dolor sit amet</span>
                       <span>-Consectetur adipiscing elit.</span>
                       <span>-Quisque sit amet porttitor arcu.</span>
                     </p>
-                    <h4>Delivery</h4>
+                    <h4 className="sub-title">Delivery</h4>
                     <p>Lorem ipsum dolor sit amet</p>
+                    <div className="qnt-content">
+                        <h3>Qty.</h3><span className='qty-btn' onClick={decreaseQty}>-</span><p>{quantity}</p><span className='qty-btn' onClick={increaseQty}>+</span>
+                    </div> 
                     <button className="nav-button" onClick={() => navigate("/request-form")}>Request Item</button>
                   </div>
-                </div>
               </div>
             
            )}

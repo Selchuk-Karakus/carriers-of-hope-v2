@@ -1,4 +1,4 @@
-@import './variables/variables'; 
+@import '../variables/variables'; 
 
 .products-table{
    width: 100%;
@@ -11,11 +11,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin:1rem 3rem;
-
+      margin:0;
+      padding-bottom: 1em;
       .filter-bar{
-         display: flex;
-         
+        display: flex;
+        align-items: center;
         
          select{
             cursor: pointer;
@@ -25,11 +25,15 @@
             font-size: 0.9rem;
             padding:10px 8px;
             margin-left: 10px;
+         
          }
 
          .download-btn{
             font-size: 3.2rem;
             margin-left: 0.7rem;
+            color: $text1;
+
+
          }
       }
       .add-btn{
@@ -38,12 +42,12 @@
          background-color: $green3;
          color: $text2;
          font-size: 0.9rem;
-         padding:10px 8px;
+         padding:11px 8px;
       }
 
    }
    .product-dashboard{
-      margin: 1rem 3rem;
+      margin: 0;
       overflow-x:auto;
       table {
          border: 1px solid $text3;
@@ -61,7 +65,7 @@
 
             th,
             td {
-               padding: .625em;
+               padding: .750em;
                text-align: center;
             }
 
@@ -90,6 +94,7 @@
             .actions{
                span{
                   cursor:pointer;
+                  color: $text1;
                   font-size: 1.1em;
                   @media (min-width: 740px) {
                      font-size: 1.3em;;
@@ -98,16 +103,17 @@
                   
                }
                .edit-btn{
-                  a{
-                     text-decoration: none;
-                     color: inherit;
-                  }
+                  svg{
+                     stroke:$text1;
+                     
+                    }
                   :hover{
                      color:$green;
-                  }
+                  } 
+                  
                }
                .delete-btn{
-                  margin-left:1rem;
+                  margin-left:1.5rem;
                   :hover{
                      color:$red;
                   }
