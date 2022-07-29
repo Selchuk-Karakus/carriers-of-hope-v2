@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
-import "../styles/requestform.scss";
+import "../styles/cartPage.scss";
 import { IoIosArrowBack } from "react-icons/io";
 import { getProductById } from "../services/productsService";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -21,7 +21,7 @@ const CartPage = () => {
 
   const navigate = useNavigate();
   return loaded ? (
-    <div className="detail-content">
+    <div className="cart-details">
       <Link to={`/product-details/${id}`}>
         <button className="back-button">
           <span className="icon">
@@ -50,9 +50,9 @@ const CartPage = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="card-text">
         <button
-          className="nav-button"
+          className="checkout-button"
           onClick={() => navigate(`/checkout`, { replace: true })}
         >
           Checkout
