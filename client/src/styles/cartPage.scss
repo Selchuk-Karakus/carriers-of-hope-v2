@@ -1,0 +1,29 @@
+@import './variables/_variables.scss';  
+
+.checkout-button {
+    padding: 12px 8px;
+    margin-top: 1.5rem;
+    background-color: #3b835a;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    width: 100%;
+    border: none;
+}
+
+.checkout-card {
+  text-align: center;
+}
+
+.cart-details {
+  width: 100%;
+  margin: 0 auto;
+  font-family: $georgia;
+  box-sizing: border-box;
+  padding: 1rem;
+  @media (min-width: 1250px) {
+    width: 50%;
+  }
+}
+
+

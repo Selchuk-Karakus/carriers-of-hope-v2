@@ -1,6 +1,8 @@
 import { insertOrder } from "../services/orderService";
 import { useNavigate, Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
+import "../styles/cartPage.scss";
+
 
 function CheckoutPage() {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ function CheckoutPage() {
   }
 
   return (
-    <div className="detail-content">
+    <div className="product-details">
       <Link to={`/products`}>
         <button className="back-button">
           <span className="icon">
@@ -27,21 +29,24 @@ function CheckoutPage() {
           Back
         </button>
       </Link>
-      <h1>Free Delivery within Coventry</h1>
-      <h3>Bagged Items</h3>
-      <div>This is where the Item details are displayed</div>
-      <button
-        className="nav-button"
-        onClick={() => navigate("/register", { replace: true })}
-      >
-        Continue as guest
-      </button>
-      <button
-        className="nav-button"
-        onClick={() => navigate("/login", { replace: true })}
-      >
-        Login/signup
-      </button>
+        <h1>Free Delivery within Coventry</h1>
+        <h2>Bagged Items</h2>
+      <div className="checkout-card">
+        <div className="description">This is where the Item details are displayed</div>
+        <button
+          className="checkout-button"
+          onClick={() => navigate("/register", { replace: true })}
+        >
+          Continue as guest
+        </button>
+        <div></div>
+        <button
+          className="checkout-button"
+          onClick={() => navigate("/login", { replace: true })}
+        >
+          Login/signup
+        </button>
+      </div>
     </div>
   );
 }
