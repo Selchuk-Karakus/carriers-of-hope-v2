@@ -14,7 +14,7 @@ function OrdersTable() {
     { label: "Customer", key: "member.fullName" },
     { label: "Status", key: "orderStatus" },
   ];
-
+  
   useEffect(() => {
     getOrders().then((orders) => {
       setOrders(orders);
@@ -69,7 +69,7 @@ function OrdersTable() {
             <th className="column-title">Status</th>
             <th className="column-title">Order details</th>
           </tr>
-            {orders.map((order, index) => {
+            {orders && orders.map((order, index) => {
             return (
               <tr key={index} className="order-table-row">
                 <td className="order-id">{order.orderRef}</td>
