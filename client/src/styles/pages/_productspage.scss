@@ -32,21 +32,34 @@
          padding:10px 8px;
          
       }
-      .sort-option{
+      .sort-btn{
+        border: 1px solid $text1;
+        background-color: $bg2;
         border-right: none;
+        width: 50%;
+        margin:0;
+        text-align: center;
+        span{
+            padding-left: 5px;
+            margin-top:15px;
+        }
+      }
+      option{
+        color: $text1;
+        text-align: left;
+        padding: 1.7rem;
       }
       @media (min-width: 650px) {
         justify-content: flex-end;
         margin-top: 2rem;
         padding-right: 7.5%;
-        select{
+        select, .sort-btn{
           width: 150px;
           border: 1px solid $green3;
           color: $green3;
         }
-        .sort-option{
+        .sort-btn{
           margin-right: 10px;
-          border-right: 1px solid $green3;
 
         }
       }
