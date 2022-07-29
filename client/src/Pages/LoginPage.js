@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { login } from "../services/authService";
 import '../styles/userlogin.scss';
+import { UserContext } from "../Contexts/UserContext";
 
 function LoginPage() {
   const [email, setEmail] = useState();
+  const { user, setUser } = useContext(UserContext);
   const [password, setPassword] = useState();
   const [displayError, setDisplayError] = useState();
   const navigate = useNavigate();
@@ -18,11 +20,16 @@ function LoginPage() {
       password,
     }).then((res) => {
       if(res.signedIn && res.isAdmin) {
-        console.log(res)
+        setUser({
+          isAdmin: res.isAdmin
+        })
+
         navigate('/admin/dashboard')
       } 
       else if (res.signedIn) {
-        console.log(res)
+        setUser({
+          isAdmin: false,
+        });
         setDisplayError(false);
         navigate("/products");
       } else {

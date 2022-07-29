@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { logout } from "../services/authService";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../Contexts/UserContext";
 
 
 function Logout() {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const handleLogout = (e) => {
     e.preventDefault();
     logout();
+    setUser({isAdmin: false})
     navigate('/');
   }
 
