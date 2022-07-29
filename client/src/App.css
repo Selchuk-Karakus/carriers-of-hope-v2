@@ -4,4 +4,5 @@
 
 .content-wrap {
   padding-bottom: 90px;
+  min-height: calc(100vh - 40px);
 }
