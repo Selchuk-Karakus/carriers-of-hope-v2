@@ -66,18 +66,6 @@ function ProductDetails() {
             <p className="text-danger">Network response was not ok!</p>
           </div>
         ) : (
-          <div className="product-card">
-            <div className="image-container">
-              <img
-                alt="product-images"
-                src={
-                  "/images/" +
-                  product.category_name.replaceAll(" ", "") +
-                  ".jpg"
-                }
-              />
-            </div>
-            ) : (
             <div className="product-card">
               <div className="image-container">
                 <img
@@ -85,9 +73,7 @@ function ProductDetails() {
                   src={
                     product.category_name === "Electrical items"
                       ? "/images/Electrical-items.jpg"
-                      : "/images/" +
-                        product.category_name.replaceAll(" ", "") +
-                        ".jpg"
+                      : "/images/" +product.category_name+".jpg"
                   }
                 />
               </div>
@@ -119,24 +105,7 @@ function ProductDetails() {
                 </button>
               </div>
             </div>
-            <div className="card-text">
-              <h3 className="p-name">{product.product_name}</h3>
-              <h4>Product Description</h4>
-              <p className="description">
-                <span>-Lorem ipsum dolor sit amet</span>
-                <span>-Consectetur adipiscing elit.</span>
-                <span>-Quisque sit amet porttitor arcu.</span>
-              </p>
-              <h4>Delivery</h4>
-              <p>Lorem ipsum dolor sit amet</p>
-              <button
-                className="nav-button"
-                onClick={() => navigate(`/request-form/${id}`)}
-              >
-                Request Item
-              </button>
-            </div>
-          </div>
+         
         )}
       </div>
     </div>
