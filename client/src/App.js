@@ -18,61 +18,64 @@ import OrderDetails from "./Pages/OrderDetails";
 import CustomerDetails from "./Pages/CustomerDetails";
 import OrdersContextProvider from "./Contexts/OrdersContext";
 import MembersContextProvider from "./Contexts/MembersContext";
-import ProductCategories from './Pages/ProductCategories';
+import ProductCategories from "./Pages/ProductCategories";
 import CheckoutPage from "./Pages/CheckoutPage";
 import "./styles/global.scss";
-import './styles/main.scss';
+import "./styles/main.scss";
+import UserContextProvider from "./Contexts/UserContext";
 
 function App() {
   return (
     <>
-      <div class="page-template">
-        <Navbar />
-        <div className="content-wrap">
-          <ProductsProvider>
-            <OrdersContextProvider>
-              <MembersContextProvider>
-                <Routes>
-                  <Route path="/" exact element={<Homepage />} />
-                  <Route path="/products" element={<ProductCategories />} />
-                  <Route
-                    path="/products-list/:category"
-                    element={<ProductsPage />}
-                  />
-                  <Route
-                    path="/product-details/:id"
-                    element={<ProductDetails />}
-                  />
-                  <Route path="login" element={<LoginPage />} />
-                  <Route
-                    path="forgotten-name-or-password"
-                    element={<ForgottenNameOrPassword />}
-                  />
-                  <Route path="register" element={<SignUp />} />
-                  <Route path="request-form/:id" element={<CartPage />} />
-                  <Route path="checkout" element={<CheckoutPage />} />
-                  <Route path="/admin/dashboard" element={<Dashboard />} />
-                  <Route path="/admin/order/:id" element={<OrderDetails />} />
-                  <Route
-                    path="/add-new-product"
-                    element={<AddNewProductPage />}
-                  ></Route>
-                  <Route
-                    path="/edit-product/:id"
-                    element={<UpdateProductPage />}
-                  ></Route>
-                  <Route
-                    path="/admin/member/:id"
-                    element={<CustomerDetails />}
-                  />
-                  <Route path="*" element={<NoMatch />} />
-                </Routes>
-              </MembersContextProvider>
-            </OrdersContextProvider>
-          </ProductsProvider>
+      <UserContextProvider>
+        <div className="page-template">
+          <Navbar />
+          <div className="content-wrap">
+            <ProductsProvider>
+              <OrdersContextProvider>
+                <MembersContextProvider>
+                  <Routes>
+                    <Route path="/" exact element={<Homepage />} />
+                    <Route path="/products" element={<ProductCategories />} />
+                    <Route
+                      path="/products-list/:category"
+                      element={<ProductsPage />}
+                    />
+                    <Route
+                      path="/product-details/:id"
+                      element={<ProductDetails />}
+                    />
+                    <Route path="login" element={<LoginPage />} />
+                    <Route
+                      path="forgotten-name-or-password"
+                      element={<ForgottenNameOrPassword />}
+                    />
+                    <Route path="register" element={<SignUp />} />
+                    <Route path="request-form/:id" element={<CartPage />} />
+                    <Route path="checkout" element={<CheckoutPage />} />
+                    <Route path="/admin/dashboard" element={<Dashboard />} />
+                    <Route path="/admin/order/:id" element={<OrderDetails />} />
+                    <Route
+                      path="/add-new-product"
+                      element={<AddNewProductPage />}
+                    ></Route>
+                    <Route
+                      path="/edit-product/:id"
+                      element={<UpdateProductPage />}
+                    ></Route>
+                    <Route
+                      path="/admin/member/:id"
+                      element={<CustomerDetails />}
+                    />
+                    <Route path="*" element={<NoMatch />} />
+                  </Routes>
+                </MembersContextProvider>
+              </OrdersContextProvider>
+            </ProductsProvider>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </UserContextProvider>
     </>
   );
 }

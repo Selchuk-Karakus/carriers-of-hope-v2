@@ -15,7 +15,6 @@ export const login = (loginObj) => {
       }
       return res.json();
   }).then((data) => {
-    console.log(data)
     //store jwt token in session storage and return true as login response
     setAccessToken(data.token.replace(/['"]+/g, ""));
     return {
