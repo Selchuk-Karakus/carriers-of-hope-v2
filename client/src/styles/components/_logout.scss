@@ -1,14 +1,14 @@
-@import '../../styles/variables/variables';  
+@import '../variables/variables';  
 
 h1 {
     font-family: $georgia;
 }
 
- .admin-profile {
+.admin-profile {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-  }
+}
 
 .profile-icon {
     font-size: 4em;
@@ -21,4 +21,16 @@ h1 {
     padding-right: 5.7em;
     color: $red2;
     font-family: $georgia;
+}
+
+.logout-btn{
+    font-size: larger;
+}
+
+a {
+    color: $black1;
+}
+
+a:hover {
+    color: $green3;
 }
