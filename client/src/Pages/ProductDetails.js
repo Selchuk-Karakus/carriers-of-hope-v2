@@ -116,7 +116,6 @@ function ProductDetails() {
                 </button>
               </div>
             </div>
-          </div>
         )}
       </div>
     </div>
