@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./Pages/Homepage";
 import ProductsPage from "./Pages/ProductsPage";
 import ProductDetails from "./Pages/ProductDetails";
-import RequestForm from "./components/RequestForm";
+import CartPage from "./Pages/CartPage";
 import LoginPage from "./Pages/LoginPage";
 import Navbar from "./components/Navbar";
 import OrderSummary from "./components/OrderSummary";
@@ -45,7 +45,7 @@ function App() {
                   element={<ForgottenNameOrPassword />}
                 />
                 <Route path="register" element={<SignUp />} />
-                <Route path="request-form" element={<RequestForm />} />
+                <Route path="request-form/:id" element={<CartPage />} />
                 <Route path="order-summary" element={<OrderSummary />} />
                 <Route path="/admin/dashboard" element={<Dashboard />} />
                 <Route path="/admin/order/:id" element={<OrderDetails />} />
