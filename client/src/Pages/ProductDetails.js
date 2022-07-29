@@ -42,52 +42,71 @@ function ProductDetails() {
     setQuantity(quantity-1);
   }
 
-  return(
-        <div className="product-details">
-          <Link to={'/products-list/'+product.category_name}><button className="back-btn"><span className="icon"><IoIosArrowBack/></span>Back</button></Link>
-          {" "}
+  return (
+    <div className="product-details">
+      <Link to={"/products-list/" + product.category_name}>
+        <button className="back-btn">
+          <span className="icon">
+            <IoIosArrowBack />
+          </span>
+          Back
+        </button>
+      </Link>{" "}
+      <div>
+        {loading ? (
+          <ThreeDots stroke="#FFE61B" style={{ "margin-left": "5rem" }} />
+        ) : error ? (
           <div>
-          {loading ? (
-            <ThreeDots stroke="#FFE61B" style={{"margin-left":"5rem"}}/>
-          ) : error ? (
-            <div>
-              {" "}
-              <img
-                src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png"
-                width={"50px"}
-                alt='error-img'
-              />{" "}
-              <p className="text-danger">Network response was not ok!</p>
-            </div>
-          ) : (     
-              <div className="product-card">
-                <div className="image-container">
-                  <img alt="product-images"
-                    src={'/images/' + product.category_name +'.jpg'} />        
-                </div> 
-                <div>
-                  <div className="qnt-content">
-                    <h3>Qty.</h3><span className='qty-btn' onClick={decreaseQty}>-</span><p>{quantity}</p><span className='qty-btn' onClick={increaseQty}>+</span>
-                  </div> 
-                  <div className="card-text">
-                    <h3 className="p-name">{product.product_name}</h3>
-                    <h4>Product Description</h4>
-                    <p className="description">
-                      <span>-Lorem ipsum dolor sit amet</span>
-                      <span>-Consectetur adipiscing elit.</span>
-                      <span>-Quisque sit amet porttitor arcu.</span>
-                    </p>
-                    <h4>Delivery</h4>
-                    <p>Lorem ipsum dolor sit amet</p>
-                    <button className="nav-button" onClick={() => navigate("/request-form")}>Request Item</button>
-                  </div>
-                </div>
-              </div>
-            
-           )}
+            {" "}
+            <img
+              src="https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png"
+              width={"50px"}
+              alt="error-img"
+            />{" "}
+            <p className="text-danger">Network response was not ok!</p>
           </div>
-        </div>
-        );
+        ) : (
+          <div className="product-card">
+            <div className="image-container">
+              <img
+                alt="product-images"
+                src={"/images/" + product.category_name + ".jpg"}
+              />
+            </div>
+            <div>
+              <div className="qnt-content">
+                <h3>Qty.</h3>
+                <span className="qty-btn" onClick={decreaseQty}>
+                  -
+                </span>
+                <p>{quantity}</p>
+                <span className="qty-btn" onClick={increaseQty}>
+                  +
+                </span>
+              </div>
+              <div className="card-text">
+                <h3 className="p-name">{product.product_name}</h3>
+                <h4>Product Description</h4>
+                <p className="description">
+                  <span>-Lorem ipsum dolor sit amet</span>
+                  <span>-Consectetur adipiscing elit.</span>
+                  <span>-Quisque sit amet porttitor arcu.</span>
+                </p>
+                <h4>Delivery</h4>
+                <p>Lorem ipsum dolor sit amet</p>
+                <button
+                  className="nav-button"
+                  onClick={() => navigate(`/request-form/${id}`)}
+                >
+                  Request Item
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export default ProductDetails;
