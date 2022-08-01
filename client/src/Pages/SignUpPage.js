@@ -6,16 +6,37 @@ import { login } from "../services/authService";
 
 const SignUpPage = () => {
   // States for registration for holding form data
-  const [first_name, setFirstName] = useState("");
-  const [last_name, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [email, setEmail] = useState("");
-  const [city, setCity] = useState("");
-  const [postcode, setPostcode] = useState("");
-  const [country, setCountry] = useState("");
-  const [telephone, setTelephone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    address: "",
+    email: "",
+    city: "",
+    postcode: "",
+    country: "",
+    telephone: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const {
+    first_name,
+    last_name,
+    address,
+    email,
+    city,
+    postcode,
+    country,
+    telephone,
+    password,
+    confirmPassword,
+  } = formData;
+
+  //
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e);
+  };
 
   // States for checking the errors for the functionality of the form
   const [submitted, setSubmitted] = useState(false);
@@ -58,26 +79,26 @@ const SignUpPage = () => {
       password,
       confirmPassword,
     }).then((res) => {
-      console.log(res.statusText)
-      if(res.status === 201) {
-         login({
-           email,
-           password,
-         }).then((res) => {
-           if (res.signedIn && res.isAdmin) {
-             console.log(res);
-             navigate("/admin/dashboard");
-           } else if (res.signedIn) {
-             console.log(res.statusText);
-             navigate("/products");
-           } else {
-            setError(true)
-           }
-         });
+      console.log(res.statusText);
+      if (res.status === 201) {
+        login({
+          email,
+          password,
+        }).then((res) => {
+          if (res.signedIn && res.isAdmin) {
+            console.log(res);
+            navigate("/admin/dashboard");
+          } else if (res.signedIn) {
+            console.log(res.statusText);
+            navigate("/products");
+          } else {
+            setError(true);
+          }
+        });
       }
     });
+  };
 
-  }
   // Showing success message
   const successMessage = () => {
     return (
@@ -118,7 +139,7 @@ const SignUpPage = () => {
   };
 
   const navigate = useNavigate();
-  
+
   return (
     <>
       <button className="back-button" onClick={() => navigate(-1)}>
@@ -139,42 +160,42 @@ const SignUpPage = () => {
             className="form-control"
             type="text"
             name="first_name"
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={onChange}
           />
           <label>Last Name</label>
           <input
             className="form-control"
             type="text"
             name="last_name"
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={onChange}
           />
           <label>Address Line 1</label>
           <input
             className="form-control"
             type="text"
             name="address"
-            onChange={(e) => setAddress(e.target.value)}
+            onChange={onChange}
           />
           <label>Town/City</label>
           <input
             className="form-control"
             type="text"
             name="city"
-            onChange={(e) => setCity(e.target.value)}
+            onChange={onChange}
           />
           <label>Postcode</label>
           <input
             className="form-control"
             type="text"
             name="postcode"
-            onChange={(e) => setPostcode(e.target.value)}
+            onChange={onChange}
           />
           <label>Country</label>
           <input
             className="form-control"
             type="text"
             name="country"
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={onChange}
           />
           <label>Email</label>
           <input
@@ -182,14 +203,14 @@ const SignUpPage = () => {
             className="form-control"
             placeholder="email@example.com"
             name="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={onChange}
           />
           <label>Phone Number</label>
           <input
             className="form-control"
             type="tel"
-            name="phone"
-            onChange={(e) => setTelephone(e.target.value)}
+            name="telephone"
+            onChange={onChange}
           />
           <label>Password</label>
           <input
@@ -197,7 +218,7 @@ const SignUpPage = () => {
             className="form-control"
             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
             name="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={onChange}
           />
           <label>Retype Password</label>
           <input
@@ -205,7 +226,7 @@ const SignUpPage = () => {
             className="form-control"
             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
             name="confirmPassword"
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={onChange}
           />
           <button className="sign-up-btn">Sign Up</button>
         </form>
