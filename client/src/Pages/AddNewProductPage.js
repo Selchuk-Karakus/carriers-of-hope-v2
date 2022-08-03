@@ -14,6 +14,11 @@ export default function AddNewProductPage() {
   const handleInputValue = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    if(value==='true'){
+      value = true;
+    } else if(value==='false'){
+      value =false;
+    }
     setFormProduct({...formProduct,[name]: value });
   };
 
@@ -82,7 +87,7 @@ export default function AddNewProductPage() {
                     name='product_status' 
                     value={formProduct.product_status}  
                     className="select-option ">
-              <option value='Status' disabled>Status</option>
+              <option value='Status'>Select Status</option>
               <option value={true}>In Stock</option>
               <option value={false}>Out of Stock</option>
             </select>

@@ -1,6 +1,5 @@
 let router = require("express").Router();
 let {getAllProducts,getOneProduct,createProduct, deleteOneProduct, updateProductById } = require('../service/products');
-let {deleteCartItemByProductId} = require('../service/cartItem');
 
 //getAll
 router.get('/', (req, res) => {
