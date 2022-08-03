@@ -22,7 +22,7 @@ CREATE TABLE products (
     id               SERIAL PRIMARY KEY,
     product_name     VARCHAR(30) NOT NULL,
     category_name    VARCHAR(30) NOT NULL,
-    product_status   BOOLEAN,
+    product_status   BOOLEAN NOT NULL,
     description      VARCHAR(170)
 );
 

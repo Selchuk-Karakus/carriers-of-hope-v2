@@ -149,7 +149,7 @@ function orderUpdateAllowed(reqBody, userId) {
 }
 
 async function buildOrderList(orders) {
-  console.log(orders)
+  // console.log(orders)
   return Promise.all(
     orders.rows.map(async (order) => {
       const member = await memberService.getMemberById(order.member_id);
