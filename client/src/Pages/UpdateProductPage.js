@@ -16,10 +16,16 @@ export default function UpdateProductPage() {
 
 
   const handleInputValue = (e) => {
+   
     let name = e.target.name;
     let value = e.target.value;
+    if(value==='In Stock'){
+      value = true;
+    } else if(value==='Out of Stock'){
+      value =false;
+    }
     setProduct({...product,[name]: value });
-    // console.log(product);
+    console.log(product);
   };
 
   let { id } = useParams();
@@ -120,8 +126,9 @@ export default function UpdateProductPage() {
               <label for="status">
                 Status
               </label>
-              <select name='product_status' className="select-option">
-              
+              <select name='product_status'
+                      className="select-option"
+                      onChange={handleInputValue}>
                 {product.product_status?
                 <><option selected value='In Stock'>In Stock</option>
                 <option value='Out of Stock'>Out of Stock</option></>:

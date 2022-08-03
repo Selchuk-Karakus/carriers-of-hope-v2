@@ -77,18 +77,6 @@ function ProductDetails() {
             <p className="text-danger">Network response was not ok!</p>
           </div>
         ) : (
-          <div className="product-card">
-            <div className="image-container">
-              <img
-                alt="product-images"
-                src={
-                  "/images/" +
-                  product.category_name.replaceAll(" ", "") +
-                  ".jpg"
-                }
-              />
-            </div>
-            ) : (
             <div className="product-card">
               <div className="image-container">
                 <img
@@ -96,9 +84,7 @@ function ProductDetails() {
                   src={
                     product.category_name === "Electrical items"
                       ? "/images/Electrical-items.jpg"
-                      : "/images/" +
-                        product.category_name.replaceAll(" ", "") +
-                        ".jpg"
+                      : "/images/" +product.category_name+".jpg"
                   }
                 />
               </div>
