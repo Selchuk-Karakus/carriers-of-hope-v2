@@ -1,13 +1,16 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link,useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
 import { ThreeDots } from "react-loading-icons";
+import { CartContext } from "../Contexts/CartContext";
 
 function ProductDetails() {
   const [product, setProduct]=useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  const { cart, setCart } = useContext(CartContext);
+
 
   const navigate = useNavigate();
   let { id } = useParams();
@@ -40,6 +43,14 @@ function ProductDetails() {
   const decreaseQty =()=>{
     if(quantity!==0)
     setQuantity(quantity-1);
+  }
+
+  const addToCart = () => {
+    const updatedCarts = cart;
+    updatedCarts.push({ product: product, qty: quantity });
+    setCart(updatedCarts);
+
+    navigate("/cart");
   }
 
   return (
@@ -131,7 +142,7 @@ function ProductDetails() {
               <p>Lorem ipsum dolor sit amet</p>
               <button
                 className="nav-button"
-                onClick={() => navigate(`/request-form/${id}`)}
+                onClick={() => addToCart()}
               >
                 Request Item
               </button>

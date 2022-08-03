@@ -1,57 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/cartPage.scss";
-import { IoIosArrowBack } from "react-icons/io";
-import { getProductById } from "../services/productsService";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { CartContext } from "../Contexts/CartContext";
 
 const CartPage = () => {
-  const [product, setProduct] = useState({});
-  const [loaded, setLoaded] = useState(false);
-
-  const { id } = useParams();
-  useEffect(() => {
-    async function load() {
-      const product = await getProductById(id);
-      setProduct(product);
-      setLoaded(true);
-    }
-    load();
-  }, [id]);
-
+  const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
-  return loaded ? (
+
+  return (
     <div className="cart-details">
-      <Link to={`/product-details/${id}`}>
-        <button className="back-button">
-          <span className="icon">
-            <IoIosArrowBack />
-          </span>
-          Back
-        </button>
-      </Link>
       <h2 className="free-delivery-title">Free Delivery within Coventry</h2>
       <h3>Bagged Items</h3>
-      <div className="product-card">
-        <div className="image-container">
-          <img
-            src={
-              "/images/" + product.category_name.replaceAll(" ", "") + ".jpg"
-            }
-            alt={product.product_name}
-          />
-        </div>
-        <div className="card-text">
-          <h3 className="p-name">{product.product_name}</h3>
-          <p className="p-description">A short description about the product</p>
+      {cart.map((item, index) => {
+        return (
+          <>
+            <div key={index} className="product-card">
+              <div className="image-container">
+                <img
+                  src={
+                    "/images/" +
+                    item.product.category_name.replaceAll(" ", "") +
+                    ".jpg"
+                  }
+                  alt={item.product.product_name}
+                />
+              </div>
+              <div className="card-text">
+                <h3 className="p-name">{item.product.product_name}</h3>
+                <p className="p-description">
+                  A short description about the product
+                </p>
 
-          <div>
-            <span>Qty 1 </span>
-            <span>Remove</span>
-            <RiDeleteBin6Line />
-          </div>
-        </div>
-      </div>
+                <div>
+                  <span>{item.qty} </span>
+                  <span>Remove</span>
+                  <RiDeleteBin6Line />
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      })}
       <div className="card-text">
         <button
           className="checkout-button"
@@ -61,8 +51,6 @@ const CartPage = () => {
         </button>
       </div>
     </div>
-  ) : (
-    <div>loading...</div>
   );
 };
 

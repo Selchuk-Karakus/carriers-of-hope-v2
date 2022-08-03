@@ -1,52 +1,98 @@
+import React, { useEffect, useState, useContext } from "react";
 import { insertOrder } from "../services/orderService";
-import { useNavigate, Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate,  } from "react-router-dom";
 import "../styles/cartPage.scss";
-
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { CartContext } from "../Contexts/CartContext";
+import { UserContext } from "../Contexts/UserContext";
+import { getMemberById } from "../services/membersService";
 
 function CheckoutPage() {
-  const navigate = useNavigate();
-  //info to pass in req form (user id located in login session)
-  const orderObj = {
-    memberId: 1,
-    products: [
-      { productId: 2, quantity: 1 },
-      { productId: 3, quantity: 1 },
-    ],
-  };
+  const { cart } = useContext(CartContext);
+  const { user } = useContext(UserContext);
+  const [checkoutUser, setCheckoutUser] = useState();
 
-  function handleOnClick() {
-    insertOrder(orderObj);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.isLoggedIn) {
+      getMemberById(16).then((res) => {
+        console.log(res[0]);
+        setCheckoutUser(res[0]);
+      });
+    } 
+  }, [user]);
+
+  function handleClick() {
+    const products = cart?.map(item => {
+      return { 
+        productId: item.product.id, 
+        quantity: item.qty };
+    })
+
+    const orderObj = {
+      memberId: checkoutUser?.id,
+      products: products,
+    };
+
+    insertOrder(orderObj).then(res => {
+      navigate('/');
+    });
   }
 
   return (
     <div className="product-details">
-      <Link to={`/products`}>
-        <button className="back-button">
-          <span className="icon">
-            <IoIosArrowBack />
-          </span>
-          Back
-        </button>
-      </Link>
-        <h1>Free Delivery within Coventry</h1>
-        <h2>Bagged Items</h2>
-      <div className="checkout-card">
-        <div className="description">This is where the Item details are displayed</div>
-        <button
-          className="checkout-button"
-          onClick={() => navigate("/register", { replace: true })}
-        >
-          Continue as guest
-        </button>
-        <div></div>
-        <button
-          className="checkout-button"
-          onClick={() => navigate("/login", { replace: true })}
-        >
-          Login/signup
-        </button>
+      <h1>Free Delivery within Coventry</h1>
+      <h2>Bagged Items</h2>
+      {cart.map((item, index) => {
+        return (
+            <div key={index} className="product-card">
+              <div className="image-container">
+                <img
+                  src={
+                    "/images/" +
+                    item.product.category_name.replaceAll(" ", "") +
+                    ".jpg"
+                  }
+                  alt={item.product.product_name}
+                />
+              </div>
+              <div className="card-text">
+                <h3 className="p-name">{item.product.product_name}</h3>
+                <p className="p-description">
+                  A short description about the product
+                </p>
+
+                <div>
+                  <span>{item.qty} </span>
+                  <span>Remove</span>
+                  <RiDeleteBin6Line />
+                </div>
+              </div>
+            </div>
+        );
+      })}
+      <div className="user-info">
+        <p>Full Name: {checkoutUser?.first_name + " " + checkoutUser?.last_name}</p>
+        <p>Address: {checkoutUser?.address}</p>
+        <p>Email: {checkoutUser?.email}</p>
+        <p>Phone number: {checkoutUser?.telephone}</p>
       </div>
+      <button onClick={handleClick} className="place-order-btn">
+        Place Order
+      </button>
+      {/* <button
+        className="checkout-button"
+        onClick={() => navigate("/register", { replace: true })}
+      >
+        Continue as guest
+      </button>
+      <button
+        className="checkout-button"
+        onClick={() => navigate("/login", { replace: true })}
+      >
+        Login/signup
+      </button> */}
     </div>
   );
 }
