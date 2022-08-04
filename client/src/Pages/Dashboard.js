@@ -4,7 +4,6 @@ import CustomersTable from "../components/CustomersTable";
 import ProductsTable from "../components/ProductsTable";
 import {ProductsContext} from '../Contexts/ProductsContext';
 import "../styles/dashboard.scss";
-import { CgProfile } from "react-icons/cg";
 import Logout from "../components/Logout";
 
 

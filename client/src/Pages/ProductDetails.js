@@ -1,13 +1,16 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link,useNavigate, useParams } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
 import { ThreeDots } from "react-loading-icons";
+import { CartContext } from "../Contexts/CartContext";
 
 function ProductDetails() {
   const [product, setProduct]=useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  const { cart, setCart } = useContext(CartContext);
+
 
   const navigate = useNavigate();
   let { id } = useParams();
@@ -40,6 +43,14 @@ function ProductDetails() {
   const decreaseQty =()=>{
     if(quantity!==0)
     setQuantity(quantity-1);
+  }
+
+  const addToCart = () => {
+    const updatedCarts = cart;
+    updatedCarts.push({ product: product, qty: quantity });
+    setCart(updatedCarts);
+
+    navigate("/cart");
   }
 
   return (
@@ -105,7 +116,24 @@ function ProductDetails() {
                 </button>
               </div>
             </div>
-         
+            <div className="card-text">
+              <h3 className="p-name">{product.product_name}</h3>
+              <h4>Product Description</h4>
+              <p className="description">
+                <span>-Lorem ipsum dolor sit amet</span>
+                <span>-Consectetur adipiscing elit.</span>
+                <span>-Quisque sit amet porttitor arcu.</span>
+              </p>
+              <h4>Delivery</h4>
+              <p>Lorem ipsum dolor sit amet</p>
+              <button
+                className="nav-button"
+                onClick={() => addToCart()}
+              >
+                Request Item
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </div>

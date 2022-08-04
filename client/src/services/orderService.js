@@ -1,10 +1,11 @@
 import { getAccessToken } from "./authService";
 
-export function insertOrder(orderObj) {
-  fetch(`/orders`, {
+export async function insertOrder(orderObj) {
+  return await fetch(`/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-access-token": getAccessToken(),
     },
     body: JSON.stringify(orderObj),
   })
