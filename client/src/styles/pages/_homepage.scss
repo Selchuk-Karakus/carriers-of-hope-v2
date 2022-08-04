@@ -6,25 +6,17 @@
    .home{
       position: relative;
       width: 100%;   
-      height: 60vh;
+      height: 70vh;
       background: $green2;
 
-      @media(min-width:540px){
-         height: 67vh;
-      }
-
-      @media(min-width:620px){
-         height: 70vh;
-      }
       @media(min-width:750px){
          border-bottom-right-radius: 50% 250px;
-         height: 63vh;
          
       }
       @media(min-width:1050px){
          border-bottom-left-radius:70% 20px;
          border-bottom-right-radius: 50% 400px;
-         height: 65vh;
+   
       }
     
       @media(min-width:1250px){
@@ -66,7 +58,9 @@
          right: 10%;
          bottom:15%;
          @media(min-width:520px) {
-            width: 420px;   
+            width: 420px;  
+            bottom:12%;
+
          }
          @media(min-width:630px) {     
             right:20%;
