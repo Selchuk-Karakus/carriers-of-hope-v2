@@ -49,7 +49,6 @@ function ProductDetails() {
     const updatedCarts = cart;
     updatedCarts.push({ product: product, qty: quantity });
     setCart(updatedCarts);
-
     navigate("/cart");
   }
 
@@ -110,30 +109,12 @@ function ProductDetails() {
                 </div>
                 <button
                   className="nav-button"
-                  onClick={() => navigate("/request-form")}
+                  onClick={() => addToCart()}
                 >
                   Request Item
                 </button>
               </div>
             </div>
-            <div className="card-text">
-              <h3 className="p-name">{product.product_name}</h3>
-              <h4>Product Description</h4>
-              <p className="description">
-                <span>-Lorem ipsum dolor sit amet</span>
-                <span>-Consectetur adipiscing elit.</span>
-                <span>-Quisque sit amet porttitor arcu.</span>
-              </p>
-              <h4>Delivery</h4>
-              <p>Lorem ipsum dolor sit amet</p>
-              <button
-                className="nav-button"
-                onClick={() => addToCart()}
-              >
-                Request Item
-              </button>
-            </div>
-          </div>
         )}
       </div>
     </div>
