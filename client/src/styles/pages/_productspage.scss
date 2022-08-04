@@ -5,7 +5,6 @@
   margin: 0 auto;
   font-family: $georgia;
   box-sizing: border-box;
-  
   @media (min-width: 1250px) {
      width: 1170px;
      padding: 1rem;
@@ -16,7 +15,9 @@
   .header{
     display: flex;
     flex-direction: column-reverse;
-    margin-top: 59px;
+    margin-top: 3.7rem;
+
+    
     @media (min-width: 650px) {
       flex-direction: column;
     }
