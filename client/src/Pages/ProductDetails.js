@@ -51,10 +51,10 @@ function ProductDetails() {
     setCart(updatedCarts);
     navigate("/cart");
   }
-
+  let{product_name,category_name,description } =product;
   return (
     <div className="product-details">
-      <Link to={"/products-list/" + product.category_name}>
+      <Link to={"/products-list/" + category_name}>
         <button className="back-btn">
           <span className="icon">
             <IoIosArrowBack />
@@ -80,20 +80,18 @@ function ProductDetails() {
               <div className="image-container">
                 <img
                   alt="product-images"
-                  src={
-                    product.category_name === "Electrical items"
-                      ? "/images/Electrical-items.jpg"
-                      : "/images/" +product.category_name+".jpg"
-                  }
+                  src={"/images/" +category_name+".jpg"}
                 />
               </div>
               <div className="body">
-                <h3 className="p-name">{product.product_name}</h3>
+                <h3 className="p-name">{product_name}</h3>
                 <h4 className="sub-title">Product Description</h4>
                 <p className="description">
-                  <span>-Lorem ipsum dolor sit amet</span>
-                  <span>-Consectetur adipiscing elit.</span>
-                  <span>-Quisque sit amet porttitor arcu.</span>
+                 {description.split(',').map((item, i)=>{
+                  return(
+                    <span>- {item}</span>
+                  )
+                 })}
                 </p>
                 <h4 className="sub-title">Delivery</h4>
                 <p>Lorem ipsum dolor sit amet</p>

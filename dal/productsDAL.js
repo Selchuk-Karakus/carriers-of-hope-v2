@@ -15,10 +15,10 @@ async function  selectOneProductByProductId(productId){
 
 //CreateProduct
 async function insertProduct(body){
-  let  {product_name,category_name, product_status}=body;
+  let  {product_name,category_name, product_status, description}=body;
   return await pgClient.pool
-  .query("INSERT INTO products (product_name, category_name, product_status) VALUES ($1, $2, $3)",
-    [product_name, category_name, product_status]
+  .query("INSERT INTO products (product_name, category_name, product_status, description) VALUES ($1, $2, $3, $4)",
+    [product_name, category_name, product_status, description]
   );
 }
 
@@ -32,11 +32,11 @@ async function  deleteProductByProductId(productId){
 
 //PUT REQUEST
 async function  updateProductByProductId(id,reqBody){
-  let  {product_name,category_name, product_status}=reqBody;
+  let  {product_name,category_name, product_status, description}=reqBody;
   return await pgClient.pool
   .query(
-    "UPDATE products SET product_name = $1, category_name = $2, product_status=$3 WHERE id = $4",
-    [product_name, category_name, product_status, id]
+    "UPDATE products SET product_name = $1, category_name = $2, product_status=$3, description=$4 WHERE id = $5",
+    [product_name, category_name, product_status, description, id]
   );
 }
 
@@ -44,7 +44,7 @@ async function  updateProductByProductId(id,reqBody){
 function selectProductsByOrderId(orderId) {
   return pgClient.pool
   .query(
-    `SELECT id, ` +
+      `SELECT id, ` +
       `product_name, ` +
       `category_name ` +
       `FROM products ` +
