@@ -85,7 +85,7 @@ function ProductsTable(){
      setSortQuery(e.target.value)
     }
 
-    
+    console.log(products)
  
    return(
         <div className="products-table">

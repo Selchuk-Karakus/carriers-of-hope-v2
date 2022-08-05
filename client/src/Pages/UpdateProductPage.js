@@ -142,7 +142,7 @@ export default function UpdateProductPage() {
               <label for="category_name">
                 Category Name
               </label>
-              <select name='category_name' className="select-option">
+              <select name='category_name' className="select-option" onChange={handleInputValue}>
                 <option selected="true" value='Furniture'>{product.category_name} </option>
                 <option value='Furniture'>Furniture </option>
                 <option value="Electrical items">Electrical items</option>
@@ -152,7 +152,7 @@ export default function UpdateProductPage() {
                 <option  value='Other'>Other</option>
               </select>
             </div>
-            <div className="description">
+            <div className="description" onChange={handleInputValue}>
               <label>Description</label>
               <textarea name="description" placeholder="">{product.description}</textarea>
             </div>
