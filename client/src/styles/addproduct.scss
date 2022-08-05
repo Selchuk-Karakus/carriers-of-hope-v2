@@ -109,6 +109,12 @@
             background-color: $bg2;
          }
 
+
+         input,  textarea, select :invalid:required {
+            border: 1px solid red;
+         }
+         
+
          .submit-btn, .cancel-btn {
             font-size: 1.1em;
             cursor: pointer;

@@ -80,11 +80,7 @@ function ProductDetails() {
               <div className="image-container">
                 <img
                   alt="product-images"
-                  src={
-                    category_name === "Electrical items"
-                      ? "/images/Electrical-items.jpg"
-                      : "/images/" +category_name+".jpg"
-                  }
+                  src={"/images/" +category_name+".jpg"}
                 />
               </div>
               <div className="body">

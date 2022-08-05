@@ -26,17 +26,13 @@ function ProductsPage() {
   useEffect(() => {
     let search=()=>{
       let filteredData = products.filter((p) => {
-        if(category!=='Electrical-items'){
-         return p.category_name.includes(category)}
-         else{
-          return p.category_name.includes('Electrical items')
-         }
+         return p.category_name.includes(category)
+        
       });
       setFilteredProducts(filteredData);
     }
     search()
   }, [category,products]);
-  console.log(filteredProducts);
 
   useEffect(()=>{
     const sortProducts = ()=>{
@@ -69,6 +65,7 @@ function ProductsPage() {
                   <BiSortAlt2/>
                  </span>
               </button>
+              
               <select  onChange={handleFilterQuery} className="filter-option" >
                 <option   selected="true" disabled="disabled">Filter</option>
                 {filteredProducts.map(
@@ -105,13 +102,7 @@ function ProductsPage() {
                           <div className="image-container">
                             <img
                               alt="product-images"
-                              src={
-                                category_name === "Electrical items"
-                                  ? "/images/Electrical-items.jpg"
-                                  : "/images/" +
-                                    category_name.replaceAll(" ", "") +
-                                    ".jpg"
-                              }
+                              src={"/images/" +category_name+".jpg"}
                             />
                           </div>
                           <div className="card-text">

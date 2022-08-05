@@ -25,6 +25,7 @@
       display: flex;
       width: 100%;
       select{
+        -webkit-appearance: none;
         text-align: center;
          width: 50%;
          cursor: pointer;

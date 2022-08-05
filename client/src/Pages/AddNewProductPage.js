@@ -14,16 +14,30 @@ export default function AddNewProductPage() {
   const handleInputValue = (e) => {
     let name = e.target.name;
     let value = e.target.value;
+    
+   
     if(value==='true'){
       value = true;
     } else if(value==='false'){
       value =false;
     }
+ 
     setFormProduct({...formProduct,[name]: value });
   };
 
+
   const submitAddProduct = async (e) => {
     e.preventDefault();
+    if ( formProduct.product_name== null || 
+         formProduct.category_name== null||
+         formProduct.product_status==null ||
+         formProduct.product_status=='Select Status' ||
+         formProduct.description==null) {
+      alert("Please Fill All Required Field");
+      return false;
+    }
+    console.log(formProduct)
+
     const url = "http://localhost:8000/products";
     const postDetails = {
       method: "POST",
@@ -83,6 +97,7 @@ export default function AddNewProductPage() {
               Status
             </label>
             <select id='status'
+                    required
                     onChange={handleInputValue} 
                     name='product_status' 
                     value={formProduct.product_status}  
@@ -108,7 +123,7 @@ export default function AddNewProductPage() {
           </div>
           <div className="description" >
             <label>Description</label>
-            <textarea name="description" onChange={handleInputValue}  placeholder=""></textarea>
+            <textarea name="description" onChange={handleInputValue} required  placeholder=""></textarea>
           </div>
             <button
               type="submit"
