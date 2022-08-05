@@ -36,7 +36,6 @@ export default function AddNewProductPage() {
       alert("Please Fill All Required Field");
       return false;
     }
-    console.log(formProduct)
 
     const url = "http://localhost:8000/products";
     const postDetails = {

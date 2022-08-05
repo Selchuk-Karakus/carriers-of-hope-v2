@@ -53,6 +53,11 @@ export default function UpdateProductPage() {
 
   const submitUpdateProduct = async (e) => {
     e.preventDefault();
+    if ( product.product_name== null || 
+      product.category_name== null) {
+      alert("Please Fill All Required Field");
+      return false;
+        }
     const url = `http://localhost:8000/products/${id}`;
     const postDetails = {
       method: "PUT",
