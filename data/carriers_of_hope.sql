@@ -62,7 +62,12 @@ INSERT INTO members (first_name, last_name, email, address, city, postcode, coun
          ('Sami','Hakim','s.hakim@johnsmith.org','15 New Road','London','L10 2AB','UK', 56789012345, 'samihakim', TRUE),
          ('Hedyeh','Etemadi','h.etemedi@johnsmith.org','16 New Road','Manchester','L10 2AB','UK', 67890123456, 'hedyehetemaddi', TRUE),
          ('Olga','Olga','o.olga@johnsmith.org','17 New Road','London','L10 2AB','UK', 78901234567, 'olgaolga', TRUE),
-         ('george', 'Karakus', 'h@kklllkk8.org', '25 New Road', 'London', 'L10 2AB', 'UK', 23456789101, '$2b$10$1mfWjqXDwpPAbwVcvfs8IumGSzUwubsvPYpn76Hm6b1os/WssVrc2', TRUE);
+         ('george','Karakus','h@kklllkk8.org','25 New Road','London','L10 2AB','UK', 23456789101, '$2b$10$1mfWjqXDwpPAbwVcvfs8IumGSzUwubsvPYpn76Hm6b1os/WssVrc2', TRUE),
+         ('selchuk','karakus','selchuk@selchuk.com','7 New Road','London','e11 5fy','UK', 12345, '$2b$10$6RgzfcZr9w.DzEwK6dtEq.2biV6ltagTtbg5dgorqMeEt6nP6M.da', FALSE),
+         ('selchuk','karakus','selchuk@gmail.com','7 New Road','London','e11 5fy','UK', 1234567, '$2b$10$cf/WKrnqp3jnw1ee4Xwidu/rKR8vQpo8g6SVndpWo.HH0ouglnemq', FALSE),
+         ('Hamra','Khan','h@gmail.org','54 New Road','London','der 4rt','UK', 4544545445, '$2b$10$lod3bdnvYa7AiO/5a5XN5Otvw5OVzHD/LweVr6vhd4V7AhC91az.m', FALSE),
+         ('selchuk','karakus', 'england@mail.com','25 New Road','London','e11 5fy','UK', 1234567, '$2b$10$uhDGMw7fwKq2qsV3U25uyOO9vzBTKqZj2MKdghlbSoHqTEog0BjxW', FALSE),
+         ('login','login','login@login.com','1 New Road','London','e11 6df','UK', 12345, '$2b$10$JFcIpexyUGJj3HbzdB9Yt.LJ3NW1bhYIYeXhOGxdMViZPJddjxpfe', FALSE);
 
 INSERT INTO products (product_name, category_name,product_status, description )
     VALUES  ('Single bed frame', 'Furniture', true, 'In Good condition, The color is white'),
