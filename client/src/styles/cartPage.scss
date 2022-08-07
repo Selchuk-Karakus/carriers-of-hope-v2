@@ -1,29 +1,99 @@
-@import './variables/_variables.scss';  
+@import "./variables/_variables.scss";
 
-.checkout-button, .place-order-btn {
-    padding: 12px 8px;
-    margin-top: 1.5rem;
-    background-color: #3b835a;
-    color: #FFFFFF;
-    font-size: 1.1rem;
-    border-radius: 4px;
-    width: 100%;
+@media only screen and (min-width: 300px) {
+  .back-btn {
+    display: flex;
+    margin-top: 6rem;
+    margin-left: 2%;
+    background-color: transparent;
     border: none;
-}
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
 
-.checkout-card {
-  text-align: center;
-}
+    .icon {
+      margin-top: 0.1rem;
+    }
+  }
 
-.cart-details {
-  width: 100%;
-  margin: 0 auto;
-  font-family: $georgia;
-  box-sizing: border-box;
-  padding: 1rem;
-  @media (min-width: 1250px) {
-    width: 50%;
+  .cart-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+      font-family: $lato;
+      font-size: large;
+      padding-top: 2rem;
+    }
+
+    h2 {
+      text-decoration: underline;
+      font-family: "Lato", sans-serif;
+      font-size: medium;
+      padding: 2rem 0rem;
+    }
+
+    .product-card {
+      padding-bottom: 4rem;
+    }
+
+    .card-img-desc{
+      display: flex;
+      flex-direction: row;
+    }
+
+    .image-container {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      
+      img {
+        border-radius: 19px;
+        width: 6rem;
+      }
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    h3 {
+      font-size: medium;
+      padding-bottom: 0.5rem;
+    }
+
+    .p-description {
+      font-size: 0.95rem;
+      padding-bottom: 0.9rem;
+    }
+
+    h3, .p-description{
+      padding-left: 1rem;
+    }
+
+    .qty-and-delete-container{
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .bin-icon {
+      font-size: 1.2rem;
+      color: $red;
+    }
+
+    .btn-container {
+      padding-top: 3rem;
+      button {
+        padding: 0.9em 0;
+        width: 16rem;
+        border: none;
+        background-color: $green3;
+        color: $bg;
+        border-radius: 5px;
+      }
+    }
   }
 }
-
-
