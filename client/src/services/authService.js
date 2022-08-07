@@ -19,7 +19,8 @@ export const login = (loginObj) => {
     setAccessToken(data.token.replace(/['"]+/g, ""));
     return {
       signedIn: true,
-      isAdmin: data.isAdmin
+      isAdmin: data.isAdmin,
+      userId: data.userId
     }
     }).catch(error => {
       //return false because it failed to login successfully
