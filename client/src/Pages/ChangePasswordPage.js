@@ -20,10 +20,9 @@ function ChangePasswordPage() {
          // Set the generated password as state
          setPassword(randomPassword);
          setConfirmPassword(randomPassword);
-         // setValid(true);
+         setValid(true);
        };
        generatePassword();
-       console.log(password);
 
    },[])
 
@@ -51,7 +50,6 @@ function ChangePasswordPage() {
       setPassword('');
       setConfirmPassword('');
       setValid(false);
-      (console.log(valid))
    }
 
    const handleInputValue=(e)=>{
@@ -67,7 +65,7 @@ function ChangePasswordPage() {
    const resetPassword = (e) =>{
       e.preventDefault();
       if(!valid){
-         alert('password in not valid!')
+         alert('password is not valid!')
       }else{
          alert('added');
          setRedirect(true);
