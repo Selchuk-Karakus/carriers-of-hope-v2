@@ -16,8 +16,7 @@ function CheckoutPage() {
 
   useEffect(() => {
     if (user.isLoggedIn) {
-      getMemberById(16).then((res) => {
-        console.log(res[0]);
+      getMemberById(user.userId).then((res) => {
         setCheckoutUser(res[0]);
       });
     } 

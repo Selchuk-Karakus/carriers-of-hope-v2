@@ -22,6 +22,7 @@ function LoginPage() {
         setUser({
           isLoggedIn: res.signedIn,
           isAdmin: res.isAdmin,
+          userId: res.userId
         });
 
         navigate('/admin/dashboard')
@@ -30,6 +31,7 @@ function LoginPage() {
         setUser({
           isLoggedIn: res.signedIn,
           isAdmin: false,
+          userId: res.userId
         });
         setDisplayError(false);
         navigate("/products");
