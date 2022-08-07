@@ -6,7 +6,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const navigate = useNavigate();
 
   return (

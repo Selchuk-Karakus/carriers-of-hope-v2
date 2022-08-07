@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { MdClose } from "react-icons/md";
 import { FiMenu } from "react-icons/fi";
+import { FaShoppingBasket } from "react-icons/fa";
 import { UserContext } from "../Contexts/UserContext";
 import { logout } from "../services/authService";
 import { useNavigate } from "react-router-dom";
@@ -26,6 +27,10 @@ function Navbar() {
     setUser({ isLoggedIn: false, isAdmin: false });
     navigate("/");
     closeMenu();
+  }
+
+  const handleBasketClick = () => {
+    navigate("/cart");
   }
 
   let url = "https://carriersofhope.org.uk/about-us/";
@@ -94,6 +99,16 @@ function Navbar() {
                       </NavLink>
                     </li>
                   )}
+                </ul>
+              </div>
+
+              <div className="cart-icon">
+                <ul>
+                  <li class="nav-item">
+                    <a href="#" onClick={handleBasketClick} class="icon">
+                      <FaShoppingBasket />
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -167,6 +182,16 @@ function Navbar() {
                       <a href={url} target="_blank" rel="noreferrer noopener">
                         About Us
                       </a>
+                    </li>
+                    <li>
+                      <NavLink
+                        to="/cart"
+                        activeClassName="active-link"
+                        onClick={() => closeMenu()}
+                        exact
+                      >
+                        Cart
+                      </NavLink>
                     </li>
                   </ul>
                 </nav>
