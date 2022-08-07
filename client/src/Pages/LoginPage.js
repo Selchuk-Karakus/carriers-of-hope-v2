@@ -79,7 +79,7 @@ function LoginPage() {
               </Link>
             </p> */}
             <p className="forgotten-password">
-              <Link to="/forgotten-name-or-password">
+              <Link to="/forgotten-password">
                 <span style={{ color: "black" }}>Forgotten password ?</span>
               </Link>
             </p>

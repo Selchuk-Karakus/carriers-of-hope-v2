@@ -9,7 +9,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NoMatch from "./components/NoMatch";
 import ProductsProvider from "./Contexts/ProductsContext";
-import ForgottenNameOrPassword from "./components/ForgottenNameOrPassword";
 import SignUp from "./Pages/SignUpPage";
 import Dashboard from "./Pages/Dashboard";
 import AddNewProductPage from "./Pages/AddNewProductPage";
@@ -20,6 +19,8 @@ import OrdersContextProvider from "./Contexts/OrdersContext";
 import MembersContextProvider from "./Contexts/MembersContext";
 import ProductCategories from "./Pages/ProductCategories";
 import CheckoutPage from "./Pages/CheckoutPage";
+import ForgottenPasswordPage from "./Pages/ForgottenPasswordPage";
+import ChangePasswordPage from "./Pages/ChangePasswordPage";
 import "./styles/global.scss";
 import "./styles/main.scss";
 import UserContextProvider from "./Contexts/UserContext";
@@ -47,10 +48,14 @@ function App() {
                         path="/product-details/:id"
                         element={<ProductDetails />}
                       />
-                      <Route path="login" element={<LoginPage />} />
+                      <Route path="/login" element={<LoginPage />} />
                       <Route
-                        path="forgotten-name-or-password"
-                        element={<ForgottenNameOrPassword />}
+                        path="forgotten-password"
+                        element={<ForgottenPasswordPage />}
+                      />
+                      <Route
+                        path="change-password"
+                        element={<ChangePasswordPage />}
                       />
                       <Route path="register" element={<SignUp />} />
                       <Route path="/cart" element={<CartPage />} />
