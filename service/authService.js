@@ -36,7 +36,8 @@ async function checkEmailAndPassword(loginObj) {
           statusCode: 200,
           message: {
             token: token,
-            isAdmin: memberObj.isAdmin
+            isAdmin: memberObj.isAdmin,
+            userId: memberObj.id
           },
         };
       } else {

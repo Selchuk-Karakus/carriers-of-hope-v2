@@ -63,7 +63,8 @@
       text-decoration: none;
       text-transform: uppercase;
       font-weight: bold;
-      color: $green6;
+      color: $green4;
+      text-align: center;
     }
 
     .login-logout a {
@@ -119,10 +120,11 @@
     .desktopMenuBar {
       display: flex;
       width: auto;
+      align-items: center;
     }
 
     h4 {
-      padding-right: 6.5rem;
+      padding-right: 2rem;
     }
 
     .mobileMenuBar {
@@ -155,6 +157,24 @@
       padding: 0;
       color: $bg;
       font-weight: 200;
+    }
+
+    .cart-icon {
+      padding-right: 1rem;
+      
+      li{
+        font-size: 1.5rem;
+        color: $green4;
+        padding-right: 1rem;
+      }
+
+      li :hover {
+        color: $green3;
+      }
+
+      .icon {
+        color: $green4;
+      }
     }
   }
 }

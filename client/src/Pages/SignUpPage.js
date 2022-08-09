@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/signup.scss";
 import { signUp } from "../services/authService";
 import { login } from "../services/authService";
+import {
+  isValidFirstName,
+  isValidLastName,
+  isValidPassword,
+  isValidEmail,
+  isValidTelephone,
+  isValidAddress,
+  isValidTownOrCity,
+  isValidCountry,
+  isValidPasswordConf,
+  isValidPostcode,
+  isValidForm,
+} from "../services/validationService";
+import { UserContext } from "../Contexts/UserContext";
 
 const SignUpPage = () => {
+  const { user, setUser } = useContext(UserContext);
+
   // States for registration for holding form data
   const [formData, setFormData] = useState({
     first_name: "",
@@ -17,6 +33,9 @@ const SignUpPage = () => {
     telephone: "",
     password: "",
     confirmPassword: "",
+    error: false,
+    errorPassword: false,
+    submit: false,
   });
 
   const {
@@ -32,20 +51,32 @@ const SignUpPage = () => {
     confirmPassword,
   } = formData;
 
-  //
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(e);
+  // Tooltip displays informative text when users enters bad/incorrect data
+  const showOrHideTip = (show, element) => {
+    // show element when show is true, hide when false
+    if (show) {
+      element.style.display = "inherit";
+    } else {
+      element.style.display = "none";
+    }
   };
 
-  // States for checking the errors for the functionality of the form
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-  const [errorConfirmPassword, setErrorConfirmPassword] = useState(false);
+  //  accepts a validator and produces an event listener for every validator
+  const onChange = (validator) => {
+    return (e) => {
+      const text = e.target.value;
+      const valid = validator(text);
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+      const showTip = text !== "" && !valid;
+      const tooltip = e.target.nextElementSibling;
+      showOrHideTip(showTip, tooltip);
+    };
+  };
 
   // Handling the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (
       first_name === "" ||
       last_name === "" ||
@@ -58,84 +89,54 @@ const SignUpPage = () => {
       password === "" ||
       confirmPassword === ""
     ) {
-      setError(true);
+      setFormData({ ...formData, error: true });
     } else if (password !== confirmPassword) {
-      setErrorConfirmPassword(true);
+      setFormData({ ...formData, errorPassword: true });
     } else {
-      setSubmitted(true);
-      setError(false);
+      setFormData({ ...formData, submit: true });
     }
 
-    // if the validation above passes register the user then log them in diverting the user to a different UI depending on user credentials
-    signUp({
-      first_name,
-      last_name,
-      address,
-      email,
-      city,
-      postcode,
-      country,
-      telephone,
-      password,
-      confirmPassword,
-    }).then((res) => {
-      console.log(res.statusText);
-      if (res.status === 201) {
-        login({
-          email,
-          password,
-        }).then((res) => {
-          if (res.signedIn && res.isAdmin) {
-            console.log(res);
-            navigate("/admin/dashboard");
-          } else if (res.signedIn) {
-            console.log(res.statusText);
-            navigate("/products");
-          } else {
-            setError(true);
-          }
-        });
-      }
-    });
-  };
-
-  // Showing success message
-  const successMessage = () => {
-    return (
-      <div
-        style={{
-          display: submitted ? "" : "none",
-        }}
-      >
-        <h1>User {`${first_name} ${last_name}`} successfully registered!!</h1>
-      </div>
-    );
-  };
-
-  // Showing error message if error is true
-  const errorMessage = () => {
-    return (
-      <div
-        style={{
-          display: error ? "" : "none",
-        }}
-      >
-        <h1>Please enter all the fields</h1>
-      </div>
-    );
-  };
-
-  // Showing error message if passwordconfirm error is true
-  const errorMessageConfirmPassword = () => {
-    return (
-      <div
-        style={{
-          display: errorConfirmPassword ? "" : "none",
-        }}
-      >
-        <h1>Please enter matching password for both the fields</h1>
-      </div>
-    );
+    // if all validators comeback TRUE signup and login the new user
+    if (isValidForm) {
+      signUp({
+        first_name,
+        last_name,
+        address,
+        email,
+        city,
+        postcode,
+        country,
+        telephone,
+        password,
+        confirmPassword,
+      }).then((res) => {
+        console.log(res.statusText);
+        if (res.status === 201) {
+          login({
+            email,
+            password,
+          }).then((res) => {
+            if (res.signedIn && res.isAdmin) {
+              console.log(res);
+              setUser({
+                isLoggedIn: res.signedIn,
+                isAdmin: res.isAdmin,
+              });
+              navigate("/admin/dashboard");
+            } else if (res.signedIn) {
+              setUser({
+                isLoggedIn: res.signedIn,
+                isAdmin: false,
+              });
+              console.log(res.statusText);
+              navigate("/products");
+            } else {
+              setFormData({ error: true });
+            }
+          });
+        }
+      });
+    }
   };
 
   const navigate = useNavigate();
@@ -146,90 +147,121 @@ const SignUpPage = () => {
         {" "}
         {"< "}back
       </button>
-      {/* Calling to the methods */}
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-        {errorMessageConfirmPassword()}
-      </div>
+
       <div className="signUp-container">
         <h1 className="signUp-header">Sign Up</h1>
+
         <form onSubmit={handleSubmit}>
           <label>First Name</label>
-          <input
-            className="form-control"
-            type="text"
-            name="first_name"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="text"
+              name="first_name"
+              onChange={onChange(isValidFirstName)}
+            />
+            <span>Can only contain letters a-z</span>
+          </p>
           <label>Last Name</label>
-          <input
-            className="form-control"
-            type="text"
-            name="last_name"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="text"
+              name="last_name"
+              onChange={onChange(isValidLastName)}
+            />
+            <span>Can only contain letters a-z</span>
+          </p>
           <label>Address Line 1</label>
-          <input
-            className="form-control"
-            type="text"
-            name="address"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="text"
+              name="address"
+              onChange={onChange(isValidAddress)}
+            />
+            <span>Enter door number followed by street name</span>
+          </p>
           <label>Town/City</label>
-          <input
-            className="form-control"
-            type="text"
-            name="city"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="text"
+              name="city"
+              onChange={onChange(isValidTownOrCity)}
+            />
+            <span>Can only contain letters a-z</span>
+          </p>
           <label>Postcode</label>
-          <input
-            className="form-control"
-            type="text"
-            name="postcode"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="text"
+              name="postcode"
+              onChange={onChange(isValidPostcode)}
+            />
+            <span>Must be valid UK postcode</span>
+          </p>
           <label>Country</label>
-          <input
-            className="form-control"
-            type="text"
-            name="country"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="text"
+              name="country"
+              onChange={onChange(isValidCountry)}
+            />
+            <span>Can only contain letters a-z</span>
+          </p>
           <label>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="email@example.com"
-            name="email"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="email@example.com"
+              name="email"
+              onChange={onChange(isValidEmail)}
+            />
+            <span>Must be a valid email address</span>
+          </p>
           <label>Phone Number</label>
-          <input
-            className="form-control"
-            type="tel"
-            name="telephone"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              className="form-control"
+              type="tel"
+              name="telephone"
+              onChange={onChange(isValidTelephone)}
+            />
+            <span>The telephone number must be in a valid UK number</span>
+          </p>
           <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-            name="password"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+              name="password"
+              onChange={onChange(isValidPassword)}
+            />
+            <span>Must contain at least 5 characters letters or numbers</span>
+          </p>
           <label>Retype Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
-            name="confirmPassword"
-            onChange={onChange}
-          />
+          <p>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
+              name="confirmPassword"
+              onChange={onChange(isValidPasswordConf)}
+            />
+            <span>Passwords must match</span>
+          </p>
           <button className="sign-up-btn">Sign Up</button>
         </form>
+        {formData.error ? (
+          <div className="error-message">All fields must be field in.</div>
+        ) : formData.errorPassword ? (
+          <div className="error-message">Password doesnt match.</div>
+        ) : null}
       </div>
     </>
   );
