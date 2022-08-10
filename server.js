@@ -11,6 +11,7 @@ const products = require("./routes/products");
 const members = require("./routes/members");
 const orders = require("./routes/orders");
 const auth = require("./routes/auth");
+const changePassword = require("./routes/changePassword");
 
 //parse incoming requests
 app.use(express.json());
@@ -38,6 +39,9 @@ app.use("/", auth);
 app.use("/orders", orders);
 app.use("/products", products);
 app.use("/members", members);
+app.use("/members", members);
+app.use("/change-password", changePassword);
+
 
 // // Have Node serve the files for our built React app
 // //this serves the react app files to users machine from heroku
