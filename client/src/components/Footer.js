@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "../styles/footer.scss";
 
 const Footer = () => {
   const googleTranslateElementInit = () => {
@@ -24,7 +23,7 @@ const Footer = () => {
 
   return (
     <div className="footer">
-      <p>carriers of hope</p>
+      <p>CARRIERS OF HOPE</p>
       <div className="google-translate" id="google_translate_element"></div>
     </div>
   );
