@@ -105,9 +105,9 @@ function Navbar() {
               <div className="cart-icon">
                 <ul>
                   <li class="nav-item">
-                    <a href="#" onClick={handleBasketClick} class="icon">
+                    <span onClick={() => { navigate("/cart"); }} class="icon"  >
                       <FaShoppingBasket />
-                    </a>
+                    </span>
                   </li>
                 </ul>
               </div>
