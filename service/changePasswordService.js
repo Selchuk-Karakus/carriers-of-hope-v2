@@ -12,9 +12,7 @@ async function sendEmail(email) {
     const userEmail =   process.env.NODEMAILER_SEND_EMAIL_ADDRESS;
     const userPassword = process.env.NODEMAILER_SEND_EMAIL_PASSWORD;
 
-   
-     // generate JWT token using jsonwebtoken library with jwtSecrectKey
-     if(!memberObj){y
+    if(!memberObj){
         return {
             statusCode: 401,
             message: "The user is not exits",
@@ -26,7 +24,7 @@ async function sendEmail(email) {
             service: 'gmail',
             auth: {
                 user: userEmail,    // Your email id
-                pass:  userPassword// Your password
+                pass:  userPassword // Your password
             }
         });
     
@@ -34,7 +32,7 @@ async function sendEmail(email) {
            from: userEmail,
            to: memberObj.email,
            subject: 'Reset Password Link - CarriersHope.com',
-           html: '<p>You requested for reset password, kindly use this <a href="http://localhost:3000/change-password' + token + '">link</a> to reset your password</p>'
+           html: '<p>You requested for reset password, kindly use this <a href="https://carriers-of-hope-deploy.herokuapp.com/change-password' + token + '">link</a> to reset your password</p>'
     
     
        };

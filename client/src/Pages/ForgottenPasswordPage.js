@@ -1,16 +1,26 @@
 import React,{useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
-
+import {resetPassword} from '../services/changePasswordService';
 
 
 function ForgottenPasswordPage() {
 
    const navigate = useNavigate();
-   const [userName, setUserName] = useState('');
+   const [email, setEmail] = useState({});
+
 
    const handleInputValue =(e)=>{
-      setUserName(e.target.value);
+      setEmail(e.target.value);
+   }
+   console.log(email )
+   const sendEmail = (e) =>{
+      e.preventDefault();
+      resetPassword(email).then((result)=>{
+         console.log(result)
+      })
+
+     
    }
    
 
@@ -24,8 +34,8 @@ function ForgottenPasswordPage() {
         </button>
          <form>
          <label>UserName:</label>
-         <input onChange={handleInputValue} type="email" placeholder='username@mail.com'/>
-         <button className='verify-btn'>Get New Password</button>
+         <input onChange={handleInputValue} name='email' type="email" placeholder='username@mail.com'/>
+         <button className='verify-btn' onClick={sendEmail}>Get New Password</button>
          </form>
       </div>
    )
