@@ -54,7 +54,7 @@ function App() {
                         element={<ForgottenPasswordPage />}
                       />
                       <Route
-                        path="change-password"
+                        path="change-password/:token"
                         element={<ChangePasswordPage />}
                       />
                       <Route path="register" element={<SignUp />} />
