@@ -1,6 +1,6 @@
 @import "./variables/variables";
 
-@media only screen and (min-width: 300px) {
+@media only screen and (min-width: 200px) {
   .navbar {
     position: relative;
     background-color: $bg4;
@@ -109,11 +109,11 @@
     flex-grow: 13;
     align-content: stretch;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .navbar {
-
     display: block;
     padding: 2rem 0rem;
 
@@ -124,7 +124,8 @@
     }
 
     h4 {
-      padding-right: 2rem;
+      padding-left: 2rem;
+      font-size: 1.1rem;
     }
 
     .mobileMenuBar {
@@ -140,7 +141,7 @@
     li {
       padding: 0rem 3rem 0rem 0rem;
       list-style-type: none;
-      font-size: medium;
+      font-size: 0.9rem;
     }
 
     li :hover {
@@ -175,6 +176,14 @@
       .icon {
         color: $green4;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+	.navbar {
+    h4 {
+      font-size: 1.3rem;
     }
   }
 }
