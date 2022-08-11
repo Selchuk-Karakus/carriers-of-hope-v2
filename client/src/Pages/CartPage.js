@@ -3,22 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CartContext } from "../Contexts/CartContext";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
 
+  const handleRemoveItemInCart = (idx) => {
+    const result = cart.filter((item, index) => index !== idx);
+    setCart(result);
+  }
+
   return (
-    <>
-      <Link to={"/products"}>
-        <button className="back-btn">
+    <div className="cart-container">
+        <button className="back-btn" onClick={() => navigate(-1)}>
           <span className="icon">
             <IoIosArrowBack />
           </span>
           Back
         </button>
-      </Link>
       <div className="cart-details">
         <h1 className="free-delivery-title">Free Delivery within Coventry</h1>
         <h2>Bagged Items</h2>
@@ -26,7 +28,6 @@ const CartPage = () => {
           return (
             <>
               <div key={index} className="product-card">
-                <div className="card-img-desc">
                   <div className="image-container">
                     <img
                       src={
@@ -38,17 +39,20 @@ const CartPage = () => {
                     />
                   </div>
 
-                  <div className="card-text">
                     <h3>{item.product.product_name}</h3>
                     <p className="p-description">{item.product.description}</p>
-                    <div className="qty-and-delete-container">
-                      <span>Qty{item.qty}</span>
-                      <span className="bin-icon">
+                      <span className="qty">
+                        <strong>Qty </strong>
+                        {item.qty}
+                      </span>
+                      <span
+                        className="bin-icon"
+                        onClick={() => {
+                          handleRemoveItemInCart(index);
+                        }}
+                      >
                         <RiDeleteBin6Line />
                       </span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </>
           );
@@ -62,7 +66,7 @@ const CartPage = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
