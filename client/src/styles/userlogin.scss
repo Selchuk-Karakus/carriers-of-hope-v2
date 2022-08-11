@@ -1,6 +1,6 @@
 @import './variables/variables';  
 
-@media only screen and (min-width: 300px) {
+@media only screen and (min-width: 200px) {
   .login-container{
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@
       background-color: $bg2;
       border-radius: 10px;
       border: none;
-      width: 300px
+      width: 272px;
     }
 
     .nav-links{
@@ -69,7 +69,7 @@
     .sign-up-btn,
     .login-btn{
       padding: 0.9em 0;
-      width: 300px;
+      width: 272px;
       border: none;
       background-color: $green3;
       color: $bg;
