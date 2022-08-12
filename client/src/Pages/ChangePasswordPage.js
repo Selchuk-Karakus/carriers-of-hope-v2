@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
-import {Navigate} from 'react-router-dom';
-
+import {Navigate, useParams} from 'react-router-dom';
+import {updatePassword} from '../services/changePasswordService';
 
 function ChangePasswordPage() {
    const [password, setPassword] = useState('');
@@ -9,7 +9,7 @@ function ChangePasswordPage() {
    const [confirmClass, setConfirmClass] = useState('Confirmed-password');
    const [valid, setValid] = useState(false);
    const [redirect, setRedirect] = useState(false);
-
+   const { id, token } = useParams();
 
    useEffect(()=>{
       const generatePassword = () => {
@@ -67,7 +67,7 @@ function ChangePasswordPage() {
       if(!valid){
          alert('password is not valid!')
       }else{
-         alert('added');
+         updatePassword({password}, id, token)
          setRedirect(true);
       }
 
@@ -79,13 +79,6 @@ function ChangePasswordPage() {
   
    return (
       <div className='change-password'>
-        {/* <button className="back-btn" onClick={() => navigate('/')}>
-          <span className="icon">
-            <IoIosArrowBack />
-          </span>
-          Home
-        </button>
-         */}
         <h4>Enter your new password below</h4>
          <form>
             <label >New Password <span>*</span></label>

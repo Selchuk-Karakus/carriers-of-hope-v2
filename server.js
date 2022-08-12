@@ -40,7 +40,7 @@ app.use("/orders", orders);
 app.use("/products", products);
 app.use("/members", members);
 app.use("/members", members);
-app.use("/change-password", changePassword);
+app.use("/reset-password", changePassword);
 
 
 // // Have Node serve the files for our built React app

@@ -1,6 +1,9 @@
 const nodemailer = require('nodemailer');
-const { getMemberByEmail } = require("./members");
+const { getMemberByEmail, getMemberById } = require("./members");
+const {updatePassword} = require("../dal/membersDAL");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+
 
 //send email
 async function sendEmail(email) {
@@ -18,11 +21,8 @@ async function sendEmail(email) {
             message: "The Email is not registered with us",
           };
      } else{
-        const payload={
-            email:memberObj.email, 
-            id:memberObj.id
-        }
-        const token =  jwt.sign(payload, jwtSecretKey, {expiresIn:'15m'});
+        
+        const token =  jwt.sign(memberObj, jwtSecretKey, {expiresIn:'15m'});
     
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -36,7 +36,7 @@ async function sendEmail(email) {
            from: userEmail,
            to: memberObj.email,
            subject: 'Reset Password Link - CarriersHope.com',
-           html: '<p>You requested for reset password, kindly use this <a href="https://carriers-of-hope-deploy.herokuapp.com/change-password/' + token + '">link</a> to reset your password</p>'
+           html: '<p>You requested for reset password, kindly use this <a href="http://localhost:3000/change-password/'+ memberObj.id +'/'+ token + '">https://carriers-of-hope-deploy.herokuapp.com/change-password</a> to reset your password</p>'
     
     
        };
@@ -54,54 +54,32 @@ async function sendEmail(email) {
      
 }
 
+const resetPassword = async (reqParam, password, res)=>{
+    const id = Number(reqParam.id);
+    const user = await getMemberById(id);
+    
+    if(id !== user.id){
+        return {
+            statusCode: 401,
+            message: "Invalid id...",
+          };
+    } 
 
-/* update password to database 
-router.post('/update-password', function(req, res, next) {
- 
-    var token = req.body.token;
-    var password = req.body.password;
- token
-   connection.query('SELECT * FROM users WHERE token ="' + token + '"', function(err, result) {
-        if (err) throw err;
- 
-        var type
-        var msg
- 
-        if (result.length > 0) {
-                
-              var saltRounds = 10;
- 
-             // var hash = bcrypt.hash(password, saltRounds);
- 
-            bcrypt.genSalt(saltRounds, function(err, salt) {
-                  bcrypt.hash(password, salt, function(err, hash) {
- 
-                   var data = {
-                        password: hash
-                    }
- 
-                    connection.query('UPDATE users SET ? WHERE email ="' + result[0].email + '"', data, function(err, result) {
-                        if(err) throw err
-                   
-                    });
- 
-                  });
-              });
- 
-            type = 'success';
-            msg = 'Your password has been updated successfully';
-              
-        } else {
- 
-            console.log('2');
-            type = 'success';
-            msg = 'Invalid link; please try again';
- 
-            }
- 
-        req.flash(type, msg);
-        res.redirect('/');
-    });
-})
-*/
-module.exports = {sendEmail}
+    const token = reqParam.token;
+    if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+  
+
+    // hash the password using bycrypt 
+    let hashedPassword = await bcrypt.hash(password, 10);
+    console.log(hashedPassword)
+    try {
+        const { rows } = await updatePassword(id, hashedPassword);
+        return rows;
+      } catch (error) {
+        res.json({ message: error.message });
+      }
+  
+  }
+  
+
+module.exports = {sendEmail,resetPassword}

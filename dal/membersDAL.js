@@ -78,6 +78,16 @@ const updateEditMemberById = async (memberId, reqBody) => {
     )
 };
 
+const updatePassword = async (memberId, password) => {
+ 
+  return await pgClient.pool
+  .query("UPDATE members SET password = $1 WHERE id = $2" ,
+  [
+    password,
+    memberId
+  ])
+}
+
 //Delete a member with a specific id
 const deleteMemberByIdDb = async (memberId) => {
   return await pgClient.pool
@@ -90,5 +100,6 @@ module.exports = {
   selectMemberByEmail,
   insertMember,
   updateEditMemberById,
+  updatePassword,
   deleteMemberByIdDb
 };

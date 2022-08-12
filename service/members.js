@@ -64,6 +64,7 @@ const updateMemberById = async (memberId, reqBody, res) => {
   }
 };
 
+
 //DELETE a member by id
 const deleteMemberById = async (memberId, res) => {
   try {
