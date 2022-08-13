@@ -1,22 +1,33 @@
-import React,{useState} from 'react';
+import React,{useState, useContext} from 'react';
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
-import {resetPassword} from '../services/changePasswordService';
+import {sendEmail} from '../services/changePasswordService';
+// import {getMembers} from '../services/membersService';
+// import { MembersContext } from "../Contexts/MembersContext";
+
 
 
 function ForgottenPasswordPage() {
-
    const navigate = useNavigate();
    const [email, setEmail] = useState({});
+   const [resultText, setResultText] = useState('');
+   // const { members, setMembers } = useContext(MembersContext);
 
-
+   // getMembers().then((members) => {
+   //    setMembers(members);
+   //  });
    const handleInputValue =(e)=>{
       setEmail(e.target.value);
    }
-   console.log(email )
-   const sendEmail = (e) =>{
+  
+   const handleSubmit = (e) =>{
       e.preventDefault();
-      resetPassword(email).then((result)=>{
+      // let isMember = members.find(user=>user.email===email);
+      // if(!isMember){
+      //    console.log('You are not registered!')
+      // }
+      sendEmail(email).then((result)=>{
+         setResultText('Check your email to reset your password!');
          console.log(result)
       })
 
@@ -32,10 +43,11 @@ function ForgottenPasswordPage() {
           </span>
           Back
         </button>
+        <p>{resultText}</p>
          <form>
          <label>UserName:</label>
          <input onChange={handleInputValue} name='email' type="email" placeholder='username@mail.com'/>
-         <button className='verify-btn' onClick={sendEmail}>Get New Password</button>
+         <button className='verify-btn' onClick={handleSubmit}>Get New Password</button>
          </form>
       </div>
    )

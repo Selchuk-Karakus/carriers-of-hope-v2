@@ -50,11 +50,11 @@ function App() {
                       />
                       <Route path="/login" element={<LoginPage />} />
                       <Route
-                        path="forgotten-password"
+                        path="/forgotten-password"
                         element={<ForgottenPasswordPage />}
                       />
                       <Route
-                        path="change-password/:token"
+                        path="/change-password/:id/:token"
                         element={<ChangePasswordPage />}
                       />
                       <Route path="register" element={<SignUp />} />

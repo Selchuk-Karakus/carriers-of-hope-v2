@@ -1,12 +1,12 @@
 let router = require("express").Router();
-let {sendEmail} = require('../service/changePasswordService');
+let {sendEmail, resetPassword} = require('../service/changePasswordService');
 
 
-router.post("/", function (req, res) {
+router.post("/send-email", function (req, res) {
   res.set("Access-Control-Allow-Origin", "*");
   sendEmail(req.body.email)
     .then((email) => {
-      return res.status(201).json(email);
+      return res.status(201).send('Password reset link has been sent to the email:'+email);
     })
     .catch((error) => {
       console.log(error);
@@ -14,6 +14,21 @@ router.post("/", function (req, res) {
     });
 
  });
+
+
+router.put("/update/:id/:token", function (req, res) {
+  let password = req.body.password
+  console.log(password)
+  resetPassword(req.params, password, res)
+    .then((user) => {
+      return res.status(201).send('Password updated');
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500);
+    });
+
+});
  
 
  module.exports = router;
