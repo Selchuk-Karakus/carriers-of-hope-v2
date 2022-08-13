@@ -3,15 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { CartContext } from "../Contexts/CartContext";
 import { IoIosArrowBack } from "react-icons/io";
+import { handleRemoveItemInCart } from "../util/cart";
 
 const CartPage = () => {
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
-
-  const handleRemoveItemInCart = (idx) => {
-    const result = cart.filter((item, index) => index !== idx);
-    setCart(result);
-  }
 
   return (
     <div className="cart-container">
@@ -48,7 +44,7 @@ const CartPage = () => {
                       <span
                         className="bin-icon"
                         onClick={() => {
-                          handleRemoveItemInCart(index);
+                        handleRemoveItemInCart(index, cart, setCart);
                         }}
                       >
                         <RiDeleteBin6Line />
