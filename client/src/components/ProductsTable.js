@@ -58,7 +58,7 @@ function ProductsTable(){
 
    const deleteProduct = async (id) => {
       if (window.confirm("Are you sure you want to delete this product?")) {
-        const url = `http://localhost:8000/products/${id}`;
+        const url = `/products/${id}`;
         const postDetails = {
           method: "DELETE",
           headers: {
