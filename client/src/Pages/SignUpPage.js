@@ -97,46 +97,48 @@ const SignUpPage = () => {
     }
 
     // if all validators comeback TRUE signup and login the new user
-    signUp({
-      first_name,
-      last_name,
-      address,
-      email,
-      city,
-      postcode,
-      country,
-      telephone,
-      password,
-      confirmPassword,
-    }).then((res) => {
-      console.log(res.statusText);
-      setTimeout(() => {
-        if (res.status === 201) {
-          login({
-            email,
-            password,
-          }).then((res) => {
-            if (res.isAdmin) {
-              console.log(res);
-              setUser({
-                isLoggedIn: res.signedIn,
-                isAdmin: res.isAdmin,
-              });
-              navigate("/admin/dashboard");
-            } else if (res.signedIn) {
-              setUser({
-                isLoggedIn: res.signedIn,
-                isAdmin: false,
-              });
-              console.log(res.statusText);
-              navigate("/products");
-            } else {
-              console.log(res.statusText);
-            }
-          });
-        }
-      }, 1000);
-    });
+    if (isValidForm()) {
+      signUp({
+        first_name,
+        last_name,
+        address,
+        email,
+        city,
+        postcode,
+        country,
+        telephone,
+        password,
+        confirmPassword,
+      }).then((res) => {
+        console.log(res.statusText);
+        setTimeout(() => {
+          if (res.status === 201) {
+            login({
+              email,
+              password,
+            }).then((res) => {
+              if (res.signedIn && res.isAdmin) {
+                console.log(res);
+                setUser({
+                  isLoggedIn: res.signedIn,
+                  isAdmin: res.isAdmin,
+                });
+                navigate("/admin/dashboard");
+              } else if (res.signedIn) {
+                setUser({
+                  isLoggedIn: res.signedIn,
+                  isAdmin: false,
+                });
+                console.log(res.statusText);
+                navigate("/products");
+              } else {
+                console.log(res.statusText);
+              }
+            });
+          }
+        }, 1000);
+      });
+    }
   };
 
   const navigate = useNavigate();
