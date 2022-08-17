@@ -37,7 +37,7 @@ export default function AddNewProductPage() {
       return false;
     }
 
-    const url = "http://localhost:8000/products";
+    const url = "/products";
     const postDetails = {
       method: "POST",
       body: JSON.stringify(formProduct),
