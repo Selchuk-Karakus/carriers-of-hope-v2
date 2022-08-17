@@ -97,26 +97,26 @@ const SignUpPage = () => {
     }
 
     // if all validators comeback TRUE signup and login the new user
-    if (isValidForm) {
-      signUp({
-        first_name,
-        last_name,
-        address,
-        email,
-        city,
-        postcode,
-        country,
-        telephone,
-        password,
-        confirmPassword,
-      }).then((res) => {
-        console.log(res.statusText);
+    signUp({
+      first_name,
+      last_name,
+      address,
+      email,
+      city,
+      postcode,
+      country,
+      telephone,
+      password,
+      confirmPassword,
+    }).then((res) => {
+      console.log(res.statusText);
+      setTimeout(() => {
         if (res.status === 201) {
           login({
             email,
             password,
           }).then((res) => {
-            if (res.signedIn && res.isAdmin) {
+            if (res.isAdmin) {
               console.log(res);
               setUser({
                 isLoggedIn: res.signedIn,
@@ -131,12 +131,12 @@ const SignUpPage = () => {
               console.log(res.statusText);
               navigate("/products");
             } else {
-              setFormData({ error: true });
+              console.log(res.statusText);
             }
           });
         }
-      });
-    }
+      }, 1000);
+    });
   };
 
   const navigate = useNavigate();
