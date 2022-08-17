@@ -18,9 +18,7 @@ function ProductDetails() {
   useEffect(() => {
     console.log(id)
     const fetchOneData = async () => {
-      const response = await fetch(
-        `http://localhost:8000/products/${id}`
-      );
+      const response = await fetch(`/products/${id}`);
       if (response.ok) {
         const jsonData = await response.json();
         setProduct(jsonData);
