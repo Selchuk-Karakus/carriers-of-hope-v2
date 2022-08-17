@@ -34,7 +34,7 @@ export default function UpdateProductPage() {
     console.log(id)
     const fetchOneData = async () => {
       const response = await fetch(
-        `http://localhost:8000/products/${id}`
+        `/products/${id}`
       );
       if (response.ok) {
         const jsonData = await response.json();
@@ -58,7 +58,7 @@ export default function UpdateProductPage() {
       alert("Please Fill All Required Field");
       return false;
         }
-    const url = `http://localhost:8000/products/${id}`;
+    const url = `/products/${id}`;
     const postDetails = {
       method: "PUT",
       body: JSON.stringify(product),
