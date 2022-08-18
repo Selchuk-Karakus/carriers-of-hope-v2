@@ -111,32 +111,31 @@ const SignUpPage = () => {
         confirmPassword,
       }).then((res) => {
         console.log(res.statusText);
-        setTimeout(() => {
-          if (res.status === 201) {
-            login({
-              email,
-              password,
-            }).then((res) => {
-              if (res.signedIn && res.isAdmin) {
-                console.log(res);
-                setUser({
-                  isLoggedIn: res.signedIn,
-                  isAdmin: res.isAdmin,
-                });
-                navigate("/admin/dashboard");
-              } else if (res.signedIn) {
-                setUser({
-                  isLoggedIn: res.signedIn,
-                  isAdmin: false,
-                });
-                console.log(res.statusText);
-                navigate("/products");
-              } else {
-                console.log(res.statusText);
-              }
-            });
-          }
-        }, 1000);
+
+        if (res.status === 201) {
+          login({
+            email,
+            password,
+          }).then((res) => {
+            if (res.signedIn && res.isAdmin) {
+              console.log(res);
+              setUser({
+                isLoggedIn: res.signedIn,
+                isAdmin: res.isAdmin,
+              });
+              navigate("/admin/dashboard");
+            } else if (res.signedIn) {
+              setUser({
+                isLoggedIn: res.signedIn,
+                isAdmin: false,
+              });
+              console.log(res.statusText);
+              navigate("/products");
+            } else {
+              console.log(res.statusText);
+            }
+          });
+        }
       });
     }
   };

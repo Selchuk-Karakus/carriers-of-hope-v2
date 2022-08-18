@@ -20,7 +20,7 @@ router.post("/login", function (req, res) {
 //POST /register
 router.post("/register", async function (req, res, next) {
   // check that user typed in all fields in the form
-  
+
   if (
     req.body.first_name &&
     req.body.last_name &&
@@ -42,7 +42,7 @@ router.post("/register", async function (req, res, next) {
       return next(err);
     }
 
-    // hash the password using bycrypt 
+    // hash the password using bycrypt
     let hashedPassword = await bcrypt.hash(user.password, 10);
 
     // create a new object with form input and hashed password to store in postgresql
@@ -60,7 +60,7 @@ router.post("/register", async function (req, res, next) {
     };
 
     //use create/insert method to insert object into postgresql database
-    insertMember(userToStore);
+    await insertMember(userToStore);
     //tell client that request made is a success!
     res.status(201).send();
   } else {
