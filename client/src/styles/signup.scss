@@ -9,6 +9,11 @@
     align-items: center;
     margin-bottom: 2rem;
 
+    .signUp-header {
+      font-size: 150%;
+      font-weight: bolder;
+    }
+
     .submit-btn {
       margin-top: 1rem;
       border: none;
@@ -33,7 +38,7 @@
     }
 
     .signUp-header {
-      margin: 3rem 0 2rem 0;
+      margin: 4rem 0 2rem 0;
     }
 
     .back-button {
