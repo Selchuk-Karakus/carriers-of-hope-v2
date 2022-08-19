@@ -18,20 +18,19 @@ function LoginPage() {
       email,
       password,
     }).then((res) => {
-      if(res.signedIn && res.isAdmin) {
+      if (res.signedIn && res.isAdmin) {
         setUser({
           isLoggedIn: res.signedIn,
           isAdmin: res.isAdmin,
-          userId: res.userId
+          userId: res.userId,
         });
 
-        navigate('/admin/dashboard')
-      } 
-      else if (res.signedIn) {
+        navigate("/admin/dashboard");
+      } else if (res.signedIn) {
         setUser({
           isLoggedIn: res.signedIn,
           isAdmin: false,
-          userId: res.userId
+          userId: res.userId,
         });
         setDisplayError(false);
         navigate("/products");
@@ -43,8 +42,8 @@ function LoginPage() {
 
   const handleSignUp = () => {
     navigate("/register");
-  }
-  
+  };
+
   return (
     <>
       <div className="login-container">
@@ -56,16 +55,18 @@ function LoginPage() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <input
+            id="email"
             type="email"
             className="form-control"
             placeholder="email@example.com"
             name="email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
+          <label htmlFor="form-control">Password</label>
           <input
+            id="form-control"
             type="password"
             className="form-control"
             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -92,7 +93,9 @@ function LoginPage() {
         </form>
 
         <div className="sign-up-button-container">
-          <button onClick={handleSignUp} className="sign-up-btn">Sign up</button>
+          <button onClick={handleSignUp} className="sign-up-btn">
+            Sign up
+          </button>
         </div>
       </div>
     </>

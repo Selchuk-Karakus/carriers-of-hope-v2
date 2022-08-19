@@ -153,9 +153,10 @@ const SignUpPage = () => {
         <h1 className="signUp-header">Sign Up</h1>
 
         <form onSubmit={handleSubmit}>
-          <label>First Name</label>
+          <label htmlFor="first_name">First Name</label>
           <p>
             <input
+              id="first_name"
               className="form-control"
               type="text"
               name="first_name"
@@ -163,9 +164,10 @@ const SignUpPage = () => {
             />
             <span>Can only contain letters a-z</span>
           </p>
-          <label>Last Name</label>
+          <label htmlFor="last_name">Last Name</label>
           <p>
             <input
+              id="last_name"
               className="form-control"
               type="text"
               name="last_name"
@@ -173,9 +175,10 @@ const SignUpPage = () => {
             />
             <span>Can only contain letters a-z</span>
           </p>
-          <label>Address Line 1</label>
+          <label htmlFor="address">Address Line 1</label>
           <p>
             <input
+              id="address"
               className="form-control"
               type="text"
               name="address"
@@ -183,9 +186,10 @@ const SignUpPage = () => {
             />
             <span>Enter door number followed by street name</span>
           </p>
-          <label>Town/City</label>
+          <label htmlFor="city">Town/City</label>
           <p>
             <input
+              id="city"
               className="form-control"
               type="text"
               name="city"
@@ -193,9 +197,10 @@ const SignUpPage = () => {
             />
             <span>Can only contain letters a-z</span>
           </p>
-          <label>Postcode</label>
+          <label htmlFor="postcode">Postcode</label>
           <p>
             <input
+              id="postcode"
               className="form-control"
               type="text"
               name="postcode"
@@ -203,9 +208,10 @@ const SignUpPage = () => {
             />
             <span>Must be valid UK postcode</span>
           </p>
-          <label>Country</label>
+          <label htmlFor="country">Country</label>
           <p>
             <input
+              id="country"
               className="form-control"
               type="text"
               name="country"
@@ -213,9 +219,10 @@ const SignUpPage = () => {
             />
             <span>Can only contain letters a-z</span>
           </p>
-          <label>Email</label>
+          <label htmlFor="email">Email</label>
           <p>
             <input
+              id="email"
               type="email"
               className="form-control"
               placeholder="email@example.com"
@@ -224,9 +231,10 @@ const SignUpPage = () => {
             />
             <span>Must be a valid email address</span>
           </p>
-          <label>Phone Number</label>
+          <label htmlFor="telephone">Phone Number</label>
           <p>
             <input
+              id="telephone"
               className="form-control"
               type="tel"
               name="telephone"
@@ -234,9 +242,10 @@ const SignUpPage = () => {
             />
             <span>The telephone number must be in a valid UK number</span>
           </p>
-          <label>Password</label>
+          <label htmlFor="password">Password</label>
           <p>
             <input
+              id="password"
               type="password"
               className="form-control"
               placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -245,9 +254,10 @@ const SignUpPage = () => {
             />
             <span>Must contain at least 5 characters letters or numbers</span>
           </p>
-          <label>Retype Password</label>
+          <label htmlFor="confirmPassword">Retype Password</label>
           <p>
             <input
+              id="confirmPassword"
               type="password"
               className="form-control"
               placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"
