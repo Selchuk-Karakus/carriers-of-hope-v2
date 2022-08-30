@@ -3,7 +3,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { RiAddCircleFill } from 'react-icons/ri';
 import { ThreeDots } from "react-loading-icons";
 import {ProductsContext} from '../Contexts/ProductsContext';
-import '../styles/addproduct.scss';
+import { updateProduct } from "../services/productsService";
 
 
 export default function UpdateProductPage() {
@@ -55,26 +55,10 @@ export default function UpdateProductPage() {
     e.preventDefault();
     if ( product.product_name== null || 
       product.category_name== null) {
-      alert("Please Fill All Required Field");
+      alert("Please Fill All Required Fields!");
       return false;
-        }
-    const url = `/products/${id}`;
-    const postDetails = {
-      method: "PUT",
-      body: JSON.stringify(product),
-      headers: { "Content-Type": "application/json" },
-    };
-    try {
-      const response = await fetch(url, postDetails);
-      if (response.ok) {
-        let jsonResponse = await response.json();
-        console.log(jsonResponse);
-      } else {
-        throw new Error("Request failed!");
-      }
-    } catch (error) {
-      console.log(error);
     }
+    updateProduct(product,id);
     setRedirect(true);
     setProductsTable(true);
   };

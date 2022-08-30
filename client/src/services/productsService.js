@@ -20,3 +20,46 @@ const checkStatus = (res) => {
 };
 
 
+//make post request to add a product to the products database
+
+export const addProduct = async(formProduct) => {
+  const url = "/products";
+    const postDetails = {
+      method: "POST",
+      body: JSON.stringify(formProduct),
+      headers: { "Content-Type": "application/json" },
+    };
+    try {
+      const response = await fetch(url, postDetails);
+      if (response.ok) {
+        let jsonResponse = await response.json();
+        console.log(jsonResponse);
+      } else {
+        throw new Error("Request failed!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+//make put request to update a product bi id
+
+export const updateProduct = async(product,id) => {
+  const url = `/products/${id}`;
+    const postDetails = {
+      method: "PUT",
+      body: JSON.stringify(product),
+      headers: { "Content-Type": "application/json" },
+    };
+    try {
+      const response = await fetch(url, postDetails);
+      if (response.ok) {
+        let jsonResponse = await response.json();
+        console.log(jsonResponse);
+      } else {
+        throw new Error("Request failed!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+}

@@ -11,6 +11,7 @@ export const sendEmail = async(userEmail) => {
       })
       .then((res) => {
          if (res.ok) {
+            console.log(res)
          return Promise.resolve(res);
        } else {
          return Promise.reject(new Error(res.statusText));

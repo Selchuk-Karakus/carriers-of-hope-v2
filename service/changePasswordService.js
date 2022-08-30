@@ -18,7 +18,7 @@ async function sendEmail(email) {
     if(!memberObj){
         return {
             statusCode: 401,
-            message: "The Email is not registered with us",
+            message: "Incorrect email or password",
           };
      } else{
         
@@ -41,14 +41,14 @@ async function sendEmail(email) {
     
        };
     
-       transporter.sendMail(mailOptions, function(error, info) {
-           if (error) {
-               console.log(error)
-           } else {
-            console.log('Message %s sent: %s', info.messageId, info.response)
-            transporter.close();
-           }
-       });
+       transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Message %s sent: %s', info.messageId, info.response);
+                transporter.close();
+            }
+        });
 
      }
      

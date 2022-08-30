@@ -10,7 +10,7 @@ import {sendEmail} from '../services/changePasswordService';
 function ForgottenPasswordPage() {
    const navigate = useNavigate();
    const [email, setEmail] = useState({});
-   const [resultText, setResultText] = useState('');
+   const [resultText, setResultText] = useState('type your email');
    // const { members, setMembers } = useContext(MembersContext);
 
    // getMembers().then((members) => {
@@ -26,10 +26,13 @@ function ForgottenPasswordPage() {
       // if(!isMember){
       //    console.log('You are not registered!')
       // }
-      sendEmail(email).then((result)=>{
-         setResultText('Check your email to reset your password!');
-         console.log(result)
+      sendEmail(email).then(res=>{
+         if(res){
+            console.log(res)
+         }
       })
+      setResultText('Check your email to reset your password!');
+
 
      
    }

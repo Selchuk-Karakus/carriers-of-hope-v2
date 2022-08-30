@@ -82,12 +82,12 @@ function ChangePasswordPage() {
         <h4>Enter your new password below</h4>
          <form>
             <label >New Password <span>*</span></label>
-            <input type="text"
+            <input type="password"
                   onChange={handleInputValue}  
                   value={password}
             />
             <label>New Password (Confirmation) <span>*</span></label>
-            <input type="text" 
+            <input type="password" 
                   value={confirmPassword}
                   onChange={handleConfirmPassword}
                   className={confirmClass}
