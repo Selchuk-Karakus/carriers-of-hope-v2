@@ -97,7 +97,7 @@ const SignUpPage = () => {
     }
 
     // if all validators comeback TRUE signup and login the new user
-    if (isValidForm) {
+    if (isValidForm()) {
       signUp({
         first_name,
         last_name,
@@ -111,6 +111,7 @@ const SignUpPage = () => {
         confirmPassword,
       }).then((res) => {
         console.log(res.statusText);
+
         if (res.status === 201) {
           login({
             email,
@@ -131,7 +132,7 @@ const SignUpPage = () => {
               console.log(res.statusText);
               navigate("/products");
             } else {
-              setFormData({ error: true });
+              console.log(res.statusText);
             }
           });
         }
