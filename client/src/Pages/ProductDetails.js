@@ -16,7 +16,6 @@ function ProductDetails() {
   let { id } = useParams();
 
   useEffect(() => {
-    console.log(id)
     const fetchOneData = async () => {
       const response = await fetch(`/products/${id}`);
       if (response.ok) {

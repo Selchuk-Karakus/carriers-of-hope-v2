@@ -2,36 +2,34 @@ import React,{useState, useContext} from 'react';
 import { useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from 'react-icons/io';
 import {sendEmail} from '../services/changePasswordService';
-// import {getMembers} from '../services/membersService';
-// import { MembersContext } from "../Contexts/MembersContext";
-
-
 
 function ForgottenPasswordPage() {
    const navigate = useNavigate();
    const [email, setEmail] = useState({});
-   const [resultText, setResultText] = useState('');
-   // const { members, setMembers } = useContext(MembersContext);
+   const [resultText, setResultText] = useState('Enter your email.');
+   const [errorMessage, setErrorMessage] = useState('');
+   
 
-   // getMembers().then((members) => {
-   //    setMembers(members);
-   //  });
    const handleInputValue =(e)=>{
+      setResultText('Enter your email.')
       setEmail(e.target.value);
+      setErrorMessage('');
+
    }
   
    const handleSubmit = (e) =>{
       e.preventDefault();
-      // let isMember = members.find(user=>user.email===email);
-      // if(!isMember){
-      //    console.log('You are not registered!')
-      // }
-      sendEmail(email).then((result)=>{
-         setResultText('Check your email to reset your password!');
-         console.log(result)
-      })
+      sendEmail(email).then((resultText)=>{
+         if(resultText.mailSent){
+            setResultText('Now check your email to reset your password!');
+            setErrorMessage('');
 
-     
+         } else{
+            setResultText('');
+            setErrorMessage('User not found!');
+
+         }
+      })
    }
    
 
@@ -44,6 +42,7 @@ function ForgottenPasswordPage() {
           Back
         </button>
         <p>{resultText}</p>
+        <p className='errorMessage'>{errorMessage}</p>
          <form>
          <label>UserName:</label>
          <input onChange={handleInputValue} name='email' type="email" placeholder='username@mail.com'/>

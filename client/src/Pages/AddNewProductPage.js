@@ -2,7 +2,7 @@ import React, { useState, useContext} from "react";
 import {Navigate} from 'react-router-dom';
 import { RiAddCircleFill } from 'react-icons/ri';
 import {ProductsContext} from '../Contexts/ProductsContext';
-import '../styles/addproduct.scss';
+import {addProduct} from '../services/productsService';
 
 export default function AddNewProductPage() {
 
@@ -31,34 +31,17 @@ export default function AddNewProductPage() {
     if ( formProduct.product_name== null || 
          formProduct.category_name== null||
          formProduct.product_status==null ||
-         formProduct.product_status=='Select Status' ||
+         formProduct.product_status==='Select Status' ||
          formProduct.description==null) {
-      alert("Please Fill All Required Field");
+      alert("Please Fill All Required Fields!");
       return false;
     }
 
-    const url = "/products";
-    const postDetails = {
-      method: "POST",
-      body: JSON.stringify(formProduct),
-      headers: { "Content-Type": "application/json" },
-    };
-    try {
-      const response = await fetch(url, postDetails);
-      if (response.ok) {
-        let jsonResponse = await response.json();
-        console.log(jsonResponse);
-      } else {
-        throw new Error("Request failed!");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    addProduct(formProduct);
     setRedirect(true);
     setProductsTable(true);
   };
 
-  console.log(formProduct);
 
   const cancelAddProduct=()=>{
     setRedirect(true);

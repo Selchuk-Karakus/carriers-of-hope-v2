@@ -5,20 +5,18 @@ let {sendEmail, resetPassword} = require('../service/changePasswordService');
 router.post("/send-email", function (req, res) {
   res.set("Access-Control-Allow-Origin", "*");
   sendEmail(req.body.email)
-    .then((email) => {
-      return res.status(201).send('Password reset link has been sent to the email:'+email);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500);
-    });
-
+  .then((resObj) => {
+    return res.status(resObj.statusCode).json(resObj.message);
+  })
+  .catch((error) => {
+    console.log(error);
+    res.status(500);
+  });
  });
 
 
 router.put("/update/:id/:token", function (req, res) {
   let password = req.body.password
-  console.log(password)
   resetPassword(req.params, password, res)
     .then((user) => {
       return res.status(201).send('Password updated');

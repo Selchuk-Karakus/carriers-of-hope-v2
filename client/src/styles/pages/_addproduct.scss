@@ -1,5 +1,4 @@
-@import './variables/_variables.scss';  
-
+@import '../variables/_variables.scss';  
 
 
 .form-container-products{
@@ -30,9 +29,10 @@
             grid-column: 1/-1;
             grid-row: 2/3;
             padding: 1rem 0; 
-            margin-top: 3.1rem;
+            margin-top: 4.5rem;
             margin-bottom: 4rem;
-
+            text-align: center;
+            
             .addImage-icon{
                font-size: 2rem;
                padding: 6rem 7.6rem;
@@ -52,8 +52,7 @@
          .category{
             grid-column: 8/-1;
             grid-row: 4/5;
-            margin-bottom:4rem;
-
+            margin-top: 8px;
          }
          .status,.category{
             display: flex;
@@ -66,6 +65,7 @@
          .description{
             grid-column: 1/8;
             grid-row: 3/5;
+            padding-right: 2rem;
             margin-top: 2.5rem;
 
          }
@@ -113,7 +113,7 @@
          .submit-btn, .cancel-btn {
             font-size: 1.1em;
             cursor: pointer;
-            margin-top: 1rem;
+            margin-top: 4rem;
             margin-bottom: 0;
             padding:6px 16px;
          }

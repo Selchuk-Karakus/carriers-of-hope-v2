@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import {Navigate, useParams} from 'react-router-dom';
 import {updatePassword} from '../services/changePasswordService';
+import {isValidPassword} from '../services/validationService';
 
 function ChangePasswordPage() {
    const [password, setPassword] = useState('');
@@ -28,19 +29,26 @@ function ChangePasswordPage() {
 
    useEffect(()=>{
       const isValid= () => {
-       if(password!==confirmPassword||password===''){
-         setConfirmClass('unConfirmed-password')
-         setErrorMessage('Please enter same password!');
-         setValid(false)
-       }else{
-         setConfirmClass('Confirmed-password')
+      let result = isValidPassword(password);
+      if(result){
          setErrorMessage('');
-         setValid(true)
-       }
+         if(password!==confirmPassword||password===''){
+            setConfirmClass('unConfirmed-password')
+            setErrorMessage('Please enter the same password!');
+            setValid(false)
+            }else{
+            setConfirmClass('Confirmed-password')
+            setErrorMessage('');
+            setValid(true)
+            }
+      } else{
+         setErrorMessage('Password have to be at least 5 characters or numbers long!')
+      }
+      
        };
        isValid();
 
-   },[confirmPassword])
+   },[password, confirmPassword])
 
 
 
@@ -54,7 +62,7 @@ function ChangePasswordPage() {
 
    const handleInputValue=(e)=>{
       let newPassword = e.target.value;
-      setPassword(newPassword)
+      setPassword(newPassword);
    }
 
    const handleConfirmPassword=(e)=>{
@@ -92,8 +100,8 @@ function ChangePasswordPage() {
                   onChange={handleConfirmPassword}
                   className={confirmClass}
              />
-             <p>{errorMessage}</p>
-            <button onClick={createOwnPassword}>Use your own password?</button>
+             <p className='error-message'>{errorMessage}</p>
+            <button onClick={createOwnPassword} >Use your own password?</button>
             <button className='reset-btn' onClick={resetPassword}>Reset Password</button>
          </form>
       </div>
