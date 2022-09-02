@@ -6,7 +6,7 @@ router.post("/send-email", function (req, res) {
   res.set("Access-Control-Allow-Origin", "*");
   sendEmail(req.body.email)
   .then((resObj) => {
-    return res.status(201).json(resObj);
+    return res.status(resObj.statusCode).json(resObj.message);
   })
   .catch((error) => {
     console.log(error);
@@ -17,7 +17,6 @@ router.post("/send-email", function (req, res) {
 
 router.put("/update/:id/:token", function (req, res) {
   let password = req.body.password
-  console.log(password)
   resetPassword(req.params, password, res)
     .then((user) => {
       return res.status(201).send('Password updated');

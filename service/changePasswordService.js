@@ -8,20 +8,14 @@ const bcrypt = require("bcrypt");
 //send email
 async function sendEmail(email) {
     const memberObj = await getMemberByEmail(email);
-   
+    console.log(memberObj)
     // get the jwtSecretKey from the .env file
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
     const userEmail =   process.env.NODEMAILER_SEND_EMAIL_ADDRESS;
     const userPassword = process.env.NODEMAILER_SEND_EMAIL_PASSWORD;
 
-    if(!memberObj){
-        return {
-            statusCode: 401,
-            message: "Incorrect email or password",
-          };
-     } else{
-        
+    if(memberObj){        
         const token =  jwt.sign(memberObj, jwtSecretKey, {expiresIn:'15m'});
     
         var transporter = nodemailer.createTransport({
@@ -49,15 +43,21 @@ async function sendEmail(email) {
                 transporter.close();
             }
         });
-
-     }
-     
+        return {
+            statusCode: 201,
+            message: 'mail sent',
+        };
+     } else {
+        return {
+            statusCode: 401,
+            message: "Incorrect email or password",
+        };
+    }
 }
 
 const resetPassword = async (reqParam, password, res)=>{
     const id = Number(reqParam.id);
-    const user = await getMemberById(id);
-    
+    const user = (await getMemberById(id))[0];
     if(id !== user.id){
         return {
             statusCode: 401,
@@ -68,10 +68,8 @@ const resetPassword = async (reqParam, password, res)=>{
     const token = reqParam.token;
     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
   
-
     // hash the password using bycrypt 
     let hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword)
     try {
         const { rows } = await updatePassword(id, hashedPassword);
         return rows;
