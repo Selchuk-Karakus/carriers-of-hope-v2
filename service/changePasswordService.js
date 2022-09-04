@@ -8,12 +8,11 @@ const bcrypt = require("bcrypt");
 //send email
 async function sendEmail(email) {
     const memberObj = await getMemberByEmail(email);
-    console.log(memberObj)
     // get the jwtSecretKey from the .env file
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-    const userEmail =   process.env.NODEMAILER_SEND_EMAIL_ADDRESS;
-    const userPassword = process.env.NODEMAILER_SEND_EMAIL_PASSWORD;
+    // const userEmail =   process.env.NODEMAILER_SEND_EMAIL_ADDRESS;
+    // const userPassword = process.env.NODEMAILER_SEND_EMAIL_PASSWORD;
 
     if(memberObj){        
         const token =  jwt.sign(memberObj, jwtSecretKey, {expiresIn:'15m'});
@@ -21,16 +20,16 @@ async function sendEmail(email) {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: userEmail,    // Your email id
-                pass:  userPassword // Your password
+                user: 'mahriaa88@gmail.com',    // Your email id
+                pass:  "mqjxpmigmnfdhktb" // Your password
             }
         });
     
        var mailOptions = {
-           from: userEmail,
+           from: 'mahriaa88@gmail.com',
            to: memberObj.email,
            subject: 'Reset Password Link - CarriersHope.com',
-           html: '<p>You requested for reset password, kindly use this <a href="http://localhost:3000/change-password/'+ memberObj.id +'/'+ token + '">https://carriers-of-hope-deploy.herokuapp.com/change-password</a> to reset your password</p>'
+           html: '<p>You requested for reset password, kindly use this <a href="https://carriers-of-hope-deploy.herokuapp.com/change-password/'+ memberObj.id +'/'+ token + '">https://carriers-of-hope-deploy.herokuapp.com/change-password</a> to reset your password</p>'
     
     
        };
