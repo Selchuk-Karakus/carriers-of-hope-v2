@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import {Navigate, useParams} from 'react-router-dom';
 import {updatePassword} from '../services/changePasswordService';
 import {isValidPassword} from '../services/validationService';
+import { AiFillEyeInvisible,AiFillEye } from 'react-icons/ai';
 
 function ChangePasswordPage() {
    const [password, setPassword] = useState('');
@@ -10,6 +11,7 @@ function ChangePasswordPage() {
    const [confirmClass, setConfirmClass] = useState('Confirmed-password');
    const [valid, setValid] = useState(false);
    const [redirect, setRedirect] = useState(false);
+   const [inputType, setInputType]= useState('text')
    const { id, token } = useParams();
 
    useEffect(()=>{
@@ -35,11 +37,11 @@ function ChangePasswordPage() {
          if(password!==confirmPassword||password===''){
             setConfirmClass('unConfirmed-password')
             setErrorMessage('Please enter the same password!');
-            setValid(false)
-            }else{
+            setValid(false);
+            }else{  
             setConfirmClass('Confirmed-password')
             setErrorMessage('');
-            setValid(true)
+            setValid(true);
             }
       } else{
          setErrorMessage('Password have to be at least 5 characters or numbers long!')
@@ -54,7 +56,7 @@ function ChangePasswordPage() {
 
    const createOwnPassword=(e)=>{
       e.preventDefault();
-
+      setInputType('password');
       setPassword('');
       setConfirmPassword('');
       setValid(false);
@@ -89,17 +91,25 @@ function ChangePasswordPage() {
       <div className='change-password'>
         <h4>Enter your new password below</h4>
          <form>
-            <label >New Password <span>*</span></label>
-            <input type="text"
-                  onChange={handleInputValue}  
-                  value={password}
-            />
+            <label>New Password <span>*</span></label>
+            <div className='inputWithIcon'>
+               <input type={inputType}
+                     onChange={handleInputValue}  
+                     value={password}
+                     
+               />
+               <span className='password-icon' onClick={()=>inputType==='password'?setInputType('text'):setInputType('password')}>{inputType==='text'?<AiFillEyeInvisible/>:<AiFillEye/>}</span>
+            </div>
             <label>New Password (Confirmation) <span>*</span></label>
-            <input type="text" 
-                  value={confirmPassword}
-                  onChange={handleConfirmPassword}
-                  className={confirmClass}
-             />
+            <div className='inputWithIcon'>
+               <input type={inputType} 
+                     value={confirmPassword}
+                     onChange={handleConfirmPassword}
+                     className={confirmClass}
+                     
+               />
+               <span className='password-icon' onClick={()=>inputType==='password'?setInputType('text'):setInputType('password')}>{inputType==='text'?<AiFillEyeInvisible/>:<AiFillEye/>}</span>
+            </div>
              <p className='error-message'>{errorMessage}</p>
             <button onClick={createOwnPassword} >Use your own password?</button>
             <button className='reset-btn' onClick={resetPassword}>Reset Password</button>
