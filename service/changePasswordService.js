@@ -11,8 +11,8 @@ async function sendEmail(email) {
     // get the jwtSecretKey from the .env file
     const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-    // const userEmail =   process.env.NODEMAILER_SEND_EMAIL_ADDRESS;
-    // const userPassword = process.env.NODEMAILER_SEND_EMAIL_PASSWORD;
+    const userEmail =   process.env.NODEMAILER_SEND_EMAIL_ADDRESS;
+    const userPassword = process.env.NODEMAILER_SEND_EMAIL_PASSWORD;
 
     if(memberObj){        
         const token =  jwt.sign(memberObj, jwtSecretKey, {expiresIn:'15m'});
@@ -20,8 +20,8 @@ async function sendEmail(email) {
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'mahriaa88@gmail.com',    // Your email id
-                pass:  "mqjxpmigmnfdhktb" // Your password
+                user: userEmail,    // Your email id
+                pass: userPassword // Your password
             }
         });
     
